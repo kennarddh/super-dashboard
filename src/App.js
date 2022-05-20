@@ -7,62 +7,37 @@ import 'react-resizable/css/styles.css'
 const ReactGridLayout = WidthProvider(RGL)
 
 const App = () => {
-	const items = [
-		'1',
-		'2',
-		'3',
-		'4',
-		'5',
-		'6',
-		'7',
-		'8',
-		'9',
-		'10',
-		'11',
-		'12',
-		'13',
-		'14',
-		'15',
-		'16',
-		'17',
-		'18',
-		'19',
-		'20',
-	]
-
-	const layout = items.map(i => {
-		const y = Math.ceil(Math.random() * 4) + 1
-
-		return {
-			x: (i * 2) % 12,
-			y: Math.floor(i / 6) * y,
-			w: 2,
-			h: y,
-			i: i.toString(),
-		}
-	})
-
 	const OnLayoutChange = layout => {
 		console.log('layout', layout)
 	}
 
 	return (
 		<ReactGridLayout
-			layout={layout}
+			layout={[
+				{ i: 'whiteboard', x: 0, y: 0, w: 8, h: 8 },
+				{ i: 'images', x: 0, y: 8, w: 8, h: 4 },
+				{ i: 'weather', x: 8, y: 0, w: 4, h: 6 },
+				{ i: 'videoPlayer', x: 8, y: 6, w: 4, h: 6 },
+			]}
 			onLayoutChange={OnLayoutChange}
-			{...{
-				className: 'layout',
-				items: 20,
-				rowHeight: 30,
-				cols: 12,
-				resizeHandles: ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne'],
-			}}
+			className='layout'
+			items={4}
+			rowHeight={41}
+			cols={12}
+			resizeHandles={['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']}
 		>
-			{items.map(i => (
-				<div key={i} style={{ border: '1px solid black' }}>
-					<span className='text'>{i}</span>
-				</div>
-			))}
+			<div key='whiteboard' style={{ border: '1px solid black' }}>
+				Whiteboard
+			</div>
+			<div key='images' style={{ border: '1px solid black' }}>
+				Images
+			</div>
+			<div key='weather' style={{ border: '1px solid black' }}>
+				Weather
+			</div>
+			<div key='videoPlayer' style={{ border: '1px solid black' }}>
+				Video Player
+			</div>
 		</ReactGridLayout>
 	)
 }
