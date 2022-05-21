@@ -33,6 +33,10 @@ const Whiteboard = () => {
 		CanvasDrawRef.current.undo()
 	}, [CanvasDrawRef])
 
+	const EraseAll = useCallback(() => {
+		CanvasDrawRef.current.eraseAll()
+	}, [CanvasDrawRef])
+
 	return (
 		<>
 			<ToolBar>
@@ -48,6 +52,7 @@ const Whiteboard = () => {
 					onChange={OnBrushRadiusChange}
 				/>
 				<ToolBarButton onClick={Undo}>Undo</ToolBarButton>
+				<ToolBarButton onClick={EraseAll}>Erase All</ToolBarButton>
 			</ToolBar>
 			<CanvasDraw
 				ref={CanvasDrawRef}
