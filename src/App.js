@@ -10,10 +10,6 @@ import Whiteboard from 'Components/Whiteboard/Whiteboard'
 const ReactGridLayout = WidthProvider(RGL)
 
 const App = () => {
-	const OnLayoutChange = layout => {
-		console.log('layout', layout)
-	}
-
 	return (
 		<ReactGridLayout
 			layout={[
@@ -22,7 +18,6 @@ const App = () => {
 				{ i: 'weather', x: 8, y: 0, w: 4, h: 6 },
 				{ i: 'videoPlayer', x: 8, y: 6, w: 4, h: 6 },
 			]}
-			onLayoutChange={OnLayoutChange}
 			className='layout'
 			items={4}
 			rowHeight={41}
