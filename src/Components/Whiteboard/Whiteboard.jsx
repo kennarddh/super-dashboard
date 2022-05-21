@@ -22,7 +22,7 @@ const Whiteboard = () => {
 			if (value < 1) value = 1
 			if (value > 50) value = 50
 
-			SetBrushRadius(value)
+			SetBrushRadius(parseInt(value, 10))
 		},
 		[BrushRadius]
 	)
