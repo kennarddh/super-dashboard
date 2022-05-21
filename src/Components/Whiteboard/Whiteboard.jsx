@@ -1,12 +1,14 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 
 import CanvasDraw from 'react-canvas-draw'
 
-import { ToolBar, ToolBarInput } from './Styles'
+import { ToolBar, ToolBarInput, ToolBarButton } from './Styles'
 
 const Whiteboard = () => {
 	const [BrushColor, SetBrushColor] = useState('#000000')
 	const [BrushRadius, SetBrushRadius] = useState(5)
+
+	const CanvasDrawRef = useRef(null)
 
 	const OnBrushColorChange = useCallback(
 		event => {
@@ -27,6 +29,10 @@ const Whiteboard = () => {
 		[BrushRadius]
 	)
 
+	const Undo = useCallback(() => {
+		CanvasDrawRef.current.undo()
+	}, [CanvasDrawRef])
+
 	return (
 		<>
 			<ToolBar>
@@ -41,8 +47,10 @@ const Whiteboard = () => {
 					value={BrushRadius}
 					onChange={OnBrushRadiusChange}
 				/>
+				<ToolBarButton onClick={Undo}>Undo</ToolBarButton>
 			</ToolBar>
 			<CanvasDraw
+				ref={CanvasDrawRef}
 				enablePanAndZoom
 				brushRadius={BrushRadius}
 				brushColor={BrushColor}

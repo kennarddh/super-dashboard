@@ -28,3 +28,10 @@ export const ToolBarInput = styled.input`
 			  `
 			: ''}
 `
+
+export const ToolBarButton = styled.button`
+	border: none;
+	background-color: #fafafa;
+	box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+		0 8px 16px -8px rgba(0, 0, 0, 0.3);
+`
