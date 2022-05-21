@@ -35,6 +35,7 @@ const Whiteboard = () => {
 				/>
 			</div>
 			<CanvasDraw
+				enablePanAndZoom
 				brushRadius={BrushRadius}
 				brushColor={BrushColor}
 				style={{
