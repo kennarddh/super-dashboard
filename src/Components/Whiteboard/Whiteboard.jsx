@@ -2,6 +2,8 @@ import React, { useState, useCallback } from 'react'
 
 import CanvasDraw from 'react-canvas-draw'
 
+import { ToolBar, ToolBarInput } from './Styles'
+
 const Whiteboard = () => {
 	const [BrushColor, SetBrushColor] = useState('#000000')
 	const [BrushRadius, SetBrushRadius] = useState(5)
@@ -22,18 +24,19 @@ const Whiteboard = () => {
 
 	return (
 		<>
-			<div>
-				<input
+			<ToolBar>
+				<ToolBarInput
 					type='color'
 					value={BrushColor}
 					onChange={OnBrushColorChange}
 				/>
-				<input
+				<ToolBarInput
 					type='number'
+					width='50px'
 					value={BrushRadius}
 					onChange={OnBrushRadiusChange}
 				/>
-			</div>
+			</ToolBar>
 			<CanvasDraw
 				enablePanAndZoom
 				brushRadius={BrushRadius}
