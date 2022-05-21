@@ -17,7 +17,12 @@ const Whiteboard = () => {
 
 	const OnBrushRadiusChange = useCallback(
 		event => {
-			SetBrushRadius(event.target.value)
+			let value = event.target.value
+
+			if (value < 1) value = 1
+			if (value > 50) value = 50
+
+			SetBrushRadius(value)
 		},
 		[BrushRadius]
 	)
