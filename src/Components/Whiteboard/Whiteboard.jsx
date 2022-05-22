@@ -97,6 +97,7 @@ const Whiteboard = () => {
 				brushRadius={BrushRadius}
 				brushColor={BrushColor}
 				immediateLoading={true}
+				lazyRadius={0}
 				style={{
 					width: '100%',
 					height: '90%',
