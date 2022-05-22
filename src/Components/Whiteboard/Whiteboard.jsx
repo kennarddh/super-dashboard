@@ -8,6 +8,8 @@ const Whiteboard = () => {
 	const [BrushColor, SetBrushColor] = useState('#000000')
 	const [BrushRadius, SetBrushRadius] = useState(5)
 
+	const [IsDisabled, SetIsDisabled] = useState(false)
+
 	const CanvasDrawRef = useRef(null)
 
 	const OnBrushColorChange = useCallback(
@@ -68,6 +70,10 @@ const Whiteboard = () => {
 		CanvasDrawRef.current.loadSaveData(data)
 	}, [CanvasDrawRef])
 
+	const ToggleIsDisabled = useCallback(() => {
+		SetIsDisabled(isDisabled => !isDisabled)
+	}, [])
+
 	return (
 		<>
 			<ToolBar>
@@ -89,6 +95,9 @@ const Whiteboard = () => {
 				<ToolBarButton onClick={Download}>Download</ToolBarButton>
 				<ToolBarButton onClick={Save}>Save</ToolBarButton>
 				<ToolBarButton onClick={Load}>Load</ToolBarButton>
+				<ToolBarButton onClick={ToggleIsDisabled}>
+					{IsDisabled ? 'Enable' : 'Disable'}
+				</ToolBarButton>
 			</ToolBar>
 			<CanvasDraw
 				ref={CanvasDrawRef}
@@ -98,6 +107,7 @@ const Whiteboard = () => {
 				brushColor={BrushColor}
 				immediateLoading={true}
 				lazyRadius={0}
+				disabled={IsDisabled}
 				style={{
 					width: '100%',
 					height: '90%',
