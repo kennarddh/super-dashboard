@@ -45,6 +45,15 @@ const Whiteboard = () => {
 		CanvasDrawRef.current.resetView()
 	}, [CanvasDrawRef])
 
+	const Download = useCallback(() => {
+		const link = document.createElement('a')
+
+		link.href = CanvasDrawRef.current.getDataURL()
+		link.download = 'whiteboard.jpg'
+
+		link.click()
+	}, [CanvasDrawRef])
+
 	return (
 		<>
 			<ToolBar>
@@ -63,6 +72,7 @@ const Whiteboard = () => {
 				<ToolBarButton onClick={EraseAll}>Erase All</ToolBarButton>
 				<ToolBarButton onClick={Clear}>Clear</ToolBarButton>
 				<ToolBarButton onClick={ResetView}>Reset View</ToolBarButton>
+				<ToolBarButton onClick={Download}>Download</ToolBarButton>
 			</ToolBar>
 			<CanvasDraw
 				ref={CanvasDrawRef}
