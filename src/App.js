@@ -7,6 +7,8 @@ import 'react-resizable/css/styles.css'
 // Components
 import Whiteboard from 'Components/Whiteboard/Whiteboard'
 
+import { SectionWrapper } from './Styles'
+
 const ReactGridLayout = WidthProvider(RGL)
 
 const App = () => {
@@ -24,18 +26,12 @@ const App = () => {
 			cols={12}
 			resizeHandles={['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']}
 		>
-			<div key='whiteboard' style={{ border: '1px solid black' }}>
+			<SectionWrapper key='whiteboard'>
 				<Whiteboard />
-			</div>
-			<div key='images' style={{ border: '1px solid black' }}>
-				Images
-			</div>
-			<div key='weather' style={{ border: '1px solid black' }}>
-				Weather
-			</div>
-			<div key='videoPlayer' style={{ border: '1px solid black' }}>
-				Video Player
-			</div>
+			</SectionWrapper>
+			<SectionWrapper key='images'>Images</SectionWrapper>
+			<SectionWrapper key='weather'>Weather</SectionWrapper>
+			<SectionWrapper key='videoPlayer'>Video Player</SectionWrapper>
 		</ReactGridLayout>
 	)
 }
