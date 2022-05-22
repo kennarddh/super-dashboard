@@ -54,6 +54,20 @@ const Whiteboard = () => {
 		link.click()
 	}, [CanvasDrawRef])
 
+	const Save = useCallback(() => {
+		const data = CanvasDrawRef.current.getSaveData()
+
+		localStorage.setItem('whiteboard_data', data)
+	}, [CanvasDrawRef])
+
+	const Load = useCallback(() => {
+		const data = localStorage.getItem('whiteboard_data')
+
+		if (!data) return
+
+		CanvasDrawRef.current.loadSaveData(data)
+	}, [CanvasDrawRef])
+
 	return (
 		<>
 			<ToolBar>
@@ -73,12 +87,16 @@ const Whiteboard = () => {
 				<ToolBarButton onClick={Clear}>Clear</ToolBarButton>
 				<ToolBarButton onClick={ResetView}>Reset View</ToolBarButton>
 				<ToolBarButton onClick={Download}>Download</ToolBarButton>
+				<ToolBarButton onClick={Save}>Save</ToolBarButton>
+				<ToolBarButton onClick={Load}>Load</ToolBarButton>
 			</ToolBar>
 			<CanvasDraw
 				ref={CanvasDrawRef}
+				saveData={localStorage.getItem('save_data')}
 				enablePanAndZoom
 				brushRadius={BrushRadius}
 				brushColor={BrushColor}
+				immediateLoading={true}
 				style={{
 					width: '100%',
 					height: '90%',
