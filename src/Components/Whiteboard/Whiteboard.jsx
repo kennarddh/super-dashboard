@@ -37,6 +37,10 @@ const Whiteboard = () => {
 		CanvasDrawRef.current.eraseAll()
 	}, [CanvasDrawRef])
 
+	const Clear = useCallback(() => {
+		CanvasDrawRef.current.clear()
+	}, [CanvasDrawRef])
+
 	return (
 		<>
 			<ToolBar>
@@ -53,6 +57,7 @@ const Whiteboard = () => {
 				/>
 				<ToolBarButton onClick={Undo}>Undo</ToolBarButton>
 				<ToolBarButton onClick={EraseAll}>Erase All</ToolBarButton>
+				<ToolBarButton onClick={Clear}>Clear</ToolBarButton>
 			</ToolBar>
 			<CanvasDraw
 				ref={CanvasDrawRef}
