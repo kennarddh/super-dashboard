@@ -41,6 +41,10 @@ const Whiteboard = () => {
 		CanvasDrawRef.current.clear()
 	}, [CanvasDrawRef])
 
+	const ResetView = useCallback(() => {
+		CanvasDrawRef.current.resetView()
+	}, [CanvasDrawRef])
+
 	return (
 		<>
 			<ToolBar>
@@ -58,6 +62,7 @@ const Whiteboard = () => {
 				<ToolBarButton onClick={Undo}>Undo</ToolBarButton>
 				<ToolBarButton onClick={EraseAll}>Erase All</ToolBarButton>
 				<ToolBarButton onClick={Clear}>Clear</ToolBarButton>
+				<ToolBarButton onClick={ResetView}>Reset View</ToolBarButton>
 			</ToolBar>
 			<CanvasDraw
 				ref={CanvasDrawRef}
