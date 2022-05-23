@@ -3,10 +3,10 @@ import React, { useState, useCallback, useRef } from 'react'
 import CanvasDraw from 'react-canvas-draw'
 
 import {
-	ToolBar,
-	ToolBarInput,
-	ToolBarButton,
-} from 'Components/ToolBar/ToolBar'
+	Toolbar,
+	ToolbarInput,
+	ToolbarButton,
+} from 'Components/Toolbar/Toolbar'
 
 const Whiteboard = () => {
 	const [BrushColor, SetBrushColor] = useState('#000000')
@@ -80,29 +80,29 @@ const Whiteboard = () => {
 
 	return (
 		<>
-			<ToolBar>
-				<ToolBarInput
+			<Toolbar>
+				<ToolbarInput
 					type='color'
 					value={BrushColor}
 					onChange={OnBrushColorChange}
 				/>
-				<ToolBarInput
+				<ToolbarInput
 					type='number'
 					width='50px'
 					value={BrushRadius}
 					onChange={OnBrushRadiusChange}
 				/>
-				<ToolBarButton onClick={Undo}>Undo</ToolBarButton>
-				<ToolBarButton onClick={EraseAll}>Erase All</ToolBarButton>
-				<ToolBarButton onClick={Clear}>Clear</ToolBarButton>
-				<ToolBarButton onClick={ResetView}>Reset View</ToolBarButton>
-				<ToolBarButton onClick={Download}>Download</ToolBarButton>
-				<ToolBarButton onClick={Save}>Save</ToolBarButton>
-				<ToolBarButton onClick={Load}>Load</ToolBarButton>
-				<ToolBarButton onClick={ToggleIsDisabled}>
+				<ToolbarButton onClick={Undo}>Undo</ToolbarButton>
+				<ToolbarButton onClick={EraseAll}>Erase All</ToolbarButton>
+				<ToolbarButton onClick={Clear}>Clear</ToolbarButton>
+				<ToolbarButton onClick={ResetView}>Reset View</ToolbarButton>
+				<ToolbarButton onClick={Download}>Download</ToolbarButton>
+				<ToolbarButton onClick={Save}>Save</ToolbarButton>
+				<ToolbarButton onClick={Load}>Load</ToolbarButton>
+				<ToolbarButton onClick={ToggleIsDisabled}>
 					{IsDisabled ? 'Enable' : 'Disable'}
-				</ToolBarButton>
-			</ToolBar>
+				</ToolbarButton>
+			</Toolbar>
 			<CanvasDraw
 				ref={CanvasDrawRef}
 				saveData={localStorage.getItem('save_data')}
