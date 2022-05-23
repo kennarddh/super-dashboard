@@ -1,5 +1,12 @@
 import React, { useCallback, useState } from 'react'
+
 import ReactPlayer, { canPlay } from 'react-player/youtube'
+
+import {
+	Toolbar,
+	ToolbarInput,
+	ToolbarButton,
+} from 'Components/Toolbar/Toolbar'
 
 const VideoPlayer = () => {
 	const [Url, SetUrl] = useState(
@@ -14,7 +21,7 @@ const VideoPlayer = () => {
 		SetUrl(event.target.value)
 	}, [])
 
-	const OnPlay = useCallback(() => {
+	const Play = useCallback(() => {
 		const isCanPlay = canPlay(Url)
 
 		if (isCanPlay) {
@@ -26,12 +33,18 @@ const VideoPlayer = () => {
 
 	return (
 		<>
-			<input
-				type='text'
-				placeholder='Youtube url'
-				onChange={OnUrlChange}
-			/>
-			<button onClick={OnPlay}>Play</button>
+			<Toolbar>
+				<ToolbarInput
+					type='text'
+					placeholder='Youtube url'
+					width='90%'
+					value={Url}
+					onChange={OnUrlChange}
+				/>
+				<ToolbarButton width='10%' onClick={Play}>
+					Play
+				</ToolbarButton>
+			</Toolbar>
 			<ReactPlayer width='100%' height='90%' url={PlayingUrl} />
 		</>
 	)

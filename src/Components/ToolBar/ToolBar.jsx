@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const ToolBar = styled.div`
+export const Toolbar = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
@@ -15,7 +15,7 @@ export const ToolBar = styled.div`
 	height: 10%;
 `
 
-export const ToolBarInput = styled.input`
+export const ToolbarInput = styled.input`
 	border: none;
 	background-color: #fafafa;
 	box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
@@ -29,7 +29,7 @@ export const ToolBarInput = styled.input`
 			: ''}
 `
 
-export const ToolBarButton = styled.button`
+export const ToolbarButton = styled.button`
 	border: none;
 	background-color: #fafafa;
 	box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
