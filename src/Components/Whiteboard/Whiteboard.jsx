@@ -2,7 +2,11 @@ import React, { useState, useCallback, useRef } from 'react'
 
 import CanvasDraw from 'react-canvas-draw'
 
-import { ToolBar, ToolBarInput, ToolBarButton } from './Styles'
+import {
+	ToolBar,
+	ToolBarInput,
+	ToolBarButton,
+} from 'Components/ToolBar/ToolBar'
 
 const Whiteboard = () => {
 	const [BrushColor, SetBrushColor] = useState('#000000')
