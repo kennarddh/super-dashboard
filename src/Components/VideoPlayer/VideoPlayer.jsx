@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import ReactPlayer from 'react-player/youtube'
+import ReactPlayer, { canPlay } from 'react-player/youtube'
 
 const VideoPlayer = () => {
 	const [Url, SetUrl] = useState(
@@ -15,9 +15,13 @@ const VideoPlayer = () => {
 	}, [])
 
 	const OnPlay = useCallback(() => {
-		ReactPlayer.canPlay(Url)
+		const isCanPlay = canPlay(Url)
 
-		SetPlayingUrl(Url)
+		if (isCanPlay) {
+			SetPlayingUrl(Url)
+		} else {
+			alert("Can't play this video")
+		}
 	}, [Url])
 
 	return (
