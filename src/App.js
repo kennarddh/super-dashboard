@@ -6,6 +6,7 @@ import 'react-resizable/css/styles.css'
 
 // Components
 import Whiteboard from 'Components/Whiteboard/Whiteboard'
+import VideoPlayer from 'Components/VideoPlayer/VideoPlayer'
 
 import { SectionWrapper } from './Styles'
 
@@ -31,7 +32,9 @@ const App = () => {
 			</SectionWrapper>
 			<SectionWrapper key='images'>Images</SectionWrapper>
 			<SectionWrapper key='weather'>Weather</SectionWrapper>
-			<SectionWrapper key='videoPlayer'>Video Player</SectionWrapper>
+			<SectionWrapper key='videoPlayer'>
+				<VideoPlayer />
+			</SectionWrapper>
 		</ReactGridLayout>
 	)
 }
