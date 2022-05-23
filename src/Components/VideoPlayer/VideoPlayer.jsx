@@ -41,9 +41,7 @@ const VideoPlayer = () => {
 					value={Url}
 					onChange={OnUrlChange}
 				/>
-				<ToolbarButton width='10%' onClick={Play}>
-					Play
-				</ToolbarButton>
+				<ToolbarButton onClick={Play}>Play</ToolbarButton>
 			</Toolbar>
 			<ReactPlayer width='100%' height='90%' url={PlayingUrl} />
 		</>
