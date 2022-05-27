@@ -4,7 +4,7 @@ import {
 	Toolbar,
 	ToolbarButton,
 	ToolbarInput,
-} from 'Components/Toolbar/Toolbar'
+} from 'Components/ToolBar/ToolBar'
 
 const Weather = () => {
 	const [WeatherData, SetWeatherData] = useState()
