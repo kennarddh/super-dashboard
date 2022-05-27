@@ -12,8 +12,8 @@ const Weather = () => {
 	const [Longitude, SetLongitude] = useState(106.827183)
 	const [Search, SetSearch] = useState('')
 
-	const getPosition = async () => {
-		await navigator.geolocation.getCurrentPosition(
+	const getPosition = () => {
+		navigator.geolocation.getCurrentPosition(
 			position => {
 				SetLatitude(position.coords.latitude)
 				SetLongitude(position.coords.longitude)
