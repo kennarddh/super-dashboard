@@ -13,8 +13,12 @@ const Weather = () => {
 	const [Search, SetSearch] = useState('')
 
 	useEffect(() => {
+		const controller = new AbortController()
+		const signal = controller.signal
+
 		fetch(
-			`https://api.openweathermap.org/data/2.5/weather?lat=${Latitude}&lon=${Longitude}&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`
+			`https://api.openweathermap.org/data/2.5/weather?lat=${Latitude}&lon=${Longitude}&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`,
+			{ signal }
 		)
 			.then(response => response.json())
 			.then(data => {
@@ -23,6 +27,8 @@ const Weather = () => {
 			.catch(error => {
 				console.log(error)
 			})
+
+		return () => controller.abort()
 	}, [Latitude, Longitude])
 
 	const ChangeLocation = () => {
