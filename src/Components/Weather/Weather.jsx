@@ -11,6 +11,20 @@ const Weather = () => {
 	const [Latitude, SetLatitude] = useState(-6.1753942)
 	const [Longitude, SetLongitude] = useState(106.827183)
 	const [Search, SetSearch] = useState('')
+  
+  const getPosition = async () => {
+		await navigator.geolocation.getCurrentPosition(
+			position => {
+				setLatitude(position.coords.latitude)
+				setLongitude(position.coords.longitude)
+			},
+			err => console.log(err)
+		)
+	}
+
+	useEffect(() => {
+		getPosition()
+	}, [])
 
 	useEffect(() => {
 		fetch(
@@ -40,6 +54,21 @@ const Weather = () => {
 		SetSearch('')
 	}
 
+	useEffect(() => {
+		if (lat !== 0 && lon !== 0) {
+			fetch(
+				`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`
+			)
+				.then(response => response.json())
+				.then(data => {
+					SetWeatherData(data)
+				})
+				.catch(error => {
+					console.log(error)
+				})
+		}
+	}, [lat, lon])
+
 	return (
 		<>
 			<Toolbar>
@@ -53,7 +82,7 @@ const Weather = () => {
 				/>
 				<ToolbarButton onClick={ChangeLocation}>Search</ToolbarButton>
 			</Toolbar>
-			{WeatherData ? (
+			{WeatherData?.weather && WeatherData.weather.length > 0 ? (
 				<p>{WeatherData.weather[0].description}</p>
 			) : (
 				<p>Loading</p>
@@ -62,4 +91,4 @@ const Weather = () => {
 	)
 }
 
-export default Weather
+export default React.memo(Weather)

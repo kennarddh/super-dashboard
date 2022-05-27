@@ -6,7 +6,7 @@ import {
 	Toolbar,
 	ToolbarButton,
 	ToolbarInput,
-} from 'Components/Toolbar/Toolbar'
+} from 'Components/ToolBar/ToolBar'
 
 const VideoPlayer = () => {
 	const [Url, SetUrl] = useState(
