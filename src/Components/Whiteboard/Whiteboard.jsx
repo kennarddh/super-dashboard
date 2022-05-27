@@ -4,9 +4,9 @@ import CanvasDraw from 'react-canvas-draw'
 
 import {
 	Toolbar,
-	ToolbarInput,
 	ToolbarButton,
-} from 'Components/Toolbar/Toolbar'
+	ToolbarInput,
+} from 'Components/ToolBar/ToolBar'
 
 const Whiteboard = () => {
 	const [BrushColor, SetBrushColor] = useState('#000000')
