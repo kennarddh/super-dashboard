@@ -4,8 +4,8 @@ import CanvasDraw from 'react-canvas-draw'
 
 import {
 	Toolbar,
-	ToolbarInput,
 	ToolbarButton,
+	ToolbarInput,
 } from 'Components/Toolbar/Toolbar'
 
 const Whiteboard = () => {

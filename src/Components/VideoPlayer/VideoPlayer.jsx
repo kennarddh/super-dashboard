@@ -4,8 +4,8 @@ import ReactPlayer, { canPlay } from 'react-player/youtube'
 
 import {
 	Toolbar,
-	ToolbarInput,
 	ToolbarButton,
+	ToolbarInput,
 } from 'Components/Toolbar/Toolbar'
 
 const VideoPlayer = () => {
