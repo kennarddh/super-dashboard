@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react'
 
-const Weather = () => {
-	const [WeatherData, SetWeatherData] = useState(null)
-	const [lat, setLat] = useState(0)
-	const [lon, setLon] = useState(0)
+import {
+	Toolbar,
+	ToolbarButton,
+	ToolbarInput,
+} from 'Components/Toolbar/Toolbar'
 
-	const getPosition = async () => {
+const Weather = () => {
+	const [WeatherData, SetWeatherData] = useState()
+	const [Latitude, SetLatitude] = useState(-6.1753942)
+	const [Longitude, SetLongitude] = useState(106.827183)
+	const [Search, SetSearch] = useState('')
+  
+  const getPosition = async () => {
 		await navigator.geolocation.getCurrentPosition(
 			position => {
-				setLat(position.coords.latitude)
-				setLon(position.coords.longitude)
+				setLatitude(position.coords.latitude)
+				setLongitude(position.coords.longitude)
 			},
 			err => console.log(err)
 		)
@@ -18,6 +25,34 @@ const Weather = () => {
 	useEffect(() => {
 		getPosition()
 	}, [])
+
+	useEffect(() => {
+		fetch(
+			`https://api.openweathermap.org/data/2.5/weather?lat=${Latitude}&lon=${Longitude}&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`
+		)
+			.then(response => response.json())
+			.then(data => {
+				SetWeatherData(data)
+			})
+			.catch(error => {
+				console.log(error)
+			})
+	}, [Latitude, Longitude])
+
+	const ChangeLocation = () => {
+		fetch(
+			`http://api.openweathermap.org/geo/1.0/direct?q=${Search}&limit=1&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`
+		)
+			.then(response => response.json())
+			.then(data => {
+				SetLatitude(data[0].lat)
+				SetLongitude(data[0].lon)
+			})
+			.catch(error => {
+				console.log(error)
+			})
+		SetSearch('')
+	}
 
 	useEffect(() => {
 		if (lat !== 0 && lon !== 0) {
@@ -35,13 +70,24 @@ const Weather = () => {
 	}, [lat, lon])
 
 	return (
-		<div>
+		<>
+			<Toolbar>
+				<ToolbarInput
+					type='text'
+					placeholder='Location'
+					value={Search}
+					onChange={event => {
+						SetSearch(event.target.value)
+					}}
+				/>
+				<ToolbarButton onClick={ChangeLocation}>Search</ToolbarButton>
+			</Toolbar>
 			{WeatherData?.weather && WeatherData.weather.length > 0 ? (
 				<p>{WeatherData.weather[0].description}</p>
 			) : (
 				<p>Loading</p>
 			)}
-		</div>
+		</>
 	)
 }
 
