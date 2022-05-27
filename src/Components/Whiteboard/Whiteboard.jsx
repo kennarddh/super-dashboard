@@ -6,7 +6,7 @@ import {
 	Toolbar,
 	ToolbarButton,
 	ToolbarInput,
-} from 'Components/ToolBar/ToolBar'
+} from 'Components/Toolbar/Toolbar'
 
 const Whiteboard = () => {
 	const [BrushColor, SetBrushColor] = useState('#000000')
