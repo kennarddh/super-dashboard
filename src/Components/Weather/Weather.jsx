@@ -11,12 +11,12 @@ const Weather = () => {
 	const [Latitude, SetLatitude] = useState(-6.1753942)
 	const [Longitude, SetLongitude] = useState(106.827183)
 	const [Search, SetSearch] = useState('')
-  
-  const getPosition = async () => {
+
+	const getPosition = async () => {
 		await navigator.geolocation.getCurrentPosition(
 			position => {
-				setLatitude(position.coords.latitude)
-				setLongitude(position.coords.longitude)
+				SetLatitude(position.coords.latitude)
+				SetLongitude(position.coords.longitude)
 			},
 			err => console.log(err)
 		)
@@ -61,19 +61,19 @@ const Weather = () => {
 	}
 
 	useEffect(() => {
-		if (lat !== 0 && lon !== 0) {
-			fetch(
-				`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`
-			)
-				.then(response => response.json())
-				.then(data => {
-					SetWeatherData(data)
-				})
-				.catch(error => {
-					console.log(error)
-				})
-		}
-	}, [lat, lon])
+		if (Latitude === 0 && Longitude === 0) return
+
+		fetch(
+			`https://api.openweathermap.org/data/2.5/weather?lat=${Latitude}&lon=${Longitude}&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`
+		)
+			.then(response => response.json())
+			.then(data => {
+				SetWeatherData(data)
+			})
+			.catch(error => {
+				console.log(error)
+			})
+	}, [Latitude, Longitude])
 
 	return (
 		<>
