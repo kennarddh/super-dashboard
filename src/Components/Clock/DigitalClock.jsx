@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
+import {
+	TimeContainer,
+	TimeText,
+	TimeContainerParent,
+} from './DigitalClockStyles.jsx'
+
 const DigitalClock = () => {
 	const [Timezone] = useState(['UTC+7'])
 
@@ -53,15 +59,15 @@ const DigitalClock = () => {
 	}, [Timezone])
 
 	return (
-		<div>
+		<TimeContainerParent>
 			{Object.keys(Time).map(timezone => (
-				<div key={timezone}>
-					<p>{Time[timezone]?.hour}</p>
-					<p>{Time[timezone]?.minute}</p>
-					<p>{Time[timezone]?.second}</p>
-				</div>
+				<TimeContainer key={timezone}>
+					<TimeText>{Time[timezone]?.hour}</TimeText>
+					<TimeText>{Time[timezone]?.minute}</TimeText>
+					<TimeText>{Time[timezone]?.second}</TimeText>
+				</TimeContainer>
 			))}
-		</div>
+		</TimeContainerParent>
 	)
 }
 
