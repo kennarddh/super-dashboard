@@ -6,7 +6,7 @@ import 'react-resizable/css/styles.css'
 
 // Components
 import Whiteboard from 'Components/Whiteboard/Whiteboard'
-import VideoPlayer from 'Components/VideoPlayer/VideoPlayer'
+import Clock from 'Components/Clock/Clock'
 import Weather from 'Components/Weather/Weather'
 
 import { SectionWrapper } from './Styles'
@@ -20,7 +20,7 @@ const App = () => {
 				{ i: 'whiteboard', x: 0, y: 0, w: 8, h: 8, static: true },
 				{ i: 'images', x: 0, y: 8, w: 8, h: 4 },
 				{ i: 'weather', x: 8, y: 0, w: 4, h: 6 },
-				{ i: 'videoPlayer', x: 8, y: 6, w: 4, h: 6 },
+				{ i: 'clock', x: 8, y: 6, w: 4, h: 6 },
 			]}
 			className='layout'
 			items={4}
@@ -35,8 +35,8 @@ const App = () => {
 			<SectionWrapper key='weather'>
 				<Weather />
 			</SectionWrapper>
-			<SectionWrapper key='videoPlayer'>
-				<VideoPlayer />
+			<SectionWrapper key='clock'>
+				<Clock />
 			</SectionWrapper>
 		</ReactGridLayout>
 	)
