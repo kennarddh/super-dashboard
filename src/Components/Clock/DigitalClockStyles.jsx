@@ -6,7 +6,7 @@ export const TimeContainer = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	width: 150px;
-	height: height: 50px;
+	height: 50px;
 	padding: 0.5rem;
 	background-color: #fff;
 	border-radius: 0.5rem;
@@ -35,4 +35,6 @@ export const TimeContainerParent = styled.div`
 	height: 100%;
 	padding: 20px;
 	gap: 20px;
+	flex-wrap: wrap;
+	box-sizing: border-box;
 `

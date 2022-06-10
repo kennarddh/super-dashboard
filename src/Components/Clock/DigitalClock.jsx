@@ -8,16 +8,12 @@ import {
 
 const DigitalClock = () => {
 	const [Timezone] = useState([
-		'UTC+0',
-		'UTC+1',
 		'UTC+2',
 		'UTC+3',
 		'UTC+4',
 		'UTC+5',
 		'UTC+6',
 		'UTC+7',
-		'UTC+8',
-		'UTC+9',
 	])
 
 	const [Time, SetTime] = useState({})
