@@ -43,7 +43,7 @@ const DigitalClock = () => {
 
 					if (time[timezone]?.date) {
 						newDate = new Date(
-							time[timezone].date.getTime() + 1 * 1000
+							time[timezone].date.getTime() + 1 * 1000 + 1
 						)
 					}
 
