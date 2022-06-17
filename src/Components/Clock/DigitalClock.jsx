@@ -7,7 +7,7 @@ import {
 } from './DigitalClockStyles.jsx'
 
 const DigitalClock = () => {
-	const [Timezone, SetTimezone] = useState([
+	const [Timezone] = useState([
 		'UTC+2',
 		'UTC+3',
 		'UTC+4',
@@ -67,25 +67,16 @@ const DigitalClock = () => {
 		}
 	}, [Timezone])
 
-	const ChangeTimezone = () => {
-		SetTimezone(['UTC+3', 'UTC+4', 'UTC+5', 'UTC+6', 'UTC+7', 'UTC+8'])
-	}
-
 	return (
-		<>
-			<div>
-				<button onClick={ChangeTimezone}>Change Timezone</button>
-			</div>
-			<TimeContainerParent>
-				{Object.keys(Time).map(timezone => (
-					<TimeContainer key={timezone}>
-						<TimeText>{Time[timezone]?.hour}</TimeText>
-						<TimeText>{Time[timezone]?.minute}</TimeText>
-						<TimeText>{Time[timezone]?.second}</TimeText>
-					</TimeContainer>
-				))}
-			</TimeContainerParent>
-		</>
+		<TimeContainerParent>
+			{Object.keys(Time).map(timezone => (
+				<TimeContainer key={timezone}>
+					<TimeText>{Time[timezone]?.hour}</TimeText>
+					<TimeText>{Time[timezone]?.minute}</TimeText>
+					<TimeText>{Time[timezone]?.second}</TimeText>
+				</TimeContainer>
+			))}
+		</TimeContainerParent>
 	)
 }
 
