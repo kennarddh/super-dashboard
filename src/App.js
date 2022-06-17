@@ -7,7 +7,8 @@ import 'react-resizable/css/styles.css'
 // Components
 import Whiteboard from 'Components/Whiteboard/Whiteboard'
 import Clock from 'Components/Clock/Clock'
-import Weather from 'Components/Weather/Weather'
+// import Weather from 'Components/Weather/Weather'
+import Map from 'Components/Map/Map'
 
 import { SectionWrapper } from './Styles'
 
@@ -19,7 +20,7 @@ const App = () => {
 			layout={[
 				{ i: 'whiteboard', x: 0, y: 0, w: 8, h: 8, static: true },
 				{ i: 'images', x: 0, y: 8, w: 8, h: 4 },
-				{ i: 'weather', x: 8, y: 0, w: 4, h: 6 },
+				{ i: 'map', x: 8, y: 0, w: 4, h: 6, static: true },
 				{ i: 'clock', x: 8, y: 6, w: 4, h: 6 },
 			]}
 			className='layout'
@@ -32,8 +33,8 @@ const App = () => {
 				<Whiteboard />
 			</SectionWrapper>
 			<SectionWrapper key='images'>Images</SectionWrapper>
-			<SectionWrapper key='weather'>
-				<Weather />
+			<SectionWrapper key='map'>
+				<Map />
 			</SectionWrapper>
 			<SectionWrapper key='clock'>
 				<Clock />
