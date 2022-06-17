@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
 // Clock
-import DigitalClock from './DigitalClock'
-// import AnalogClock from './AnalogClock'
+// import DigitalClock from './DigitalClock'
+import AnalogClock from './AnalogClock'
 
 const Clock = () => {
 	const [Timezone] = useState([
@@ -65,8 +65,8 @@ const Clock = () => {
 		}
 	}, [Timezone])
 
-	// return <AnalogClock />
-	return <DigitalClock time={Time} />
+	return <AnalogClock time={Time} />
+	// return <DigitalClock time={Time} />
 }
 
 export default Clock
