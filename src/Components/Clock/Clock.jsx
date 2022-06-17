@@ -1,9 +1,11 @@
 import React from 'react'
 
-import DigitalClock from './DigitalClock'
+// Clock
+// import DigitalClock from './DigitalClock'
+import AnalogClock from './AnalogClock'
 
 const Clock = () => {
-	return <DigitalClock />
+	return <AnalogClock />
 }
 
 export default Clock
