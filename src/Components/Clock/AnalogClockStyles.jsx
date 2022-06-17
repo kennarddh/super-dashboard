@@ -3,8 +3,8 @@ import styled from 'styled-components'
 export const Hand = styled.div`
 	position: absolute;
 	width: ${props => props.width}px;
-	height: 40%;
-	margin-top: calc(var(--size) / 100 * 10);
+	height: ${props => props.height}%;
+	margin-top: calc(var(--size) / 100 * (50 - ${props => props.height}));
 	background-color: ${props => props.color};
 `
 
@@ -16,7 +16,6 @@ export const HandContainer = styled.div`
 	justify-content: center;
 	align-items: flex-start;
 	${props => `transform: rotate(${props.deg}deg);`}
-	transition: transform 0.1s linear;
 	top: 0;
 	left: 0;
 `
