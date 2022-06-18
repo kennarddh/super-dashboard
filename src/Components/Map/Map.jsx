@@ -8,6 +8,8 @@ import Minimap from './Minimap/Minimap'
 
 import DraggableMarker from './Marker/Draggable/Draggable'
 
+import LeafletControlGeocoder from './LeafletControlGeocoder/LeafletControlGeocoder'
+
 import { StyledMapContainer } from './Styles.jsx'
 
 const Map = () => {
@@ -18,7 +20,8 @@ const Map = () => {
 				url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 			/>
 			<DraggableMarker />
-			<Minimap position='topright' />
+			<LeafletControlGeocoder />
+			<Minimap position='bottomleft' />
 		</StyledMapContainer>
 	)
 }
