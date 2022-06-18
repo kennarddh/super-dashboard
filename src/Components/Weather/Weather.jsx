@@ -100,11 +100,18 @@ const Weather = () => {
 						onChange={event => {
 							SetSearch(event.target.value)
 						}}
-					></ToolbarInput>
+						width='100%'
+					/>
 					<Autocomplete>
-						<AutocompleteItem>test</AutocompleteItem>
-						<AutocompleteItem>test</AutocompleteItem>
-						<AutocompleteItem>test</AutocompleteItem>
+						<AutocompleteItem>
+							Jakarta Special Capital Region
+						</AutocompleteItem>
+						<AutocompleteItem>
+							Jakarta Special Capital Region
+						</AutocompleteItem>
+						<AutocompleteItem>
+							Jakarta Special Capital Region
+						</AutocompleteItem>
 					</Autocomplete>
 				</InputContainer>
 				<ToolbarButton onClick={ChangeLocation}>Search</ToolbarButton>

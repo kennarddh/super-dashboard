@@ -38,5 +38,5 @@ export const AutocompleteItem = styled.button`
 
 export const InputContainer = styled.div`
 	position: relative;
-	/* width: 100%; */
+	width: 100%;
 `
