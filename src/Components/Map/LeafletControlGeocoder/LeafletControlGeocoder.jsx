@@ -16,8 +16,8 @@ const LeafletControlGeocoder = () => {
 			defaultMarkGeocode: false,
 			geocoder,
 		})
-			.on('markgeocode', function (e) {
-				const latlng = e.geocode.center
+			.on('markgeocode', event => {
+				const latlng = event.geocode.center
 
 				map.flyTo(latlng)
 			})
