@@ -6,6 +6,8 @@ import {
 	ToolbarInput,
 } from 'Components/ToolBar/ToolBar'
 
+import { AutocompleteItem, Autocomplete, InputContainer } from './Styles.jsx'
+
 const Weather = () => {
 	const [WeatherData, SetWeatherData] = useState()
 	const [Latitude, SetLatitude] = useState(-6.1753942)
@@ -90,14 +92,21 @@ const Weather = () => {
 	return (
 		<>
 			<Toolbar>
-				<ToolbarInput
-					type='text'
-					placeholder='Location'
-					value={Search}
-					onChange={event => {
-						SetSearch(event.target.value)
-					}}
-				/>
+				<InputContainer>
+					<ToolbarInput
+						type='text'
+						placeholder='Location'
+						value={Search}
+						onChange={event => {
+							SetSearch(event.target.value)
+						}}
+					></ToolbarInput>
+					<Autocomplete>
+						<AutocompleteItem>test</AutocompleteItem>
+						<AutocompleteItem>test</AutocompleteItem>
+						<AutocompleteItem>test</AutocompleteItem>
+					</Autocomplete>
+				</InputContainer>
 				<ToolbarButton onClick={ChangeLocation}>Search</ToolbarButton>
 			</Toolbar>
 			{WeatherData?.weather && WeatherData.weather.length > 0 ? (
