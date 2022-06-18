@@ -48,6 +48,9 @@ const Weather = () => {
 	}, [Latitude, Longitude])
 
 	const ChangeLocation = () => {
+		if (Search.length < 3)
+			return alert('Please enter at least 3 characters')
+
 		const controller = new AbortController()
 		const signal = controller.signal
 
