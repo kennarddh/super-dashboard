@@ -1,16 +1,14 @@
 import React from 'react'
 
-import { TimeContainer, TimeText, TimeContainerParent } from './Styles.jsx'
+import Single from './Single/Single'
 
-const DigitalClock = ({ time }) => {
+import { TimeContainerParent } from './Styles.jsx'
+
+const DigitalClock = ({ timezones }) => {
 	return (
 		<TimeContainerParent>
-			{Object.keys(time).map(timezone => (
-				<TimeContainer key={timezone}>
-					<TimeText>{time[timezone]?.hour}</TimeText>
-					<TimeText>{time[timezone]?.minute}</TimeText>
-					<TimeText>{time[timezone]?.second}</TimeText>
-				</TimeContainer>
+			{timezones.map(timezone => (
+				<Single key={timezone} timezone={timezone} />
 			))}
 		</TimeContainerParent>
 	)
