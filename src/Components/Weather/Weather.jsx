@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
-import {
-	Toolbar,
-	ToolbarButton,
-	ToolbarInput,
-} from 'Components/ToolBar/ToolBar'
+import { Toolbar, ToolbarInput } from 'Components/ToolBar/ToolBar'
+
+import { AutocompleteItem, Autocomplete, InputContainer } from './Styles.jsx'
 
 const Weather = () => {
 	const [WeatherData, SetWeatherData] = useState()
@@ -12,7 +10,9 @@ const Weather = () => {
 	const [Longitude, SetLongitude] = useState(106.827183)
 	const [Search, SetSearch] = useState('')
 
-	const getPosition = () => {
+	const [AutocompleteData, SetAutocompleteData] = useState([])
+
+	const GetPosition = () => {
 		navigator.geolocation.getCurrentPosition(
 			position => {
 				SetLatitude(position.coords.latitude)
@@ -23,7 +23,7 @@ const Weather = () => {
 	}
 
 	useEffect(() => {
-		getPosition()
+		GetPosition()
 	}, [])
 
 	useEffect(() => {
@@ -44,27 +44,6 @@ const Weather = () => {
 
 		return () => controller.abort()
 	}, [Latitude, Longitude])
-
-	const ChangeLocation = () => {
-		const controller = new AbortController()
-		const signal = controller.signal
-
-		fetch(
-			`http://api.openweathermap.org/geo/1.0/direct?q=${Search}&limit=1&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`,
-			{ signal }
-		)
-			.then(response => response.json())
-			.then(data => {
-				SetLatitude(data[0].lat)
-				SetLongitude(data[0].lon)
-			})
-			.catch(error => {
-				console.log(error)
-			})
-		SetSearch('')
-
-		return () => controller.abort()
-	}
 
 	useEffect(() => {
 		if (Latitude === 0 && Longitude === 0) return
@@ -87,18 +66,63 @@ const Weather = () => {
 		return () => controller.abort()
 	}, [Latitude, Longitude])
 
+	useEffect(() => {
+		SetAutocompleteData([])
+
+		if (Search.length < 3) return
+
+		const controller = new AbortController()
+		const signal = controller.signal
+
+		fetch(
+			`https://nominatim.openstreetmap.org/search?q=${Search}&limit=5&format=json&addressdetails=1`,
+			{ signal }
+		)
+			.then(response => response.json())
+			.then(data => {
+				SetAutocompleteData(data)
+			})
+			.catch(error => {
+				console.log(error)
+			})
+
+		return () => controller.abort()
+	}, [Search])
+
+	const ChangeLocation = (lat, lon) => {
+		SetLatitude(lat)
+		SetLongitude(lon)
+
+		SetAutocompleteData([])
+	}
+
 	return (
 		<>
 			<Toolbar>
-				<ToolbarInput
-					type='text'
-					placeholder='Location'
-					value={Search}
-					onChange={event => {
-						SetSearch(event.target.value)
-					}}
-				/>
-				<ToolbarButton onClick={ChangeLocation}>Search</ToolbarButton>
+				<InputContainer>
+					<ToolbarInput
+						type='text'
+						placeholder='Location'
+						value={Search}
+						onChange={event => {
+							SetSearch(event.target.value)
+						}}
+						width='100%'
+					/>
+					<Autocomplete>
+						{AutocompleteData &&
+							AutocompleteData.map(item => (
+								<AutocompleteItem
+									onClick={() =>
+										ChangeLocation(item.lat, item.lon)
+									}
+									key={item.place_id}
+								>
+									{item.display_name}
+								</AutocompleteItem>
+							))}
+					</Autocomplete>
+				</InputContainer>
 			</Toolbar>
 			{WeatherData?.weather && WeatherData.weather.length > 0 ? (
 				<p>{WeatherData.weather[0].description}</p>
