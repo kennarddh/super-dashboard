@@ -1,10 +1,6 @@
 import React from 'react'
 
-import {
-	TimeContainer,
-	TimeText,
-	TimeContainerParent,
-} from './DigitalClockStyles.jsx'
+import { TimeContainer, TimeText, TimeContainerParent } from './Styles.jsx'
 
 const DigitalClock = ({ time }) => {
 	return (

@@ -1,11 +1,6 @@
 import React from 'react'
 
-import {
-	Hand,
-	HandContainer,
-	Container,
-	ClockContainer,
-} from './AnalogClockStyles'
+import { Hand, HandContainer, Container, ClockContainer } from './Styles'
 
 const AnalogClock = ({ time }) => {
 	return (

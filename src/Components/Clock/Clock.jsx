@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 // Clock
 // import DigitalClock from './DigitalClock'
-import AnalogClock from './AnalogClock'
+import AnalogClock from './Analog/Analog'
 
 const Clock = () => {
 	const [Timezone] = useState([
