@@ -4,10 +4,15 @@ import { Toolbar, ToolbarInput } from 'Components/ToolBar/ToolBar'
 
 import { AutocompleteItem, Autocomplete, InputContainer } from './Styles.jsx'
 
+import { LocationContext } from 'Contexts/Location'
+import { useContext } from 'react'
+
 const Weather = () => {
 	const [WeatherData, SetWeatherData] = useState()
-	const [Latitude, SetLatitude] = useState(-6.1753942)
-	const [Longitude, SetLongitude] = useState(106.827183)
+
+	const { Latitude, SetLatitude, Longitude, SetLongitude } =
+		useContext(LocationContext)
+
 	const [Search, SetSearch] = useState('')
 
 	const [AutocompleteData, SetAutocompleteData] = useState([])
