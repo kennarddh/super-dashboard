@@ -4,11 +4,11 @@ import Single from './Single/Single'
 
 import { TimeContainerParent } from './Styles.jsx'
 
-const DigitalClock = ({ timezones }) => {
+const DigitalClock = ({ offsets }) => {
 	return (
 		<TimeContainerParent>
-			{timezones.map(timezone => (
-				<Single key={timezone} timezone={timezone} />
+			{offsets.map(offset => (
+				<Single key={offset} offset={offset} />
 			))}
 		</TimeContainerParent>
 	)

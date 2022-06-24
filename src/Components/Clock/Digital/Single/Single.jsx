@@ -3,17 +3,11 @@ import { useEffect } from 'react'
 
 import { TimeContainer, TimeText } from './Styles'
 
-const Single = ({ timezone }) => {
+const Single = ({ offset }) => {
 	const [Time, SetTime] = useState({})
 
 	useEffect(() => {
-		const hourAdd = parseInt(timezone.split('UTC')[1])
-
-		const offset = new Date().getTimezoneOffset()
-
-		const date = new Date(
-			new Date().getTime() + offset * 60000 + hourAdd * 60 * 60000
-		)
+		const date = new Date(new Date().getTime() + offset * 1000)
 
 		const intervalId = setInterval(() => {
 			SetTime(time => {
@@ -33,7 +27,7 @@ const Single = ({ timezone }) => {
 		}, 1000)
 
 		return () => clearInterval(intervalId)
-	}, [timezone])
+	}, [offset])
 
 	return (
 		<TimeContainer>
