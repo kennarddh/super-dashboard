@@ -11,6 +11,8 @@ import LocationProvider from 'Contexts/Location'
 import Clock from 'Components/Clock/Clock'
 import Weather from 'Components/Weather/Weather'
 import Map from 'Components/Map/Map'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
+import 'react-tabs/style/react-tabs.css'
 
 import { SectionWrapper } from './Styles'
 
@@ -19,30 +21,65 @@ const ReactGridLayout = WidthProvider(RGL)
 const App = () => {
 	return (
 		<LocationProvider>
-			<ReactGridLayout
-				layout={[
-					{ i: 'whiteboard', x: 0, y: 0, w: 8, h: 8, static: true },
-					{ i: 'images', x: 0, y: 8, w: 8, h: 4 },
-					{ i: 'clock', x: 8, y: 0, w: 4, h: 6, static: true },
-					{ i: 'weather', x: 8, y: 6, w: 4, h: 6 },
-				]}
-				className='layout'
-				items={4}
-				rowHeight={41}
-				cols={12}
-				resizeHandles={['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']}
-			>
-				<SectionWrapper key='whiteboard'>
-					<Map />
-				</SectionWrapper>
-				<SectionWrapper key='images'>Images</SectionWrapper>
-				<SectionWrapper key='clock'>
-					<Clock />
-				</SectionWrapper>
-				<SectionWrapper key='weather'>
-					<Weather />
-				</SectionWrapper>
-			</ReactGridLayout>
+			<Tabs>
+				<TabList>
+					<Tab>Page 1</Tab>
+					<Tab>Page 2</Tab>
+				</TabList>
+
+				<TabPanel>
+					<ReactGridLayout
+						layout={[
+							{
+								i: 'whiteboard',
+								x: 0,
+								y: 0,
+								w: 8,
+								h: 8,
+								static: true,
+							},
+							{ i: 'images', x: 0, y: 8, w: 8, h: 4 },
+							{
+								i: 'clock',
+								x: 8,
+								y: 0,
+								w: 4,
+								h: 6,
+								static: true,
+							},
+							{ i: 'weather', x: 8, y: 6, w: 4, h: 6 },
+						]}
+						className='layout'
+						items={4}
+						rowHeight={41}
+						cols={12}
+						resizeHandles={[
+							's',
+							'w',
+							'e',
+							'n',
+							'sw',
+							'nw',
+							'se',
+							'ne',
+						]}
+					>
+						<SectionWrapper key='whiteboard'>
+							<Map />
+						</SectionWrapper>
+						<SectionWrapper key='images'>Images</SectionWrapper>
+						<SectionWrapper key='clock'>
+							<Clock />
+						</SectionWrapper>
+						<SectionWrapper key='weather'>
+							<Weather />
+						</SectionWrapper>
+					</ReactGridLayout>
+				</TabPanel>
+				<TabPanel>
+					<h2>Any content 2</h2>
+				</TabPanel>
+			</Tabs>
 		</LocationProvider>
 	)
 }
