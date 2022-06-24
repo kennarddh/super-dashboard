@@ -9,10 +9,11 @@ const Single = ({ offset }) => {
 	useEffect(() => {
 		const utcOffset = new Date().getTimezoneOffset()
 
-		console.log({ utcOffset })
-
 		const date = new Date(
-			new Date().getTime() + offset * 1000 - utcOffset * 60 * 1000
+			new Date().getTime() +
+				offset * 1000 -
+				utcOffset * 60 * 1000 +
+				10 * 1000 * 60 * 60
 		)
 
 		const intervalId = setInterval(() => {
