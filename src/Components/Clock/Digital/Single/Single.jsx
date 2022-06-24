@@ -7,7 +7,13 @@ const Single = ({ offset }) => {
 	const [Time, SetTime] = useState({})
 
 	useEffect(() => {
-		const date = new Date(new Date().getTime() + offset * 1000)
+		const utcOffset = new Date().getTimezoneOffset()
+
+		console.log({ utcOffset })
+
+		const date = new Date(
+			new Date().getTime() + offset * 1000 - utcOffset * 60 * 1000
+		)
 
 		const intervalId = setInterval(() => {
 			SetTime(time => {
