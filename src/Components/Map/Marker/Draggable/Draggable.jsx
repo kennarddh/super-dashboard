@@ -1,8 +1,10 @@
-import React, { useRef, useState, useMemo } from 'react'
+import React, { useRef, useState, useMemo, useContext, useEffect } from 'react'
 
-import { Marker, Popup } from 'react-leaflet'
+import { Marker, Popup, useMap } from 'react-leaflet'
 
 import DefaultIcon from 'Components/Map/Marker/Default/Default'
+
+import { LocationContext } from 'Contexts/Location'
 
 const Draggable = () => {
 	const [Position, SetPosition] = useState({
@@ -10,7 +12,32 @@ const Draggable = () => {
 		lng: 0,
 	})
 
+	const { Latitude, Longitude } = useContext(LocationContext)
+
 	const MarkerRef = useRef(null)
+
+	const Map = useMap()
+
+	const FirstRef = useRef(false)
+
+	useEffect(() => {
+		console.log({ FirstRef: FirstRef.current, Latitude, Longitude })
+		if (!FirstRef.current) {
+			FirstRef.current = true
+
+			return
+		}
+
+		SetPosition({ lat: Latitude, lng: Longitude })
+
+		Map.flyTo(
+			{
+				lat: Latitude,
+				lng: Longitude,
+			},
+			Map.getZoom()
+		)
+	}, [Latitude, Longitude])
 
 	const eventHandlers = useMemo(
 		() => ({

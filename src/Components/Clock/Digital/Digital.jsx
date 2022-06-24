@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import Single from './Single/Single'
 
 import { TimeContainerParent } from './Styles.jsx'
 
-const DigitalClock = ({ timezones }) => {
+import { LocationContext } from 'Contexts/Location'
+
+const DigitalClock = ({ offsets }) => {
+	const { TimezoneOffset } = useContext(LocationContext)
+
 	return (
 		<TimeContainerParent>
-			{timezones.map(timezone => (
-				<Single key={timezone} timezone={timezone} />
+			<Single key={TimezoneOffset} offset={TimezoneOffset} />
+			{offsets.map(offset => (
+				<Single key={offset} offset={offset} />
 			))}
 		</TimeContainerParent>
 	)

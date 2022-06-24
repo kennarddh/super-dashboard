@@ -4,11 +4,11 @@ import Single from './Single/Single'
 
 import { ClockContainer } from './Styles'
 
-const AnalogClock = ({ timezones }) => {
+const AnalogClock = ({ offsets }) => {
 	return (
 		<ClockContainer>
-			{timezones.map(timezone => (
-				<Single key={timezone} timezone={timezone} />
+			{offsets.map(offset => (
+				<Single key={offset} offset={offset} />
 			))}
 		</ClockContainer>
 	)

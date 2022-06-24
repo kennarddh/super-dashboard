@@ -3,16 +3,17 @@ import { useEffect } from 'react'
 
 import { Container, HandContainer, Hand } from './Styles'
 
-const Single = ({ timezone }) => {
+const Single = ({ offset }) => {
 	const [Time, SetTime] = useState({})
 
 	useEffect(() => {
-		const hourAdd = parseInt(timezone.split('UTC')[1])
-
-		const offset = new Date().getTimezoneOffset()
+		const utcOffset = new Date().getTimezoneOffset()
 
 		const date = new Date(
-			new Date().getTime() + offset * 60000 + hourAdd * 60 * 60000
+			new Date().getTime() +
+				offset * 1000 -
+				utcOffset * 60 * 1000 +
+				10 * 1000 * 60 * 60
 		)
 
 		const intervalId = setInterval(() => {
@@ -33,7 +34,7 @@ const Single = ({ timezone }) => {
 		}, 1000)
 
 		return () => clearInterval(intervalId)
-	}, [timezone])
+	}, [offset])
 
 	return (
 		<Container size={100}>

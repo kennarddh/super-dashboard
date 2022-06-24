@@ -7,10 +7,10 @@ import 'react-resizable/css/styles.css'
 import LocationProvider from 'Contexts/Location'
 
 // Components
-import Whiteboard from 'Components/Whiteboard/Whiteboard'
+// import Whiteboard from 'Components/Whiteboard/Whiteboard'
 import Clock from 'Components/Clock/Clock'
 import Weather from 'Components/Weather/Weather'
-// import Map from 'Components/Map/Map'
+import Map from 'Components/Map/Map'
 
 import { SectionWrapper } from './Styles'
 
@@ -33,7 +33,7 @@ const App = () => {
 				resizeHandles={['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']}
 			>
 				<SectionWrapper key='whiteboard'>
-					<Whiteboard />
+					<Map />
 				</SectionWrapper>
 				<SectionWrapper key='images'>Images</SectionWrapper>
 				<SectionWrapper key='clock'>

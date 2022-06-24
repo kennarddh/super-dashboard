@@ -5,17 +5,10 @@ import DigitalClock from './Digital/Digital'
 // import AnalogClock from './Analog/Analog'
 
 const Clock = () => {
-	const [Timezones] = useState([
-		'UTC+2',
-		'UTC+3',
-		'UTC+4',
-		'UTC+5',
-		'UTC+6',
-		'UTC+7',
-	])
+	const [Offsets] = useState([0, -25200, 25200])
 
-	// return <AnalogClock timezones={Timezones} />
-	return <DigitalClock timezones={Timezones} />
+	// return <AnalogClock offsets={Offsets} />
+	return <DigitalClock offsets={Offsets} />
 }
 
 export default Clock
