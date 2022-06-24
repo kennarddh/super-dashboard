@@ -5,7 +5,7 @@ export const LocationContext = createContext()
 const LocationProvider = ({ children }) => {
 	const [Latitude, SetLatitude] = useState(0)
 	const [Longitude, SetLongitude] = useState(0)
-	const [Timezone, SetTimezone] = useState('UTC+0')
+	const [TimezoneOffset, SetTimezoneOffset] = useState(0)
 
 	return (
 		<LocationContext.Provider
@@ -14,8 +14,8 @@ const LocationProvider = ({ children }) => {
 				SetLatitude,
 				Longitude,
 				SetLongitude,
-				Timezone,
-				SetTimezone,
+				TimezoneOffset,
+				SetTimezoneOffset,
 			}}
 		>
 			{children}
