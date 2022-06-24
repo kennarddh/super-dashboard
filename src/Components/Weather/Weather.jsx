@@ -10,8 +10,13 @@ import { useContext } from 'react'
 const Weather = () => {
 	const [WeatherData, SetWeatherData] = useState()
 
-	const { Latitude, SetLatitude, Longitude, SetLongitude } =
-		useContext(LocationContext)
+	const {
+		Latitude,
+		SetLatitude,
+		Longitude,
+		SetLongitude,
+		SetTimezoneOffset,
+	} = useContext(LocationContext)
 
 	const [Search, SetSearch] = useState('')
 
@@ -63,6 +68,7 @@ const Weather = () => {
 			.then(response => response.json())
 			.then(data => {
 				SetWeatherData(data)
+				SetTimezoneOffset(data.timezone)
 			})
 			.catch(error => {
 				console.log(error)
