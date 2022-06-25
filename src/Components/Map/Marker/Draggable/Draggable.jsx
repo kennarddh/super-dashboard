@@ -17,7 +17,6 @@ const Draggable = () => {
 	const FirstRef = useRef(false)
 
 	useEffect(() => {
-		console.log({ FirstRef: FirstRef.current, Latitude, Longitude })
 		if (!FirstRef.current) {
 			FirstRef.current = true
 
