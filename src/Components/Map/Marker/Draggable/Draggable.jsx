@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo, useContext, useEffect } from 'react'
+import React, { useRef, useMemo, useContext, useEffect } from 'react'
 
 import { Marker, Popup, useMap } from 'react-leaflet'
 
@@ -7,11 +7,6 @@ import DefaultIcon from 'Components/Map/Marker/Default/Default'
 import { LocationContext } from 'Contexts/Location'
 
 const Draggable = () => {
-	const [Position, SetPosition] = useState({
-		lat: 0,
-		lng: 0,
-	})
-
 	const { Latitude, Longitude, SetLatitude, SetLongitude } =
 		useContext(LocationContext)
 
@@ -29,8 +24,6 @@ const Draggable = () => {
 			return
 		}
 
-		SetPosition({ lat: Latitude, lng: Longitude })
-
 		Map.flyTo(
 			{
 				lat: Latitude,
@@ -47,7 +40,6 @@ const Draggable = () => {
 
 				const lanLon = MarkerRef.current.getLatLng()
 
-				SetPosition(lanLon)
 				SetLatitude(lanLon.lat)
 				SetLongitude(lanLon.lng)
 			},
@@ -59,7 +51,10 @@ const Draggable = () => {
 		<Marker
 			draggable={true}
 			eventHandlers={eventHandlers}
-			position={Position}
+			position={{
+				lat: Latitude,
+				lng: Longitude,
+			}}
 			ref={MarkerRef}
 			icon={DefaultIcon}
 		>
