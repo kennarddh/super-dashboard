@@ -45,9 +45,11 @@ const Draggable = () => {
 			dragend() {
 				if (MarkerRef.current === null) return
 
-				SetPosition(MarkerRef.current.getLatLng())
-				SetLatitude(MarkerRef.current.getLatLng().lat)
-				SetLongitude(MarkerRef.current.getLatLng().lng)
+				const lanLon = MarkerRef.current.getLatLng()
+
+				SetPosition(lanLon)
+				SetLatitude(lanLon.lat)
+				SetLongitude(lanLon.lng)
 			},
 		}),
 		[]
