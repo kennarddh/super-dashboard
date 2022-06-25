@@ -12,7 +12,8 @@ const Draggable = () => {
 		lng: 0,
 	})
 
-	const { Latitude, Longitude } = useContext(LocationContext)
+	const { Latitude, Longitude, SetLatitude, SetLongitude } =
+		useContext(LocationContext)
 
 	const MarkerRef = useRef(null)
 
@@ -45,6 +46,8 @@ const Draggable = () => {
 				if (MarkerRef.current === null) return
 
 				SetPosition(MarkerRef.current.getLatLng())
+				SetLatitude(MarkerRef.current.getLatLng().lat)
+				SetLongitude(MarkerRef.current.getLatLng().lng)
 			},
 		}),
 		[]
