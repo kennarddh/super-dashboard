@@ -1,6 +1,6 @@
 import Clamp from 'Utils/Clamp'
 
-const CalculateLeafletCoordinate = value => {
+const CalculateLeafletLongitude = value => {
 	if (Math.abs(value % 360) === 0) return 0
 
 	let mapCount = 0
@@ -30,4 +30,4 @@ const CalculateLeafletCoordinate = value => {
 	return result
 }
 
-export default CalculateLeafletCoordinate
+export default CalculateLeafletLongitude
