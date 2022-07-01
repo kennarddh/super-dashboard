@@ -6,6 +6,8 @@ import DefaultIcon from 'Components/Map/Marker/Default/Default'
 
 import { LocationContext } from 'Contexts/Location'
 
+import CalculateLeafletCoordinate from 'Utils/CalculateLeafletCoordinate'
+
 const Draggable = () => {
 	const { Latitude, Longitude, SetLatitude, SetLongitude } =
 		useContext(LocationContext)
@@ -37,10 +39,13 @@ const Draggable = () => {
 			dragend() {
 				if (MarkerRef.current === null) return
 
-				const lanLon = MarkerRef.current.getLatLng()
+				const latLon = MarkerRef.current.getLatLng()
 
-				SetLatitude(lanLon.lat)
-				SetLongitude(lanLon.lng)
+				const latitude = latLon.lat
+				const longitude = CalculateLeafletCoordinate(latLon.lng)
+
+				SetLatitude(latitude)
+				SetLongitude(longitude)
 			},
 		}),
 		[]
