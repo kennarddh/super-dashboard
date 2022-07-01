@@ -21,6 +21,8 @@ const Weather = () => {
 	const [Search, SetSearch] = useState('')
 
 	const [AutocompleteData, SetAutocompleteData] = useState([])
+	const [lonCalcFin, setLonCalcFin] = useState(Longitude)
+	const [multiplierLon, setLonMultiplier] = useState(1)
 
 	const GetPosition = () => {
 		navigator.geolocation.getCurrentPosition(
@@ -39,9 +41,9 @@ const Weather = () => {
 	useEffect(() => {
 		const controller = new AbortController()
 		const signal = controller.signal
-
+		console.log({ lonCalcFin })
 		fetch(
-			`https://api.openweathermap.org/data/2.5/weather?lat=${Latitude}&lon=${Longitude}&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`,
+			`https://api.openweathermap.org/data/2.5/weather?lat=${Latitude}&lon=${lonCalcFin}&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`,
 			{ signal }
 		)
 			.then(response => response.json())
@@ -51,18 +53,34 @@ const Weather = () => {
 			.catch(error => {
 				console.log(error)
 			})
-
 		return () => controller.abort()
-	}, [Latitude, Longitude])
+	}, [lonCalcFin, Latitude])
 
 	useEffect(() => {
-		if (Latitude === 0 && Longitude === 0) return
+		let lonCalc = Longitude
+		let multiplierCalc = 1
+		const isLonMinus = lonCalc < 0
+
+		if (isLonMinus) lonCalc = lonCalc * -1
+		while (lonCalc > 180) {
+			lonCalc = lonCalc - 180
+			multiplierCalc = multiplierCalc + 1
+		}
+		if (isLonMinus) {
+			lonCalc = lonCalc * -1
+		}
+		setLonCalcFin(lonCalc)
+		setLonMultiplier(multiplierCalc)
+	}, [Longitude])
+
+	useEffect(() => {
+		if (Latitude === 0 && lonCalcFin === 0) return
 
 		const controller = new AbortController()
 		const signal = controller.signal
 
 		fetch(
-			`https://api.openweathermap.org/data/2.5/weather?lat=${Latitude}&lon=${Longitude}&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`,
+			`https://api.openweathermap.org/data/2.5/weather?lat=${Latitude}&lon=${lonCalcFin}&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`,
 			{ signal }
 		)
 			.then(response => response.json())
@@ -75,7 +93,7 @@ const Weather = () => {
 			})
 
 		return () => controller.abort()
-	}, [Latitude, Longitude])
+	}, [Latitude, lonCalcFin])
 
 	useEffect(() => {
 		SetAutocompleteData([])
@@ -102,7 +120,7 @@ const Weather = () => {
 
 	const ChangeLocation = (lat, lon) => {
 		SetLatitude(lat)
-		SetLongitude(lon)
+		SetLongitude(lon * multiplierLon)
 
 		SetAutocompleteData([])
 	}
