@@ -41,9 +41,6 @@ const News = () => {
 				loadMore={LoadMore}
 				hasMore={HasMoreArticles}
 				loader={<Loader key='loader'>Loading ...</Loader>}
-				getScrollParent={() =>
-					document.getElementById('newsSectionWrapper')
-				}
 				useWindow={false}
 			>
 				<ArticleContainer>

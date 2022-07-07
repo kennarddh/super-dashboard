@@ -15,4 +15,7 @@ export const Article = styled.div`
 	border-radius: 15px;
 `
 
-export const Container = styled.div``
+export const Container = styled.div`
+	overflow-y: scroll;
+	height: 100%;
+`
