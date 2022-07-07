@@ -12,7 +12,9 @@ const News = () => {
 	const [HasMoreArticles, SetHasMoreArticles] = useState(true)
 
 	const LoadMore = page => {
+		console.log({ page })
 		if (page > 10) return SetHasMoreArticles(false)
+
 		fetch(
 			`https://newsapi.org/v2/everything?q=react%20js&language=en&pageSize=${PageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
 		)
@@ -37,7 +39,7 @@ const News = () => {
 	return (
 		<Container>
 			<InfiniteScroll
-				pageStart={1}
+				pageStart={0}
 				loadMore={LoadMore}
 				hasMore={HasMoreArticles}
 				loader={<Loader key='loader'>Loading ...</Loader>}

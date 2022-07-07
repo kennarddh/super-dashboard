@@ -16,7 +16,7 @@ import Map from 'Components/Map/Map'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import News from 'Components/News/News'
 
-import { SectionWrapper, ScrollYSectionWrapper } from './Styles'
+import { SectionWrapper } from './Styles'
 
 const ReactGridLayout = WidthProvider(RGL)
 
@@ -25,41 +25,12 @@ const App = () => {
 		<LocationProvider>
 			<Tabs>
 				<TabList>
-					<Tab>Page 1</Tab>
+					<Tab>News</Tab>
 					<Tab>Page 2</Tab>
 				</TabList>
 
 				<TabPanel>
-					<ReactGridLayout
-						layout={[
-							{
-								i: 'news',
-								x: 0,
-								y: 0,
-								w: 8,
-								h: 8,
-								static: true,
-							},
-						]}
-						className='layout'
-						items={1}
-						rowHeight={41}
-						cols={12}
-						resizeHandles={[
-							's',
-							'w',
-							'e',
-							'n',
-							'sw',
-							'nw',
-							'se',
-							'ne',
-						]}
-					>
-						<ScrollYSectionWrapper key='news'>
-							<News />
-						</ScrollYSectionWrapper>
-					</ReactGridLayout>
+					<News />
 				</TabPanel>
 				<TabPanel>
 					<ReactGridLayout
