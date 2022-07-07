@@ -4,7 +4,15 @@ import InfiniteScroll from 'react-infinite-scroller'
 
 import Loader from 'Components/Loader/Loader'
 
-import { ArticleContainer, Article, Container, ArticleImage } from './Styles'
+import {
+	ArticleContainer,
+	Article,
+	Container,
+	ArticleImage,
+	ArticleBody,
+	ArticleTitle,
+	ArticleDescription,
+} from './Styles'
 
 const News = () => {
 	const [Articles, SetArticles] = useState([])
@@ -52,10 +60,12 @@ const News = () => {
 								src={article.urlToImage}
 								alt='Article image'
 							/>
-							<p>{article.source.name}</p>
-							<p>{article.title}</p>
-							<p>{article.description}</p>
-							<p>{article.url}</p>
+							<ArticleBody>
+								<ArticleTitle>{article.title}</ArticleTitle>
+								<ArticleDescription>
+									{article.description}
+								</ArticleDescription>
+							</ArticleBody>
 						</Article>
 					))}
 				</ArticleContainer>
