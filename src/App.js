@@ -4,6 +4,8 @@ import RGL, { WidthProvider } from 'react-grid-layout'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
 
+import 'react-tabs/style/react-tabs.css'
+
 import LocationProvider from 'Contexts/Location'
 
 // Components
@@ -12,9 +14,9 @@ import Clock from 'Components/Clock/Clock'
 import Weather from 'Components/Weather/Weather'
 import Map from 'Components/Map/Map'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
-import 'react-tabs/style/react-tabs.css'
+import News from 'Components/News/News'
 
-import { SectionWrapper } from './Styles'
+import { SectionWrapper, ScrollSectionWrapper } from './Styles'
 
 const ReactGridLayout = WidthProvider(RGL)
 
@@ -27,6 +29,38 @@ const App = () => {
 					<Tab>Page 2</Tab>
 				</TabList>
 
+				<TabPanel>
+					<ReactGridLayout
+						layout={[
+							{
+								i: 'news',
+								x: 0,
+								y: 0,
+								w: 8,
+								h: 8,
+								static: true,
+							},
+						]}
+						className='layout'
+						items={1}
+						rowHeight={41}
+						cols={12}
+						resizeHandles={[
+							's',
+							'w',
+							'e',
+							'n',
+							'sw',
+							'nw',
+							'se',
+							'ne',
+						]}
+					>
+						<ScrollSectionWrapper key='news'>
+							<News />
+						</ScrollSectionWrapper>
+					</ReactGridLayout>
+				</TabPanel>
 				<TabPanel>
 					<ReactGridLayout
 						layout={[
@@ -75,9 +109,6 @@ const App = () => {
 							<Weather />
 						</SectionWrapper>
 					</ReactGridLayout>
-				</TabPanel>
-				<TabPanel>
-					<h2>Any content 2</h2>
 				</TabPanel>
 			</Tabs>
 		</LocationProvider>
