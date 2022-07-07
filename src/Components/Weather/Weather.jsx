@@ -19,6 +19,7 @@ const Weather = () => {
 	} = useContext(LocationContext)
 
 	const [Search, SetSearch] = useState('')
+	const [DebouncedSearch, SetDebouncedSearch] = useState('')
 
 	const [AutocompleteData, SetAutocompleteData] = useState([])
 
@@ -80,13 +81,13 @@ const Weather = () => {
 	useEffect(() => {
 		SetAutocompleteData([])
 
-		if (Search.length < 3) return
+		if (DebouncedSearch.length < 3) return
 
 		const controller = new AbortController()
 		const signal = controller.signal
 
 		fetch(
-			`https://nominatim.openstreetmap.org/search?q=${Search}&limit=5&format=json&addressdetails=1`,
+			`https://nominatim.openstreetmap.org/search?q=${DebouncedSearch}&limit=5&format=json&addressdetails=1`,
 			{ signal }
 		)
 			.then(response => response.json())
@@ -98,6 +99,12 @@ const Weather = () => {
 			})
 
 		return () => controller.abort()
+	}, [DebouncedSearch])
+
+	useEffect(() => {
+		const timer = setTimeout(() => SetDebouncedSearch(Search), 1000)
+
+		return () => clearTimeout(timer)
 	}, [Search])
 
 	const ChangeLocation = (lat, lon) => {
