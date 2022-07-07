@@ -17,3 +17,7 @@ export const Container = styled.div`
 	overflow-y: scroll;
 	height: 100%;
 `
+
+export const ArticleImage = styled.img`
+	width: 300px;
+`
