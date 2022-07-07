@@ -23,8 +23,12 @@ const News = () => {
 	const LoadMore = page => {
 		if (page > 10) return SetHasMoreArticles(false)
 
+		const controller = new AbortController()
+		const signal = controller.signal
+
 		fetch(
-			`https://newsapi.org/v2/everything?q=react%20js&language=en&pageSize=${PageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
+			`https://newsapi.org/v2/everything?q=react%20js&language=en&pageSize=${PageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`,
+			{ signal }
 		)
 			.then(response => response.json())
 			.then(data => {
@@ -42,6 +46,8 @@ const News = () => {
 					})
 				})
 			})
+
+		return () => controller.abort()
 	}
 
 	return (
