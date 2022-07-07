@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
 import InfiniteScroll from 'react-infinite-scroller'
 
@@ -20,11 +20,17 @@ const News = () => {
 
 	const [HasMoreArticles, SetHasMoreArticles] = useState(true)
 
+	const IsLoadingRef = useRef(false)
+
 	const LoadMore = page => {
 		if (page > 10) return SetHasMoreArticles(false)
 
+		if (IsLoadingRef.current) return
+
 		const controller = new AbortController()
 		const signal = controller.signal
+
+		IsLoadingRef.current = true
 
 		fetch(
 			`https://newsapi.org/v2/everything?q=react%20js&language=en&pageSize=${PageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`,
@@ -36,6 +42,8 @@ const News = () => {
 					const newArticles = [...articles, ...data.articles]
 
 					const urls = []
+
+					IsLoadingRef.current = false
 
 					return newArticles.filter(article => {
 						if (urls.includes(article.url)) return false
