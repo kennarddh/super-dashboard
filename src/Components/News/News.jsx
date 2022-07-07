@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 import InfiniteScroll from 'react-infinite-scroller'
 
@@ -12,7 +11,6 @@ const News = () => {
 	const [HasMoreArticles, SetHasMoreArticles] = useState(true)
 
 	const LoadMore = page => {
-		console.log({ page })
 		if (page > 10) return SetHasMoreArticles(false)
 
 		fetch(
@@ -43,6 +41,10 @@ const News = () => {
 				loadMore={LoadMore}
 				hasMore={HasMoreArticles}
 				loader={<Loader key='loader'>Loading ...</Loader>}
+				getScrollParent={() =>
+					document.getElementById('newsSectionWrapper')
+				}
+				useWindow={false}
 			>
 				<ArticleContainer>
 					{Articles.map(article => (
