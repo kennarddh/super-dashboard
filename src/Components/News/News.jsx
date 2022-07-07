@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 
 import InfiniteScroll from 'react-infinite-scroller'
 
-import { Loader, ArticleContainer, Article, Container } from './Styles'
+import Loader from 'Components/Loader/Loader'
+
+import { ArticleContainer, Article, Container } from './Styles'
 
 const News = () => {
 	const [Articles, SetArticles] = useState([])
@@ -40,7 +42,7 @@ const News = () => {
 				pageStart={0}
 				loadMore={LoadMore}
 				hasMore={HasMoreArticles}
-				loader={<Loader key='loader'>Loading ...</Loader>}
+				loader={<Loader key='loader' size={50} center />}
 				useWindow={false}
 			>
 				<ArticleContainer>

@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-export const Loader = styled.div``
-
 export const ArticleContainer = styled.div`
 	display: flex;
 	flex-direction: column;
