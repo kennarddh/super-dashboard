@@ -15,6 +15,4 @@ export const Article = styled.div`
 	border-radius: 15px;
 `
 
-export const Container = styled.div`
-	overflow-y: auto;
-`
+export const Container = styled.div``

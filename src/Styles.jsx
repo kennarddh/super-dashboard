@@ -5,9 +5,9 @@ export const SectionWrapper = styled.div`
 `
 
 export const ScrollXSectionWrapper = styled(SectionWrapper)`
-	overflow-x: 'scroll';
+	overflow-x: scroll;
 `
 
 export const ScrollYSectionWrapper = styled(SectionWrapper)`
-	overflow-y: 'scroll';
+	overflow-y: scroll;
 `
