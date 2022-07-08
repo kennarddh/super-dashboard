@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 
 import { Toolbar, ToolbarInput } from 'Components/ToolBar/ToolBar'
 
-import { AutocompleteItem, Autocomplete, InputContainer } from './Styles.jsx'
+import { AutocompleteItem, Autocomplete, InputContainer } from './Styles'
 
 import { LocationContext } from 'Contexts/Location'
 

@@ -10,7 +10,7 @@ import DraggableMarker from './Marker/Draggable/Draggable'
 
 import LeafletControlGeocoder from './LeafletControlGeocoder/LeafletControlGeocoder'
 
-import { StyledMapContainer } from './Styles.jsx'
+import { StyledMapContainer } from './Styles'
 
 const Map = () => {
 	return (
