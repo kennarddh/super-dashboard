@@ -30,6 +30,25 @@ const News = () => {
 			`https://newsapi.org/v2/everything?q=react%20js&language=en&pageSize=${PageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`,
 			{ signal }
 		)
+			.then(response => {
+				if (!response.ok) {
+					let error = ''
+
+					if (response.status === 429) {
+						error = 'News api rate limited'
+					} else if (response.status === 500) {
+						error = 'News api internal server error'
+					} else if (response.status === 401) {
+						error = 'News api invalid api key'
+					} else if (response.status === 400) {
+						error = 'News api bad request'
+					}
+
+					throw { error }
+				}
+
+				return response
+			})
 			.then(response => response.json())
 			.then(data => {
 				SetArticles(articles => {
@@ -48,6 +67,7 @@ const News = () => {
 					})
 				})
 			})
+			.catch(error => console.error({ location: 'News', error }))
 
 		return () => controller.abort()
 	}
