@@ -18,7 +18,7 @@ import {
 } from './Styles'
 
 const Clock = () => {
-	const [OffsetsInSecond, SetOffsetsInSecond] = useState([0, -25200, 25200])
+	const [OffsetsInSecond, SetOffsetsInSecond] = useState([])
 
 	const [IsOpen, SetIsOpen] = useState(false)
 	const [TimezoneText, SetTimezoneText] = useState('')
