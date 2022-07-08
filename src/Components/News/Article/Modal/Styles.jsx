@@ -29,16 +29,41 @@ export const Content = styled.p`
 	margin: 0;
 `
 
-export const CloseButton = styled.button`
-	margin: 0;
-	padding: 10px 20px;
-
+export const Buttons = styled.div`
 	position: absolute;
 	bottom: 30px;
 	left: 30px;
+
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+`
+
+export const Button = styled.button`
+	margin: 0;
+	padding: 10px 20px;
 
 	border: none;
 	border-radius: 10px;
 	background-color: #8f8f8f;
 	color: #ffffff;
+	box-sizing: border-box;
+
+	text-decoration: none;
+
+	width: 150px;
+	height: 50px;
+	font-size: 1rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`
+
+export const CloseButton = styled(Button)`
+	background-color: #ff0000;
+`
+
+export const ReadMoreButton = styled(Button)`
+	background-color: #0000ff;
 `

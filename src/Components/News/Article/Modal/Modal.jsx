@@ -8,6 +8,8 @@ import {
 	Title,
 	Content,
 	CloseButton,
+	ReadMoreButton,
+	Buttons,
 } from './Styles'
 
 const Modal = ({ article, isOpen }) => {
@@ -22,7 +24,16 @@ const Modal = ({ article, isOpen }) => {
 					<ModalContainer>
 						<Title>{article.title}</Title>
 						<Content>{article.content}</Content>
-						<CloseButton onClick={Close}>Close</CloseButton>
+						<Buttons>
+							<CloseButton onClick={Close}>Close</CloseButton>
+							<ReadMoreButton
+								as='a'
+								target='_blank'
+								href={article.url}
+							>
+								Read More
+							</ReadMoreButton>
+						</Buttons>
 					</ModalContainer>
 				</Container>
 			)}
