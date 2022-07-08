@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 import ReactPortal from 'Components/ReactPortal/ReactPortal'
+
+import useClickOutside from 'Hooks/useClickOutside'
 
 import {
 	Container,
@@ -17,6 +19,10 @@ import {
 } from './Styles'
 
 const Modal = ({ article, isOpen, onClose }) => {
+	const ModalContainerRef = useRef()
+
+	useClickOutside(ModalContainerRef, onClose)
+
 	const Close = event => {
 		event.stopPropagation()
 
@@ -27,7 +33,7 @@ const Modal = ({ article, isOpen, onClose }) => {
 		<ReactPortal wrapperId={article.url}>
 			{isOpen && (
 				<Container>
-					<ModalContainer>
+					<ModalContainer ref={ModalContainerRef}>
 						<Body>
 							<Image
 								src={article.urlToImage}
