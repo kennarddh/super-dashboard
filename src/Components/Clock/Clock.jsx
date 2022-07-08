@@ -36,6 +36,9 @@ const Clock = () => {
 
 		SetIsOpen(false)
 
+		if (OffsetsInSecond.length >= 5)
+			return alert('Too many clock maximum 5')
+
 		const timezoneText = TimezoneText.toLowerCase()
 
 		const regex = /(GMT|UTC)[+-][0-2][0-3]:[0-5][0-9]/gi
