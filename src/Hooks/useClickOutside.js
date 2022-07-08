@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 const useClickOutside = (ref, onClickOutsideCallback) => {
 	const CheckClickOutside = event => {
-		if (!ref.current) throw new Error('useClickOutside hook invalid ref')
+		if (!ref.current) return
 
 		if (ref.current.contains(event.target)) return
 
