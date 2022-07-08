@@ -18,7 +18,9 @@ export const ModalContainer = styled.div`
 	padding: 20px;
 	box-sizing: border-box;
 
-	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 `
 
 export const Title = styled.h3`
@@ -30,13 +32,18 @@ export const Content = styled.p`
 `
 
 export const Buttons = styled.div`
-	position: absolute;
-	bottom: 30px;
-	left: 30px;
+	height: 10%;
+	width: 100%;
 
 	display: flex;
 	flex-direction: row;
 	gap: 20px;
+`
+
+export const Body = styled.div`
+	height: 90%;
+	width: 100%;
+	overflow-y: auto;
 `
 
 export const Button = styled.button`
