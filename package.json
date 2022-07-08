@@ -24,7 +24,11 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"lint:check": "eslint src/**/*.{js,jsx}",
+		"lint:fix": "eslint --fix src/**/*.{js,jsx}",
+		"prettier:fix": "prettier -w \"src/**/*.{js,jsx}\"",
+		"prettier:check": "prettier -c \"src/**/*.{js,jsx}\""
 	},
 	"eslintConfig": {
 		"extends": [
