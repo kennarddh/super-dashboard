@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 import ReactPortal from 'Components/ReactPortal/ReactPortal'
 
+import TimezoneTextToOffsetInSecond from 'Utils/TimezoneTextToOffsetInSecond'
+
 // Clock
 import DigitalClock from './Digital/Digital'
 // import AnalogClock from './Analog/Analog'
@@ -16,7 +18,7 @@ import {
 } from './Styles'
 
 const Clock = () => {
-	const [OffsetsInSecond] = useState([0, -25200, 25200])
+	const [OffsetsInSecond, SetOffsetsInSecond] = useState([0, -25200, 25200])
 
 	const [IsOpen, SetIsOpen] = useState(false)
 	const [TimezoneText, SetTimezoneText] = useState('')
@@ -38,9 +40,12 @@ const Clock = () => {
 
 		const regex = /(GMT|UTC)[+-][0-2][0-3]:[0-5][0-9]/gi
 
-		console.log({ timezoneText, regex, test: regex.test(timezoneText) })
-
 		if (!regex.test(timezoneText)) return alert('Invalid timezone')
+
+		SetOffsetsInSecond(offsetsInSecond => [
+			...offsetsInSecond,
+			TimezoneTextToOffsetInSecond(timezoneText),
+		])
 	}
 
 	// return <AnalogClock offsets={OffsetsInSecond} />
