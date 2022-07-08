@@ -29,6 +29,20 @@ const Clock = () => {
 		SetTimezoneText(event.target.value)
 	}
 
+	const OnSubmit = event => {
+		event.preventDefault()
+
+		SetIsOpen(false)
+
+		const timezoneText = TimezoneText.toLowerCase()
+
+		const regex = /(GMT|UTC)[+-][0-2][0-3]:[0-5][0-9]/gi
+
+		console.log({ timezoneText, regex, test: regex.test(timezoneText) })
+
+		if (!regex.test(timezoneText)) return alert('Invalid timezone')
+	}
+
 	// return <AnalogClock offsets={OffsetsInSecond} />
 	return (
 		<Container>
@@ -37,7 +51,7 @@ const Clock = () => {
 			<ReactPortal>
 				{IsOpen && (
 					<ModalContainer>
-						<ModalContentContainer>
+						<ModalContentContainer onSubmit={OnSubmit}>
 							<TimezoneInput
 								onChange={OnInputChange}
 								value={TimezoneText}
