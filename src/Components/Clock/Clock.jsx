@@ -16,6 +16,7 @@ import {
 	ModalContentContainer,
 	TimezoneInput,
 	SubmitButton,
+	CloseButton,
 } from './Styles'
 
 const Clock = () => {
@@ -24,12 +25,16 @@ const Clock = () => {
 	const [IsOpen, SetIsOpen] = useState(false)
 	const [TimezoneText, SetTimezoneText] = useState('')
 
-	const OnAdd = () => {
+	const OnOpen = () => {
 		SetIsOpen(true)
 	}
 
 	const OnInputChange = event => {
 		SetTimezoneText(event.target.value)
+	}
+
+	const OnClose = () => {
+		SetIsOpen(false)
 	}
 
 	const OnSubmit = event => {
@@ -58,7 +63,7 @@ const Clock = () => {
 	return (
 		<Container>
 			<DigitalClock offsets={OffsetsInSecond} />
-			<AddButton onClick={OnAdd}>Add</AddButton>
+			<AddButton onClick={OnOpen}>Add</AddButton>
 			<ReactPortal>
 				{IsOpen && (
 					<ModalContainer>
@@ -69,6 +74,9 @@ const Clock = () => {
 								placeholder='Timezone (/^(GMT|UTC)[+-][0-2][0-3]:[0-5][0-9]$/gi)'
 							/>
 							<SubmitButton type='submit'>Add</SubmitButton>
+							<CloseButton type='button' onClick={OnClose}>
+								Close
+							</CloseButton>
 						</ModalContentContainer>
 					</ModalContainer>
 				)}

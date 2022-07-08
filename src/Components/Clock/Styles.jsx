@@ -44,7 +44,7 @@ export const ModalContentContainer = styled.form`
 `
 
 export const TimezoneInput = styled.input`
-	width: 80%;
+	width: 70%;
 	height: 40%;
 	border-radius: 15px;
 	padding: 10px 20px;
@@ -80,4 +80,8 @@ export const SubmitButton = styled.button`
 	&:focus {
 		outline: 1px solid black;
 	}
+`
+
+export const CloseButton = styled(SubmitButton)`
+	background-color: #ff0000;
 `
