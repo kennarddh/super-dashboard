@@ -4,11 +4,18 @@ import React, { useState } from 'react'
 import DigitalClock from './Digital/Digital'
 // import AnalogClock from './Analog/Analog'
 
-const Clock = () => {
-	const [Offsets] = useState([0, -25200, 25200])
+import { Container, AddButton } from './Styles'
 
-	// return <AnalogClock offsets={Offsets} />
-	return <DigitalClock offsets={Offsets} />
+const Clock = () => {
+	const [OffsetsInSecond] = useState([0, -25200, 25200])
+
+	// return <AnalogClock offsets={OffsetsInSecond} />
+	return (
+		<Container>
+			<DigitalClock offsets={OffsetsInSecond} />
+			<AddButton>Add</AddButton>
+		</Container>
+	)
 }
 
 export default Clock
