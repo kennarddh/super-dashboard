@@ -12,9 +12,11 @@ import {
 	Buttons,
 } from './Styles'
 
-const Modal = ({ article, isOpen }) => {
-	const Close = () => {
-		console.log('close')
+const Modal = ({ article, isOpen, onClose }) => {
+	const Close = event => {
+		event.stopPropagation()
+
+		onClose()
 	}
 
 	return (
