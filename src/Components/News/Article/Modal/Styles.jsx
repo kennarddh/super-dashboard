@@ -44,6 +44,24 @@ export const Body = styled.div`
 	height: 90%;
 	width: 100%;
 	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: #f1f1f1;
+		border-radius: 5px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: #888888;
+		border-radius: 5px;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background: #777777;
+	}
 `
 
 export const Button = styled.button`
