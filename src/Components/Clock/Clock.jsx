@@ -45,10 +45,12 @@ const Clock = () => {
 
 		if (!regex.test(timezoneText)) return alert('Invalid timezone')
 
-		SetOffsetsInSecond(offsetsInSecond => [
-			...offsetsInSecond,
-			TimezoneTextToOffsetInSecond(timezoneText),
-		])
+		const offset = TimezoneTextToOffsetInSecond(timezoneText)
+
+		if (OffsetsInSecond.includes(offset))
+			return alert('Timezone already exist')
+
+		SetOffsetsInSecond(offsetsInSecond => [...offsetsInSecond, offset])
 	}
 
 	// return <AnalogClock offsets={OffsetsInSecond} />
