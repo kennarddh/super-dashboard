@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import ReactPortal from 'Components/ReactPortal/ReactPortal'
 
 import TimezoneTextToOffsetInSecond from 'Utils/TimezoneTextToOffsetInSecond'
+import IsValidTimezoneText from 'Utils/IsValidTimezoneText'
 
 // Clock
 import DigitalClock from './Digital/Digital'
@@ -43,9 +44,7 @@ const Clock = () => {
 
 		SetTimezoneText('')
 
-		const regex = /(GMT|UTC)[+-][0-2][0-3]:[0-5][0-9]/gi
-
-		if (!regex.test(timezoneText)) return alert('Invalid timezone')
+		if (!IsValidTimezoneText(timezoneText)) return alert('Invalid timezone')
 
 		const offset = TimezoneTextToOffsetInSecond(timezoneText)
 
