@@ -32,7 +32,7 @@ const Draggable = () => {
 			},
 			Map.getZoom()
 		)
-	}, [Latitude, Longitude])
+	}, [Latitude, Longitude, Map])
 
 	const eventHandlers = useMemo(
 		() => ({
@@ -48,7 +48,7 @@ const Draggable = () => {
 				SetLongitude(longitude)
 			},
 		}),
-		[]
+		[SetLatitude, SetLongitude]
 	)
 
 	return (

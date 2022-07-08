@@ -16,24 +16,18 @@ const Whiteboard = () => {
 
 	const CanvasDrawRef = useRef(null)
 
-	const OnBrushColorChange = useCallback(
-		event => {
-			SetBrushColor(event.target.value)
-		},
-		[BrushColor]
-	)
+	const OnBrushColorChange = useCallback(event => {
+		SetBrushColor(event.target.value)
+	}, [])
 
-	const OnBrushRadiusChange = useCallback(
-		event => {
-			let value = event.target.value
+	const OnBrushRadiusChange = useCallback(event => {
+		let value = event.target.value
 
-			if (value < 1) value = 1
-			if (value > 50) value = 50
+		if (value < 1) value = 1
+		if (value > 50) value = 50
 
-			SetBrushRadius(parseInt(value, 10))
-		},
-		[BrushRadius]
-	)
+		SetBrushRadius(parseInt(value, 10))
+	}, [])
 
 	const Undo = useCallback(() => {
 		CanvasDrawRef.current.undo()

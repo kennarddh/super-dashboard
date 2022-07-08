@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext, useCallback } from 'react'
 
 import { Toolbar, ToolbarInput } from 'Components/ToolBar/ToolBar'
 
@@ -22,7 +22,7 @@ const Weather = () => {
 
 	const [AutocompleteData, SetAutocompleteData] = useState([])
 
-	const GetPosition = () => {
+	const GetPosition = useCallback(() => {
 		navigator.geolocation.getCurrentPosition(
 			position => {
 				SetLatitude(position.coords.latitude)
@@ -30,11 +30,11 @@ const Weather = () => {
 			},
 			err => console.log(err)
 		)
-	}
+	}, [SetLatitude, SetLongitude])
 
 	useEffect(() => {
 		GetPosition()
-	}, [])
+	}, [GetPosition])
 
 	useEffect(() => {
 		const controller = new AbortController()
@@ -75,7 +75,7 @@ const Weather = () => {
 			})
 
 		return () => controller.abort()
-	}, [Latitude, Longitude])
+	}, [Latitude, Longitude, SetTimezoneOffset])
 
 	useEffect(() => {
 		SetAutocompleteData([])
