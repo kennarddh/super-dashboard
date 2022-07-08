@@ -66,7 +66,7 @@ const Clock = () => {
 							<TimezoneInput
 								onChange={OnInputChange}
 								value={TimezoneText}
-								placeholder='Timezone (/(GMT|UTC)[+-][0-2][0-3]:[0-5][0-9]/gi)'
+								placeholder='Timezone (/^(GMT|UTC)[+-][0-2][0-3]:[0-5][0-9]$/gi)'
 							/>
 							<SubmitButton type='submit'>Add</SubmitButton>
 						</ModalContentContainer>
