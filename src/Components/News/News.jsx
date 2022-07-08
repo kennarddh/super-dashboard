@@ -32,19 +32,15 @@ const News = () => {
 		)
 			.then(response => {
 				if (!response.ok) {
-					let error = ''
-
 					if (response.status === 429) {
-						error = 'News api rate limited'
+						throw { error: 'News api rate limited' }
 					} else if (response.status === 500) {
-						error = 'News api internal server error'
+						throw { error: 'News api internal server error' }
 					} else if (response.status === 401) {
-						error = 'News api invalid api key'
+						throw { error: 'News api invalid api key' }
 					} else if (response.status === 400) {
-						error = 'News api bad request'
+						throw { error: 'News api bad request' }
 					}
-
-					throw { error }
 				}
 
 				return response
