@@ -41,6 +41,8 @@ const Clock = () => {
 
 		const timezoneText = TimezoneText.toLowerCase()
 
+		SetTimezoneText('')
+
 		const regex = /(GMT|UTC)[+-][0-2][0-3]:[0-5][0-9]/gi
 
 		if (!regex.test(timezoneText)) return alert('Invalid timezone')
