@@ -69,3 +69,7 @@ export const CloseButton = styled(Button)`
 export const ReadMoreButton = styled(Button)`
 	background-color: #0000ff;
 `
+
+export const Image = styled.img`
+	width: 100%;
+`

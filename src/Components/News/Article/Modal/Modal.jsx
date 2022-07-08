@@ -10,6 +10,7 @@ import {
 	CloseButton,
 	ReadMoreButton,
 	Buttons,
+	Image,
 } from './Styles'
 
 const Modal = ({ article, isOpen, onClose }) => {
@@ -24,6 +25,7 @@ const Modal = ({ article, isOpen, onClose }) => {
 			{isOpen && (
 				<Container>
 					<ModalContainer>
+						<Image src={article.urlToImage} alt='Article Image' />
 						<Title>{article.title}</Title>
 						<Content>{article.content}</Content>
 						<Buttons>
