@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 import { Toolbar, ToolbarInput } from 'Components/ToolBar/ToolBar'
 
 import { AutocompleteItem, Autocomplete, InputContainer } from './Styles.jsx'
 
 import { LocationContext } from 'Contexts/Location'
-import { useContext } from 'react'
 
 const Weather = () => {
 	const [WeatherData, SetWeatherData] = useState()
