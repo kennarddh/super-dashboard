@@ -33,38 +33,6 @@ const App = () => {
 					<ReactGridLayout
 						layout={[
 							{
-								i: 'news',
-								x: 0,
-								y: 0,
-								w: 8,
-								h: 8,
-								static: true,
-							},
-						]}
-						className='layout'
-						items={1}
-						rowHeight={41}
-						cols={12}
-						resizeHandles={[
-							's',
-							'w',
-							'e',
-							'n',
-							'sw',
-							'nw',
-							'se',
-							'ne',
-						]}
-					>
-						<SectionWrapper key='news'>
-							<News />
-						</SectionWrapper>
-					</ReactGridLayout>
-				</TabPanel>
-				<TabPanel>
-					<ReactGridLayout
-						layout={[
-							{
 								i: 'whiteboard',
 								x: 0,
 								y: 0,
@@ -107,6 +75,39 @@ const App = () => {
 						</SectionWrapper>
 						<SectionWrapper key='weather'>
 							<Weather />
+						</SectionWrapper>
+					</ReactGridLayout>
+				</TabPanel>
+
+				<TabPanel>
+					<ReactGridLayout
+						layout={[
+							{
+								i: 'news',
+								x: 0,
+								y: 0,
+								w: 8,
+								h: 8,
+								static: true,
+							},
+						]}
+						className='layout'
+						items={1}
+						rowHeight={41}
+						cols={12}
+						resizeHandles={[
+							's',
+							'w',
+							'e',
+							'n',
+							'sw',
+							'nw',
+							'se',
+							'ne',
+						]}
+					>
+						<SectionWrapper key='news'>
+							<News />
 						</SectionWrapper>
 					</ReactGridLayout>
 				</TabPanel>
