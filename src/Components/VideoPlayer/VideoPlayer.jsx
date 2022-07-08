@@ -27,6 +27,7 @@ const VideoPlayer = () => {
 		if (isCanPlay) {
 			SetPlayingUrl(Url)
 		} else {
+			// eslint-disable-next-line quotes
 			alert("Can't play this video")
 		}
 	}, [Url])

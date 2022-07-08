@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 
 import Single from './Single/Single'
 
-import { TimeContainerParent } from './Styles.jsx'
+import { TimeContainerParent } from './Styles'
 
 import { LocationContext } from 'Contexts/Location'
 

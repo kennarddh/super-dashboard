@@ -1,10 +1,17 @@
 {
 	"env": {
 		"browser": true,
-		"es2021": true,
-		"node": true
+		"es2021": true
 	},
-	"extends": ["eslint:recommended", "plugin:react/recommended"],
+	"globals": {
+		"process": "readonly"
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:import/recommended",
+		"plugin:react-hooks/recommended"
+	],
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
@@ -13,6 +20,13 @@
 		"sourceType": "module"
 	},
 	"settings": {
+		"import/extensions": [".js", ".jsx"],
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx"],
+				"moduleDirectory": ["node_modules", "src/"]
+			}
+		},
 		"react": {
 			"version": "detect"
 		}
@@ -27,11 +41,20 @@
 		],
 		"import/prefer-default-export": "off",
 		"linebreak-style": ["error", "unix"],
-		"quotes": "off",
+		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+		"quotes": ["error", "single"],
 		"semi": ["error", "never"],
 		"react/prop-types": "off",
 		"no-case-declarations": "off",
 		"react/jsx-curly-brace-presence": "warn",
-		"react/jsx-no-useless-fragment": "warn"
+		"react/jsx-no-useless-fragment": "warn",
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"js": "never",
+				"jsx": "never"
+			}
+		]
 	}
 }
