@@ -12,6 +12,8 @@ import {
 	Buttons,
 	Image,
 	Body,
+	Footer,
+	PublishedAt,
 } from './Styles'
 
 const Modal = ({ article, isOpen, onClose }) => {
@@ -34,16 +36,22 @@ const Modal = ({ article, isOpen, onClose }) => {
 							<Title>{article.title}</Title>
 							<Content>{article.content}</Content>
 						</Body>
-						<Buttons>
-							<CloseButton onClick={Close}>Close</CloseButton>
-							<ReadMoreButton
-								as='a'
-								target='_blank'
-								href={article.url}
-							>
-								Read More
-							</ReadMoreButton>
-						</Buttons>
+						<Footer>
+							<Buttons>
+								<CloseButton onClick={Close}>Close</CloseButton>
+								<ReadMoreButton
+									as='a'
+									target='_blank'
+									href={article.url}
+								>
+									Read More
+								</ReadMoreButton>
+							</Buttons>
+							<PublishedAt>
+								Published At:{' '}
+								{article.publishedAt.split('T').join(' ')}
+							</PublishedAt>
+						</Footer>
 					</ModalContainer>
 				</Container>
 			)}

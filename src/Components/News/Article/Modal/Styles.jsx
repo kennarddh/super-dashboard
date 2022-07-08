@@ -31,13 +31,25 @@ export const Content = styled.p`
 	margin: 0;
 `
 
+export const PublishedAt = styled.p`
+	margin: 0;
+	padding: 10px;
+`
+
 export const Buttons = styled.div`
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+`
+
+export const Footer = styled.div`
 	height: 10%;
 	width: 100%;
 
 	display: flex;
 	flex-direction: row;
-	gap: 20px;
+	justify-content: space-between;
+	align-items: center;
 `
 
 export const Body = styled.div`
