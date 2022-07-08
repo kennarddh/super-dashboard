@@ -19,9 +19,14 @@ const Clock = () => {
 	const [OffsetsInSecond] = useState([0, -25200, 25200])
 
 	const [IsOpen, SetIsOpen] = useState(false)
+	const [TimezoneText, SetTimezoneText] = useState('')
 
 	const OnAdd = () => {
 		SetIsOpen(true)
+	}
+
+	const OnInputChange = event => {
+		SetTimezoneText(event.target.value)
 	}
 
 	// return <AnalogClock offsets={OffsetsInSecond} />
@@ -33,8 +38,12 @@ const Clock = () => {
 				{IsOpen && (
 					<ModalContainer>
 						<ModalContentContainer>
-							<TimezoneInput placeholder='Timezone (/(GMT|UTC)[+-][0-2][0-3]:[0-5][0-9]/gi)' />
-							<SubmitButton>Add</SubmitButton>
+							<TimezoneInput
+								onChange={OnInputChange}
+								value={TimezoneText}
+								placeholder='Timezone (/(GMT|UTC)[+-][0-2][0-3]:[0-5][0-9]/gi)'
+							/>
+							<SubmitButton type='submit'>Add</SubmitButton>
 						</ModalContentContainer>
 					</ModalContainer>
 				)}
