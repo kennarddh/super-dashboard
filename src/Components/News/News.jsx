@@ -36,15 +36,6 @@ const News = () => {
 
 		const diffTimeInHour = diffTime / 1000 / 60 / 60
 
-		console.log({
-			newsData,
-			diffTimeInHour,
-			page,
-			newsLastPage,
-			condition: newsData && diffTimeInHour <= 1 && page <= newsLastPage,
-			IsLoading: IsLoadingRef.current,
-		})
-
 		if (newsData && diffTimeInHour <= 1 && page <= newsLastPage) {
 			SetArticles(newsData)
 
