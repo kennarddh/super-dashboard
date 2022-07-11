@@ -26,6 +26,33 @@ const News = () => {
 
 		IsLoadingRef.current = true
 
+		const newsLastUpdate = localStorage.getItem('newsLastUpdate') || 0
+		const newsLastPage = parseInt(localStorage.getItem('newsLastPage')) || 1
+		const newsData = JSON.parse(localStorage.getItem('newsData'))
+
+		const currentTime = new Date().getTime()
+
+		const diffTime = currentTime - newsLastUpdate
+
+		const diffTimeInHour = diffTime / 1000 / 60 / 60
+
+		console.log({
+			newsData,
+			diffTimeInHour,
+			page,
+			newsLastPage,
+			condition: newsData && diffTimeInHour <= 1 && page <= newsLastPage,
+			IsLoading: IsLoadingRef.current,
+		})
+
+		if (newsData && diffTimeInHour <= 1 && page <= newsLastPage) {
+			SetArticles(newsData)
+
+			IsLoadingRef.current = false
+
+			return
+		}
+
 		fetch(
 			`https://newsapi.org/v2/everything?q=react%20js&language=en&pageSize=${PageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`,
 			{ signal }
@@ -54,16 +81,28 @@ const News = () => {
 
 					IsLoadingRef.current = false
 
-					return newArticles.filter(article => {
+					const result = newArticles.filter(article => {
 						if (urls.includes(article.url)) return false
 
 						urls.push(article.url)
 
 						return true
 					})
+
+					const currentTime = new Date().getTime()
+
+					localStorage.setItem('newsLastUpdate', currentTime)
+					localStorage.setItem('newsLastPage', page)
+					localStorage.setItem('newsData', JSON.stringify(result))
+
+					return result
 				})
 			})
-			.catch(error => console.error({ location: 'News', error }))
+			.catch(error => {
+				IsLoadingRef.current = false
+
+				console.error({ location: 'News', error })
+			})
 
 		return () => controller.abort()
 	}
@@ -76,6 +115,7 @@ const News = () => {
 				hasMore={HasMoreArticles}
 				loader={<Loader key='loader' size={50} center />}
 				useWindow={false}
+				threshold={100}
 			>
 				<ArticleContainer>
 					{Articles.map(article => (
