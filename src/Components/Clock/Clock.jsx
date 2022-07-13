@@ -64,7 +64,7 @@ const Clock = () => {
 		<Container>
 			<DigitalClock offsets={OffsetsInSecond} />
 			<AddButton onClick={OnOpen}>Add</AddButton>
-			<ReactPortal>
+			<ReactPortal wrapperId='add-clock-timezone'>
 				{IsOpen && (
 					<ModalContainer>
 						<ModalContentContainer onSubmit={OnSubmit}>
