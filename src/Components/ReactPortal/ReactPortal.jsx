@@ -17,12 +17,12 @@ const ReactPortal = ({ children, wrapperId = 'react-portal-wrapper' }) => {
 	useLayoutEffect(() => {
 		let element = document.getElementById(wrapperId)
 
-		let systemCreated = false
+		let isCreated = false
 
 		// if element is not found with wrapperId or wrapperId is not provided,
 		// create and append to body
 		if (!element) {
-			systemCreated = true
+			isCreated = true
 
 			element = CreateWrapperAndAppendToBody(wrapperId)
 		}
@@ -31,7 +31,7 @@ const ReactPortal = ({ children, wrapperId = 'react-portal-wrapper' }) => {
 
 		return () => {
 			// delete the programatically created element
-			if (!(systemCreated && element.parentNode)) return
+			if (!(isCreated && element.parentNode)) return
 
 			element.parentNode.removeChild(element)
 		}
