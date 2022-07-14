@@ -23,6 +23,7 @@ const Clock = () => {
 	const [OffsetsInSecond, SetOffsetsInSecond] = useState([])
 
 	const [IsOpen, SetIsOpen] = useState(false)
+	const [IsRemoveModalOpen, SetIsRemoveModalOpen] = useState(false)
 	const [TimezoneText, SetTimezoneText] = useState('')
 
 	const OnOpen = () => {
@@ -35,6 +36,10 @@ const Clock = () => {
 
 	const OnClose = () => {
 		SetIsOpen(false)
+	}
+
+	const OnRemoveModalClose = () => {
+		SetIsRemoveModalOpen(true)
 	}
 
 	const OnSubmit = event => {
@@ -75,6 +80,21 @@ const Clock = () => {
 							/>
 							<SubmitButton type='submit'>Add</SubmitButton>
 							<CloseButton type='button' onClick={OnClose}>
+								Close
+							</CloseButton>
+						</ModalContentContainer>
+					</ModalContainer>
+				)}
+			</ReactPortal>
+			<ReactPortal wrapperId='remove-clock-timezone'>
+				{IsRemoveModalOpen && (
+					<ModalContainer>
+						<ModalContentContainer>
+							<SubmitButton type='submit'>Remove</SubmitButton>
+							<CloseButton
+								type='button'
+								onClick={OnRemoveModalClose}
+							>
 								Close
 							</CloseButton>
 						</ModalContentContainer>
