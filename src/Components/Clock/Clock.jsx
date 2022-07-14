@@ -25,6 +25,7 @@ const Clock = () => {
 	const [IsOpen, SetIsOpen] = useState(false)
 	const [IsRemoveModalOpen, SetIsRemoveModalOpen] = useState(false)
 	const [TimezoneText, SetTimezoneText] = useState('')
+	const [CurrentRemoveOffset, SetCurrentRemoveOffset] = useState('')
 
 	const OnOpen = () => {
 		SetIsOpen(true)
@@ -39,7 +40,13 @@ const Clock = () => {
 	}
 
 	const OnRemoveModalClose = () => {
+		SetIsRemoveModalOpen(false)
+	}
+
+	const ShowRemoveModal = offset => {
 		SetIsRemoveModalOpen(true)
+
+		SetCurrentRemoveOffset(offset)
 	}
 
 	const OnSubmit = event => {
@@ -67,7 +74,10 @@ const Clock = () => {
 	// return <AnalogClock offsets={OffsetsInSecond} />
 	return (
 		<Container>
-			<DigitalClock offsets={OffsetsInSecond} />
+			<DigitalClock
+				offsets={OffsetsInSecond}
+				showRemoveModal={ShowRemoveModal}
+			/>
 			<AddButton onClick={OnOpen}>Add</AddButton>
 			<ReactPortal wrapperId='add-clock-timezone'>
 				{IsOpen && (

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { TimeContainer, TimeText } from './Styles'
 
-const Single = ({ offset }) => {
+const Single = ({ offset, showRemoveModal }) => {
 	const [Time, SetTime] = useState({})
 
 	useEffect(() => {
@@ -36,7 +36,7 @@ const Single = ({ offset }) => {
 	}, [offset])
 
 	return (
-		<TimeContainer>
+		<TimeContainer onClick={() => showRemoveModal(offset)}>
 			<TimeText>{Time?.hour}</TimeText>
 			<TimeText>{Time?.minute}</TimeText>
 			<TimeText>{Time?.second}</TimeText>
