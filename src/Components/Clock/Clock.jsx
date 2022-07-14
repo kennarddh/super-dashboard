@@ -117,6 +117,7 @@ const Clock = () => {
 				{IsRemoveModalOpen && (
 					<ModalContainer>
 						<ModalContentContainer onSubmit={RemoveClock}>
+							<h3>Remove Timezone</h3>
 							<SubmitButton type='submit'>Remove</SubmitButton>
 							<CloseButton
 								type='button'
