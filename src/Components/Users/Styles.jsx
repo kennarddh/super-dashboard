@@ -4,6 +4,8 @@ export const ListContainer = styled.div`
 	overflow-y: scroll;
 	height: 100%;
 	width: 90%;
+
+	scroll-behavior: smooth;
 `
 
 export const ListItem = styled.div`
