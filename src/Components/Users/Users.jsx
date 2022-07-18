@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from 'uuid'
 
 import ReactPortal from 'Components/ReactPortal/ReactPortal'
 
+import Alphabet from 'Constants/Users/Alphabet'
+
 import {
 	ListContainer,
 	ListItem,
@@ -16,6 +18,9 @@ import {
 	CloseButton,
 	Input,
 	Buttons,
+	ContentContainer,
+	AlphabetList,
+	AlphabetItem,
 } from './Styles'
 
 const Users = () => {
@@ -142,13 +147,25 @@ const Users = () => {
 				/>
 				<AddButton onClick={ShowUserModal}>Add</AddButton>
 			</Header>
-			<ListContainer>
-				{Object.keys(UsersPreview).map(id => (
-					<ListItem key={id} onClick={() => SelectUser(id)}>
-						<p>{UsersPreview[id].name}</p>
-					</ListItem>
-				))}
-			</ListContainer>
+			<ContentContainer>
+				<ListContainer>
+					{Object.keys(UsersPreview).map(id => (
+						<ListItem key={id} onClick={() => SelectUser(id)}>
+							<p>{UsersPreview[id].name}</p>
+						</ListItem>
+					))}
+				</ListContainer>
+				<AlphabetList>
+					{Alphabet.map(letter => (
+						<AlphabetItem
+							key={letter}
+							href={`#users-list-${letter}`}
+						>
+							{letter}
+						</AlphabetItem>
+					))}
+				</AlphabetList>
+			</ContentContainer>
 			<ReactPortal wrapperId='user-modal'>
 				{IsUserModalOpen && (
 					<ModalContainer>

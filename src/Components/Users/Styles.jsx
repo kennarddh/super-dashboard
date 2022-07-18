@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const ListContainer = styled.div`
 	overflow-y: scroll;
-	height: 90%;
+	height: 100%;
+	width: 90%;
 `
 
 export const ListItem = styled.div`
@@ -112,4 +113,32 @@ export const Buttons = styled.div`
 	align-items: center;
 	gap: 20px;
 	flex-direction: row;
+`
+
+export const ContentContainer = styled.div`
+	width: 100%;
+	height: 90%;
+
+	display: flex;
+	flex-direction: row;
+`
+
+export const AlphabetList = styled.div`
+	width: 10%;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	flex-direction: column;
+
+	overflow-y: scroll;
+`
+
+export const AlphabetItem = styled.a`
+	text-decoration: none;
+	text-transform: uppercase;
+	user-select: none;
+	cursor: pointer;
+	color: #000000;
 `
