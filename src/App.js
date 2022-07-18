@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
+
 import RGL, { WidthProvider } from 'react-grid-layout'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
@@ -13,8 +15,8 @@ import LocationProvider from 'Contexts/Location'
 import Clock from 'Components/Clock/Clock'
 import Weather from 'Components/Weather/Weather'
 import Map from 'Components/Map/Map'
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import News from 'Components/News/News'
+import Users from 'Components/Users/Users'
 
 import { SectionWrapper } from './Styles'
 
@@ -90,6 +92,14 @@ const App = () => {
 								h: 8,
 								static: true,
 							},
+							{
+								i: 'users',
+								x: 8,
+								y: 0,
+								w: 4,
+								h: 6,
+								static: true,
+							},
 						]}
 						className='layout'
 						items={1}
@@ -108,6 +118,9 @@ const App = () => {
 					>
 						<SectionWrapper key='news'>
 							<News />
+						</SectionWrapper>
+						<SectionWrapper key='users'>
+							<Users />
 						</SectionWrapper>
 					</ReactGridLayout>
 				</TabPanel>
