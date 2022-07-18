@@ -15,6 +15,7 @@ import {
 	SubmitButton,
 	CloseButton,
 	Input,
+	Buttons,
 } from './Styles'
 
 const Users = () => {
@@ -153,15 +154,23 @@ const Users = () => {
 								placeholder='Address'
 								style={{ height: '70%' }}
 							></Input>
-							<SubmitButton type='submit'>Save</SubmitButton>
-							<CloseButton type='button' onClick={HideUserModal}>
-								Close
-							</CloseButton>
-							{SelectedUserId && (
-								<CloseButton type='button' onClick={RemoveUser}>
-									Remove
+							<Buttons>
+								<SubmitButton type='submit'>Save</SubmitButton>
+								<CloseButton
+									type='button'
+									onClick={HideUserModal}
+								>
+									Close
 								</CloseButton>
-							)}
+								{SelectedUserId && (
+									<CloseButton
+										type='button'
+										onClick={RemoveUser}
+									>
+										Remove
+									</CloseButton>
+								)}
+							</Buttons>
 						</ModalContentContainer>
 					</ModalContainer>
 				)}

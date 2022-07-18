@@ -62,8 +62,8 @@ export const ModalContentContainer = styled.form`
 `
 
 export const SubmitButton = styled.button`
-	width: 10%;
-	height: 40%;
+	width: 50%;
+	height: 70%;
 	border-radius: 15px;
 	padding: 10px 20px;
 
@@ -104,4 +104,12 @@ export const Input = styled.input`
 	&:focus {
 		outline: 1px solid black;
 	}
+`
+
+export const Buttons = styled.div`
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	gap: 20px;
+	flex-direction: row;
 `
