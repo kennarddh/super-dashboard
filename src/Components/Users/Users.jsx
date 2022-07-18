@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { v4 as uuidv4 } from 'uuid'
 
@@ -19,26 +19,25 @@ import {
 } from './Styles'
 
 const Users = () => {
-	const [UsersList, SetUsersList] = useState([
-		{
-			id: '1896d3ba-715a-47a0-a4e9-c746b69589a2',
+	const [UsersList, SetUsersList] = useState({
+		'1896d3ba-715a-47a0-a4e9-c746b69589a2': {
 			name: 'Foo',
 			phone: '111122223333',
 			address: '4276 Katanga Dr N, Jacksonville, FL 32209',
 		},
-		{
-			id: '8fdac97d-4a7f-452f-9e74-77bd652ed731',
+		'8fdac97d-4a7f-452f-9e74-77bd652ed731': {
 			name: 'Bar',
 			phone: '444455556666',
 			address: '821 N Jefferson St, Jacksonville, FL 32202',
 		},
-		{
-			id: '7e5da25b-bcde-41bc-91f8-932606080675',
+		'7e5da25b-bcde-41bc-91f8-932606080675': {
 			name: 'Foo Bar',
 			phone: '777788889999',
 			address: '308 N Julia St, Jacksonville, FL 32202',
 		},
-	])
+	})
+
+	const [UsersPreview, SetUsersPreview] = useState({})
 
 	const [IsUserModalOpen, SetIsUserModalOpen] = useState(false)
 
@@ -46,7 +45,19 @@ const Users = () => {
 	const [PhoneValue, SetPhoneValue] = useState('')
 	const [AddressValue, SetAddressValue] = useState('')
 
+	const [SearchValue, SetSearchValue] = useState('')
+
 	const [SelectedUserId, SetSelectedUserId] = useState()
+
+	useEffect(() => {
+		const usersEntries = Object.entries(UsersList)
+
+		const filtered = usersEntries.filter(user =>
+			user[1].name.includes(SearchValue)
+		)
+
+		SetUsersPreview(Object.fromEntries(filtered))
+	}, [SearchValue, UsersList])
 
 	const ShowUserModal = () => {
 		SetIsUserModalOpen(true)
@@ -124,10 +135,15 @@ const Users = () => {
 	return (
 		<Container>
 			<Header>
+				<Input
+					value={SearchValue}
+					onChange={event => SetSearchValue(event.target.value)}
+					placeholder='Search'
+				/>
 				<AddButton onClick={ShowUserModal}>Add</AddButton>
 			</Header>
 			<ListContainer>
-				{Object.keys(UsersList).map(id => (
+				{Object.keys(UsersPreview).map(id => (
 					<ListItem key={id} onClick={() => SelectUser(id)}>
 						<p>{UsersList[id].name}</p>
 					</ListItem>
