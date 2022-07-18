@@ -99,6 +99,19 @@ const Users = () => {
 		ShowUserModal()
 	}
 
+	const RemoveUser = () => {
+		if (!SelectedUserId) return
+
+		SetUsersList(users => {
+			// eslint-disable-next-line no-unused-vars
+			const { [SelectedUserId]: _, ...withoutSelected } = users
+
+			return withoutSelected
+		})
+
+		HideUserModal()
+	}
+
 	return (
 		<Container>
 			<Header>
@@ -144,6 +157,11 @@ const Users = () => {
 							<CloseButton type='button' onClick={HideUserModal}>
 								Close
 							</CloseButton>
+							{SelectedUserId && (
+								<CloseButton type='button' onClick={RemoveUser}>
+									Remove
+								</CloseButton>
+							)}
 						</ModalContentContainer>
 					</ModalContainer>
 				)}
