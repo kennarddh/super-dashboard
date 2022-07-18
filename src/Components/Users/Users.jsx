@@ -65,6 +65,14 @@ const Users = () => {
 	const AddUser = event => {
 		event.preventDefault()
 
+		if (!NameValue) {
+			alert('Name cannot be empty')
+
+			HideUserModal()
+
+			return
+		}
+
 		if (SelectedUserId) {
 			SetUsersList(users => ({
 				...users,
