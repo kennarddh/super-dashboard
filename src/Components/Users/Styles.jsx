@@ -142,3 +142,7 @@ export const AlphabetItem = styled.a`
 	cursor: pointer;
 	color: #000000;
 `
+
+export const LetterTitle = styled.h4`
+	margin: 10px 0;
+`

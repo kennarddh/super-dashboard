@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import ReactPortal from 'Components/ReactPortal/ReactPortal'
 
-import Alphabet from 'Constants/Users/Alphabet'
+import { LowercaseAlphabet } from 'Constants/Users/Alphabet'
 
 import {
 	ListContainer,
@@ -21,6 +21,7 @@ import {
 	ContentContainer,
 	AlphabetList,
 	AlphabetItem,
+	LetterTitle,
 } from './Styles'
 
 const Users = () => {
@@ -61,7 +62,26 @@ const Users = () => {
 			user[1].name.toLowerCase().includes(SearchValue.toLowerCase())
 		)
 
-		SetUsersPreview(Object.fromEntries(filtered))
+		const grouped = filtered.reduce((acc, user) => {
+			const key = LowercaseAlphabet.includes(
+				user[1].name[0].toLowerCase()
+			)
+				? user[1].name[0].toLowerCase()
+				: '#'
+
+			if (!Object.keys(acc).includes(key)) {
+				acc[key] = {}
+			}
+
+			acc[key] = {
+				...acc[key],
+				[user[0]]: user[1],
+			}
+
+			return acc
+		}, {})
+
+		SetUsersPreview(grouped)
 	}, [SearchValue, UsersList])
 
 	const ShowUserModal = () => {
@@ -149,14 +169,22 @@ const Users = () => {
 			</Header>
 			<ContentContainer>
 				<ListContainer>
-					{Object.keys(UsersPreview).map(id => (
-						<ListItem key={id} onClick={() => SelectUser(id)}>
-							<p>{UsersPreview[id].name}</p>
-						</ListItem>
+					{Object.keys(UsersPreview).map(letter => (
+						<div key={letter} id={`users-list-${letter}`}>
+							<LetterTitle>{letter.toUpperCase()}</LetterTitle>
+							{Object.keys(UsersPreview[letter]).map(id => (
+								<ListItem
+									key={id}
+									onClick={() => SelectUser(id)}
+								>
+									<p>{UsersPreview[letter][id].name}</p>
+								</ListItem>
+							))}
+						</div>
 					))}
 				</ListContainer>
 				<AlphabetList>
-					{Alphabet.map(letter => (
+					{Object.keys(UsersPreview).map(letter => (
 						<AlphabetItem
 							key={letter}
 							href={`#users-list-${letter}`}

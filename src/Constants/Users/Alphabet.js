@@ -1,4 +1,4 @@
-const Alphabet = [
+export const UppercaseAlphabet = [
 	'A',
 	'B',
 	'C',
@@ -27,4 +27,6 @@ const Alphabet = [
 	'Z',
 ]
 
-export default Alphabet
+export const LowercaseAlphabet = UppercaseAlphabet.map(letter =>
+	letter.toLowerCase()
+)
