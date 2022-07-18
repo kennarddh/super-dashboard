@@ -53,7 +53,7 @@ const Users = () => {
 		const usersEntries = Object.entries(UsersList)
 
 		const filtered = usersEntries.filter(user =>
-			user[1].name.includes(SearchValue)
+			user[1].name.toLowerCase().includes(SearchValue.toLowerCase())
 		)
 
 		SetUsersPreview(Object.fromEntries(filtered))
@@ -145,7 +145,7 @@ const Users = () => {
 			<ListContainer>
 				{Object.keys(UsersPreview).map(id => (
 					<ListItem key={id} onClick={() => SelectUser(id)}>
-						<p>{UsersList[id].name}</p>
+						<p>{UsersPreview[id].name}</p>
 					</ListItem>
 				))}
 			</ListContainer>
