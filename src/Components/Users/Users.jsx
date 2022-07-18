@@ -24,18 +24,18 @@ const Users = () => {
 		{ id: '7e5da25b-bcde-41bc-91f8-932606080675', name: 'Foo Bar' },
 	])
 
-	const [IsAddUserModalOpen, SetIsAddUserModalOpen] = useState(false)
+	const [IsUserModalOpen, SetIsUserModalOpen] = useState(false)
 
 	const [NameValue, SetNameValue] = useState('')
 	const [PhoneValue, SetPhoneValue] = useState('')
 	const [AddressValue, SetAddressValue] = useState('')
 
-	const ShowAddUserModal = () => {
-		SetIsAddUserModalOpen(true)
+	const ShowUserModal = () => {
+		SetIsUserModalOpen(true)
 	}
 
-	const HideAddUserModal = () => {
-		SetIsAddUserModalOpen(false)
+	const HideUserModal = () => {
+		SetIsUserModalOpen(false)
 	}
 
 	const AddUser = event => {
@@ -55,13 +55,13 @@ const Users = () => {
 		SetPhoneValue('')
 		SetAddressValue('')
 
-		HideAddUserModal()
+		HideUserModal()
 	}
 
 	return (
 		<Container>
 			<Header>
-				<AddButton onClick={ShowAddUserModal}>Add</AddButton>
+				<AddButton onClick={ShowUserModal}>Add</AddButton>
 			</Header>
 			<ListContainer>
 				{UsersList.map(user => (
@@ -71,7 +71,7 @@ const Users = () => {
 				))}
 			</ListContainer>
 			<ReactPortal wrapperId='remove-clock-timezone'>
-				{IsAddUserModalOpen && (
+				{IsUserModalOpen && (
 					<ModalContainer>
 						<ModalContentContainer onSubmit={AddUser}>
 							<h3>Add user</h3>
@@ -100,10 +100,7 @@ const Users = () => {
 								style={{ height: '70%' }}
 							></Input>
 							<SubmitButton type='submit'>Save</SubmitButton>
-							<CloseButton
-								type='button'
-								onClick={HideAddUserModal}
-							>
+							<CloseButton type='button' onClick={HideUserModal}>
 								Close
 							</CloseButton>
 						</ModalContentContainer>
