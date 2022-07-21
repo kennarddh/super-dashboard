@@ -33,16 +33,19 @@ const Users = () => {
 			name: 'Foo',
 			phone: '111122223333',
 			address: '4276 Katanga Dr N, Jacksonville, FL 32209',
+			image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==',
 		},
 		'8fdac97d-4a7f-452f-9e74-77bd652ed731': {
 			name: 'Bar',
 			phone: '444455556666',
 			address: '821 N Jefferson St, Jacksonville, FL 32202',
+			image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==',
 		},
 		'7e5da25b-bcde-41bc-91f8-932606080675': {
 			name: 'Foo Bar',
 			phone: '777788889999',
 			address: '308 N Julia St, Jacksonville, FL 32202',
+			image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==',
 		},
 	})
 
@@ -96,6 +99,7 @@ const Users = () => {
 		SetNameValue('')
 		SetPhoneValue('')
 		SetAddressValue('')
+		SetImagePreviewBase64('')
 
 		SetSelectedUserId(null)
 
@@ -120,6 +124,7 @@ const Users = () => {
 					name: NameValue,
 					phone: PhoneValue,
 					address: AddressValue,
+					image: ImagePreviewBase64,
 				},
 			}))
 		} else {
@@ -129,6 +134,7 @@ const Users = () => {
 					name: NameValue,
 					phone: PhoneValue,
 					address: AddressValue,
+					image: ImagePreviewBase64,
 				},
 			}))
 		}
@@ -144,6 +150,7 @@ const Users = () => {
 		SetNameValue(user.name)
 		SetPhoneValue(user.phone)
 		SetAddressValue(user.address)
+		SetImagePreviewBase64(user.image)
 
 		ShowUserModal()
 	}
