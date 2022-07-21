@@ -19,4 +19,10 @@ export const Input = styled.input`
 	&:focus {
 		outline: 1px solid black;
 	}
+
+	&::file-selector-button {
+		border: none;
+		border-radius: 5px;
+		height: 100%;
+	}
 `
