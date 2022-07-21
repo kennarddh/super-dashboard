@@ -124,6 +124,8 @@ const Users = () => {
 			// eslint-disable-next-line no-unused-vars
 			const { [SelectedUserId]: _, ...withoutSelected } = users
 
+			localStorage.setItem('users_data', JSON.stringify(withoutSelected))
+
 			return withoutSelected
 		})
 	}
