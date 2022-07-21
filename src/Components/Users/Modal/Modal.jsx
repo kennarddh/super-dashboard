@@ -122,6 +122,13 @@ const Modal = ({
 						></Input>
 						<Buttons>
 							<SubmitButton type='submit'>Save</SubmitButton>
+							<SubmitButton
+								as='a'
+								href={`https://wa.me/${PhoneValue}`}
+								target='_blank'
+							>
+								Whatsapp
+							</SubmitButton>
 							<CloseButton type='button' onClick={closeModal}>
 								Close
 							</CloseButton>
