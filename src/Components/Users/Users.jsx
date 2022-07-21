@@ -204,7 +204,10 @@ const Users = () => {
 						<ModalContentContainer onSubmit={AddUser}>
 							<h3>Add user</h3>
 							<ImagePreview
-								src={ImagePreviewBase64}
+								src={
+									ImagePreviewBase64 ||
+									'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
+								}
 								alt='Image preview'
 							/>
 							<Input
