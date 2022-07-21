@@ -108,6 +108,7 @@ const Modal = ({
 							}
 							type='file'
 							placeholder='Image'
+							accept='image/*'
 						/>
 						<Input
 							value={AddressValue}
