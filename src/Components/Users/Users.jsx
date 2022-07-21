@@ -6,6 +6,8 @@ import ReactPortal from 'Components/ReactPortal/ReactPortal'
 
 import { LowercaseAlphabet } from 'Constants/Users/Alphabet'
 
+import FileToBase64 from 'Utils/FileToBase64'
+
 import {
 	ListContainer,
 	ListItem,
@@ -22,6 +24,7 @@ import {
 	AlphabetList,
 	AlphabetItem,
 	LetterTitle,
+	ImagePreview,
 } from './Styles'
 
 const Users = () => {
@@ -50,6 +53,7 @@ const Users = () => {
 	const [NameValue, SetNameValue] = useState('')
 	const [PhoneValue, SetPhoneValue] = useState('')
 	const [AddressValue, SetAddressValue] = useState('')
+	const [ImagePreviewBase64, SetImagePreviewBase64] = useState('')
 
 	const [SearchValue, SetSearchValue] = useState('')
 
@@ -199,6 +203,10 @@ const Users = () => {
 					<ModalContainer>
 						<ModalContentContainer onSubmit={AddUser}>
 							<h3>Add user</h3>
+							<ImagePreview
+								src={ImagePreviewBase64}
+								alt='Image preview'
+							/>
 							<Input
 								value={NameValue}
 								onChange={event =>
@@ -212,6 +220,17 @@ const Users = () => {
 									SetPhoneValue(event.target.value)
 								}
 								placeholder='Phone'
+							/>
+							<Input
+								onChange={event =>
+									FileToBase64(event.target.files[0])
+										.then(base64 => {
+											SetImagePreviewBase64(base64)
+										})
+										.catch(console.error)
+								}
+								type='file'
+								placeholder='Image'
 							/>
 							<Input
 								value={AddressValue}

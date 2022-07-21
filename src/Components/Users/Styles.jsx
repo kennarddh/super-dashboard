@@ -51,7 +51,7 @@ export const ModalContainer = styled.div`
 `
 
 export const ModalContentContainer = styled.form`
-	height: 60%;
+	height: 80%;
 	width: 50%;
 	background-color: #ffffff;
 	border-radius: 15px;
@@ -147,4 +147,13 @@ export const AlphabetItem = styled.a`
 
 export const LetterTitle = styled.h4`
 	margin: 10px 0;
+`
+
+export const ImagePreview = styled.img`
+	width: 100px;
+	height: 100px;
+
+	aspect-ratio: 1/1;
+
+	border-radius: 50%;
 `
