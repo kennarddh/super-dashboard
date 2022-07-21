@@ -79,32 +79,36 @@ const Users = () => {
 		SetUsersPreview(grouped)
 	}, [SearchValue, UsersList])
 
+	useEffect(() => {
+		const data = JSON.parse(localStorage.getItem('users_data'))
+
+		if (!data) return
+
+		SetUsersList(data)
+	}, [])
+
 	const ShowUserModal = () => {
 		SetIsUserModalOpen(true)
 	}
 
 	const AddUser = ({ name, phone, address, image }) => {
-		if (SelectedUserId) {
-			SetUsersList(users => ({
+		SetUsersList(users => {
+			const key = SelectedUserId || uuidv4()
+
+			const newUsers = {
 				...users,
-				[SelectedUserId]: {
+				[key]: {
 					name,
 					phone,
 					address,
 					image,
 				},
-			}))
-		} else {
-			SetUsersList(users => ({
-				...users,
-				[uuidv4()]: {
-					name,
-					phone,
-					address,
-					image,
-				},
-			}))
-		}
+			}
+
+			localStorage.setItem('users_data', JSON.stringify(newUsers))
+
+			return newUsers
+		})
 	}
 
 	const SelectUser = id => {
