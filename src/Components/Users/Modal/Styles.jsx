@@ -27,6 +27,8 @@ export const SubmitButton = styled.button`
 	justify-content: center;
 	align-items: center;
 
+	text-decoration: none;
+
 	border: none;
 
 	background-color: #b6b6b6;
