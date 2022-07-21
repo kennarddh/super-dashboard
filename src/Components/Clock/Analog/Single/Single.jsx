@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { Container, HandContainer, Hand } from './Styles'
 
-const Single = ({ offset }) => {
+const Single = ({ offset, showRemoveModal }) => {
 	const [Time, SetTime] = useState({})
 
 	useEffect(() => {
@@ -36,7 +36,7 @@ const Single = ({ offset }) => {
 	}, [offset])
 
 	return (
-		<Container size={100}>
+		<Container size={100} onClick={() => showRemoveModal(offset)}>
 			<HandContainer deg={(360 / 24) * Time?.hour}>
 				<Hand width={3} height={30} color='#000000' />
 			</HandContainer>

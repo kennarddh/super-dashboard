@@ -21,6 +21,10 @@ export const AddButton = styled.button`
 	color: white;
 `
 
+export const ToggleButton = styled(AddButton)`
+	bottom: 80px;
+`
+
 export const ModalContainer = styled.div`
 	position: absolute;
 	inset: 0;

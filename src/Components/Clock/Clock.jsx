@@ -7,11 +7,12 @@ import IsValidTimezoneText from 'Utils/IsValidTimezoneText'
 
 // Clock
 import DigitalClock from './Digital/Digital'
-// import AnalogClock from './Analog/Analog'
+import AnalogClock from './Analog/Analog'
 
 import {
 	Container,
 	AddButton,
+	ToggleButton,
 	ModalContainer,
 	ModalContentContainer,
 	TimezoneInput,
@@ -26,6 +27,8 @@ const Clock = () => {
 	const [IsRemoveModalOpen, SetIsRemoveModalOpen] = useState(false)
 	const [TimezoneText, SetTimezoneText] = useState('')
 	const [CurrentRemoveOffset, SetCurrentRemoveOffset] = useState(0)
+
+	const [IsDigital, SetIsDigital] = useState(false)
 
 	const OnOpen = () => {
 		SetIsOpen(true)
@@ -88,14 +91,28 @@ const Clock = () => {
 		SetOffsetsInSecond(offsetsInSecond => [...offsetsInSecond, offset])
 	}
 
+	const Toggle = () => {
+		SetIsDigital(isDigital => !isDigital)
+	}
+
 	// return <AnalogClock offsets={OffsetsInSecond} />
 	return (
 		<Container>
-			<DigitalClock
-				offsets={OffsetsInSecond}
-				showRemoveModal={ShowRemoveModal}
-			/>
+			{IsDigital ? (
+				<DigitalClock
+					offsets={OffsetsInSecond}
+					showRemoveModal={ShowRemoveModal}
+				/>
+			) : (
+				<AnalogClock
+					offsets={OffsetsInSecond}
+					showRemoveModal={ShowRemoveModal}
+				/>
+			)}
 			<AddButton onClick={OnOpen}>Add</AddButton>
+			<ToggleButton onClick={Toggle}>
+				{IsDigital ? 'Analog' : 'Digital'}
+			</ToggleButton>
 			<ReactPortal wrapperId='add-clock-timezone'>
 				{IsOpen && (
 					<ModalContainer>
