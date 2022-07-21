@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 
 import { v4 as uuidv4 } from 'uuid'
 
-import ReactPortal from 'Components/ReactPortal/ReactPortal'
-
 import { LowercaseAlphabet } from 'Constants/Users/Alphabet'
 
-import FileToBase64 from 'Utils/FileToBase64'
+import Input from 'Components/Input/Input'
+
+import Modal from './Modal/Modal'
 
 import {
 	ListContainer,
@@ -14,17 +14,10 @@ import {
 	AddButton,
 	Header,
 	Container,
-	ModalContainer,
-	ModalContentContainer,
-	SubmitButton,
-	CloseButton,
-	Input,
-	Buttons,
 	ContentContainer,
 	AlphabetList,
 	AlphabetItem,
 	LetterTitle,
-	ImagePreview,
 } from './Styles'
 
 const Users = () => {
@@ -52,11 +45,6 @@ const Users = () => {
 	const [UsersPreview, SetUsersPreview] = useState({})
 
 	const [IsUserModalOpen, SetIsUserModalOpen] = useState(false)
-
-	const [NameValue, SetNameValue] = useState('')
-	const [PhoneValue, SetPhoneValue] = useState('')
-	const [AddressValue, SetAddressValue] = useState('')
-	const [ImagePreviewBase64, SetImagePreviewBase64] = useState('')
 
 	const [SearchValue, SetSearchValue] = useState('')
 
@@ -95,62 +83,32 @@ const Users = () => {
 		SetIsUserModalOpen(true)
 	}
 
-	const HideUserModal = () => {
-		SetNameValue('')
-		SetPhoneValue('')
-		SetAddressValue('')
-		SetImagePreviewBase64('')
-
-		SetSelectedUserId(null)
-
-		SetIsUserModalOpen(false)
-	}
-
-	const AddUser = event => {
-		event.preventDefault()
-
-		if (!NameValue) {
-			alert('Name cannot be empty')
-
-			HideUserModal()
-
-			return
-		}
-
+	const AddUser = ({ name, phone, address, image }) => {
 		if (SelectedUserId) {
 			SetUsersList(users => ({
 				...users,
 				[SelectedUserId]: {
-					name: NameValue,
-					phone: PhoneValue,
-					address: AddressValue,
-					image: ImagePreviewBase64,
+					name,
+					phone,
+					address,
+					image,
 				},
 			}))
 		} else {
 			SetUsersList(users => ({
 				...users,
 				[uuidv4()]: {
-					name: NameValue,
-					phone: PhoneValue,
-					address: AddressValue,
-					image: ImagePreviewBase64,
+					name,
+					phone,
+					address,
+					image,
 				},
 			}))
 		}
-
-		HideUserModal()
 	}
 
 	const SelectUser = id => {
 		SetSelectedUserId(id)
-
-		const user = UsersList[id]
-
-		SetNameValue(user.name)
-		SetPhoneValue(user.phone)
-		SetAddressValue(user.address)
-		SetImagePreviewBase64(user.image)
 
 		ShowUserModal()
 	}
@@ -164,9 +122,9 @@ const Users = () => {
 
 			return withoutSelected
 		})
-
-		HideUserModal()
 	}
+
+	const GetUserDataById = id => UsersList[id]
 
 	return (
 		<Container>
@@ -205,74 +163,18 @@ const Users = () => {
 					))}
 				</AlphabetList>
 			</ContentContainer>
-			<ReactPortal wrapperId='user-modal'>
-				{IsUserModalOpen && (
-					<ModalContainer>
-						<ModalContentContainer onSubmit={AddUser}>
-							<h3>Add user</h3>
-							<ImagePreview
-								src={
-									ImagePreviewBase64 ||
-									'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
-								}
-								alt='Image preview'
-							/>
-							<Input
-								value={NameValue}
-								onChange={event =>
-									SetNameValue(event.target.value)
-								}
-								placeholder='Name'
-							/>
-							<Input
-								value={PhoneValue}
-								onChange={event =>
-									SetPhoneValue(event.target.value)
-								}
-								placeholder='Phone'
-							/>
-							<Input
-								onChange={event =>
-									FileToBase64(event.target.files[0])
-										.then(base64 => {
-											SetImagePreviewBase64(base64)
-										})
-										.catch(console.error)
-								}
-								type='file'
-								placeholder='Image'
-							/>
-							<Input
-								value={AddressValue}
-								onChange={event =>
-									SetAddressValue(event.target.value)
-								}
-								as='textarea'
-								rows={3}
-								placeholder='Address'
-								style={{ height: '70%' }}
-							></Input>
-							<Buttons>
-								<SubmitButton type='submit'>Save</SubmitButton>
-								<CloseButton
-									type='button'
-									onClick={HideUserModal}
-								>
-									Close
-								</CloseButton>
-								{SelectedUserId && (
-									<CloseButton
-										type='button'
-										onClick={RemoveUser}
-									>
-										Remove
-									</CloseButton>
-								)}
-							</Buttons>
-						</ModalContentContainer>
-					</ModalContainer>
-				)}
-			</ReactPortal>
+			<Modal
+				isOpen={IsUserModalOpen}
+				addUser={AddUser}
+				closeModal={() => {
+					SetSelectedUserId(null)
+
+					SetIsUserModalOpen(false)
+				}}
+				selectedUserId={SelectedUserId}
+				removeUser={RemoveUser}
+				getUserDataById={GetUserDataById}
+			/>
 		</Container>
 	)
 }
