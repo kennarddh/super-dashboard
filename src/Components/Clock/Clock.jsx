@@ -6,8 +6,8 @@ import TimezoneTextToOffsetInSecond from 'Utils/TimezoneTextToOffsetInSecond'
 import IsValidTimezoneText from 'Utils/IsValidTimezoneText'
 
 // Clock
-import DigitalClock from './Digital/Digital'
-// import AnalogClock from './Analog/Analog'
+// import DigitalClock from './Digital/Digital'
+import AnalogClock from './Analog/Analog'
 
 import {
 	Container,
@@ -91,7 +91,11 @@ const Clock = () => {
 	// return <AnalogClock offsets={OffsetsInSecond} />
 	return (
 		<Container>
-			<DigitalClock
+			{/* <DigitalClock
+				offsets={OffsetsInSecond}
+				showRemoveModal={ShowRemoveModal}
+			/> */}
+			<AnalogClock
 				offsets={OffsetsInSecond}
 				showRemoveModal={ShowRemoveModal}
 			/>
