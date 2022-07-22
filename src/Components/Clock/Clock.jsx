@@ -104,7 +104,12 @@ const Clock = () => {
 		SetIsDigital(isDigital => {
 			const newValue = !isDigital
 
-			localStorage.setItem('clock_is_digital', newValue)
+			console.log({ newValue })
+
+			localStorage.setItem(
+				'clock_is_digital',
+				JSON.stringify({ value: newValue })
+			)
 
 			return newValue
 		})
@@ -113,6 +118,10 @@ const Clock = () => {
 	useEffect(() => {
 		SetOffsetsInSecond(
 			JSON.parse(localStorage.getItem('clock_offsets_data')) || []
+		)
+
+		SetIsDigital(
+			JSON.parse(localStorage.getItem('clock_is_digital')).value || false
 		)
 	}, [])
 
