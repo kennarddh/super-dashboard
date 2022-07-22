@@ -101,7 +101,13 @@ const Clock = () => {
 	}
 
 	const Toggle = () => {
-		SetIsDigital(isDigital => !isDigital)
+		SetIsDigital(isDigital => {
+			const newValue = !isDigital
+
+			localStorage.setItem('clock_is_digital', newValue)
+
+			return newValue
+		})
 	}
 
 	useEffect(() => {
