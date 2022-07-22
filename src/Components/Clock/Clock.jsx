@@ -61,10 +61,19 @@ const Clock = () => {
 
 		if (indexToRemove === -1) return
 
-		SetOffsetsInSecond(offsetsInSecond => [
-			...offsetsInSecond.slice(0, indexToRemove),
-			...offsetsInSecond.slice(indexToRemove + 1),
-		])
+		SetOffsetsInSecond(offsetsInSecond => {
+			const newOffsets = [
+				...offsetsInSecond.slice(0, indexToRemove),
+				...offsetsInSecond.slice(indexToRemove + 1),
+			]
+
+			localStorage.setItem(
+				'clock_offsets_data',
+				JSON.stringify(newOffsets)
+			)
+
+			return newOffsets
+		})
 
 		SetCurrentRemoveOffset(0)
 	}
