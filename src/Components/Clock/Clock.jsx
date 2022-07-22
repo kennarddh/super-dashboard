@@ -113,8 +113,6 @@ const Clock = () => {
 		SetIsDigital(isDigital => {
 			const newValue = !isDigital
 
-			console.log({ newValue })
-
 			localStorage.setItem(
 				'clock_is_digital',
 				JSON.stringify({ value: newValue })
