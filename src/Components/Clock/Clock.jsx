@@ -88,7 +88,16 @@ const Clock = () => {
 		if (OffsetsInSecond.includes(offset))
 			return alert('Timezone already exist')
 
-		SetOffsetsInSecond(offsetsInSecond => [...offsetsInSecond, offset])
+		SetOffsetsInSecond(offsetsInSecond => {
+			const newOffsets = [...offsetsInSecond, offset]
+
+			localStorage.setItem(
+				'clock_offsets_data',
+				JSON.stringify(newOffsets)
+			)
+
+			return newOffsets
+		})
 	}
 
 	const Toggle = () => {
