@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import ReactPortal from 'Components/ReactPortal/ReactPortal'
 
@@ -61,10 +61,19 @@ const Clock = () => {
 
 		if (indexToRemove === -1) return
 
-		SetOffsetsInSecond(offsetsInSecond => [
-			...offsetsInSecond.slice(0, indexToRemove),
-			...offsetsInSecond.slice(indexToRemove + 1),
-		])
+		SetOffsetsInSecond(offsetsInSecond => {
+			const newOffsets = [
+				...offsetsInSecond.slice(0, indexToRemove),
+				...offsetsInSecond.slice(indexToRemove + 1),
+			]
+
+			localStorage.setItem(
+				'clock_offsets_data',
+				JSON.stringify(newOffsets)
+			)
+
+			return newOffsets
+		})
 
 		SetCurrentRemoveOffset(0)
 	}
@@ -88,12 +97,40 @@ const Clock = () => {
 		if (OffsetsInSecond.includes(offset))
 			return alert('Timezone already exist')
 
-		SetOffsetsInSecond(offsetsInSecond => [...offsetsInSecond, offset])
+		SetOffsetsInSecond(offsetsInSecond => {
+			const newOffsets = [...offsetsInSecond, offset]
+
+			localStorage.setItem(
+				'clock_offsets_data',
+				JSON.stringify(newOffsets)
+			)
+
+			return newOffsets
+		})
 	}
 
 	const Toggle = () => {
-		SetIsDigital(isDigital => !isDigital)
+		SetIsDigital(isDigital => {
+			const newValue = !isDigital
+
+			localStorage.setItem(
+				'clock_is_digital',
+				JSON.stringify({ value: newValue })
+			)
+
+			return newValue
+		})
 	}
+
+	useEffect(() => {
+		SetOffsetsInSecond(
+			JSON.parse(localStorage.getItem('clock_offsets_data')) || []
+		)
+
+		SetIsDigital(
+			JSON.parse(localStorage.getItem('clock_is_digital')).value || false
+		)
+	}, [])
 
 	// return <AnalogClock offsets={OffsetsInSecond} />
 	return (
