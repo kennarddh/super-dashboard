@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import ReactPortal from 'Components/ReactPortal/ReactPortal'
 
@@ -103,6 +103,12 @@ const Clock = () => {
 	const Toggle = () => {
 		SetIsDigital(isDigital => !isDigital)
 	}
+
+	useEffect(() => {
+		SetOffsetsInSecond(
+			JSON.parse(localStorage.getItem('clock_offsets_data')) || []
+		)
+	}, [])
 
 	// return <AnalogClock offsets={OffsetsInSecond} />
 	return (
