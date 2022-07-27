@@ -37,9 +37,9 @@ const Single = ({ offset, showRemoveModal }) => {
 
 	return (
 		<TimeContainer onClick={() => showRemoveModal(offset)}>
-			<TimeText>{Time?.hour}</TimeText>
-			<TimeText>{Time?.minute}</TimeText>
-			<TimeText>{Time?.second}</TimeText>
+			<TimeText>{Time?.hour?.toString()?.padStart(2, '0')}</TimeText>
+			<TimeText>{Time?.minute?.toString()?.padStart(2, '0')}</TimeText>
+			<TimeText>{Time?.second?.toString()?.padStart(2, '0')}</TimeText>
 		</TimeContainer>
 	)
 }
