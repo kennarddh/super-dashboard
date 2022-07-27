@@ -21,9 +21,12 @@ export const TimeText = styled.p`
 	margin: 0;
 	padding: 0;
 	color: #000;
+	width: 33%;
 
-	&:not(:last-child)::after {
-		content: ':';
-		margin: 0 0.5rem;
-	}
+	text-align: center;
+`
+
+export const TimeTextSeparator = styled.p`
+	font-size: 1.5rem;
+	font-weight: bold;
 `

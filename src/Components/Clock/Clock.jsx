@@ -132,7 +132,6 @@ const Clock = () => {
 		)
 	}, [])
 
-	// return <AnalogClock offsets={OffsetsInSecond} />
 	return (
 		<Container>
 			{IsDigital ? (
