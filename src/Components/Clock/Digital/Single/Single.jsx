@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
+import OffsetToHourAndMinute from 'Utils/OffsetToHourAndMinute'
+import HourAndMinuteToUTCString from 'Utils/HourAndMinuteToUTCString'
+
 import { TimeContainer, TimeText, TimeTextSeparator } from './Styles'
 
 const Single = ({ offset, showRemoveModal }) => {
@@ -36,7 +39,10 @@ const Single = ({ offset, showRemoveModal }) => {
 	}, [offset])
 
 	return (
-		<TimeContainer onClick={() => showRemoveModal(offset)}>
+		<TimeContainer
+			onClick={() => showRemoveModal(offset)}
+			title={HourAndMinuteToUTCString(OffsetToHourAndMinute(offset))}
+		>
 			<TimeText>{Time?.hour?.toString()?.padStart(2, '0')}</TimeText>
 			<TimeTextSeparator>:</TimeTextSeparator>
 			<TimeText>{Time?.minute?.toString()?.padStart(2, '0')}</TimeText>
