@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
+import OffsetToHourAndMinute from 'Utils/OffsetToHourAndMinute'
+import HourAndMinuteToUTCString from 'Utils/HourAndMinuteToUTCString'
+
 import {
 	Container,
 	HandContainer,
@@ -43,7 +46,11 @@ const Single = ({ offset, showRemoveModal }) => {
 	}, [offset])
 
 	return (
-		<Container size={100} onClick={() => showRemoveModal(offset)}>
+		<Container
+			size={100}
+			onClick={() => showRemoveModal(offset)}
+			title={HourAndMinuteToUTCString(OffsetToHourAndMinute(offset))}
+		>
 			<HandContainer deg={(360 / 24) * Time?.hour}>
 				<Hand width={3} height={30} color='#000000' />
 			</HandContainer>
