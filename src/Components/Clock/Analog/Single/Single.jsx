@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
-import { Container, HandContainer, Hand } from './Styles'
+import {
+	Container,
+	HandContainer,
+	Hand,
+	NumberContainer,
+	NumberItem,
+	NumberItemP,
+} from './Styles'
 
 const Single = ({ offset, showRemoveModal }) => {
 	const [Time, SetTime] = useState({})
@@ -46,6 +53,13 @@ const Single = ({ offset, showRemoveModal }) => {
 			<HandContainer deg={(360 / 60) * Time?.second}>
 				<Hand width={1} height={35} color='#ff0000' />
 			</HandContainer>
+			<NumberContainer>
+				{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(hour => (
+					<NumberItem hour={hour} key={hour}>
+						<NumberItemP>{hour}</NumberItemP>
+					</NumberItem>
+				))}
+			</NumberContainer>
 		</Container>
 	)
 }

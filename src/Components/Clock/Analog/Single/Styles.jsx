@@ -29,3 +29,27 @@ export const Container = styled.div`
 	border-radius: 50%;
 	position: relative;
 `
+
+export const NumberContainer = styled.div`
+	width: var(--size);
+	height: var(--size);
+`
+
+export const NumberItem = styled.div`
+	--rotation: ${props => props.hour * 30}deg;
+
+	width: 100%;
+	height: 100%;
+
+	position: absolute;
+
+	text-align: center;
+
+	transform: rotate(var(--rotation));
+`
+
+export const NumberItemP = styled.p`
+	transform: rotate(calc(var(--rotation) * -1));
+
+	font-size: 14px;
+`
