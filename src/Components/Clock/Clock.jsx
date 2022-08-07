@@ -144,10 +144,10 @@ const Clock = () => {
 					showRemoveModal={ShowRemoveModal}
 				/>
 			)}
-			<RoundButton bottom={20} radius={25} right={20} onClick={OnOpen}>
+			<RoundButton bottom={20} size={50} right={20} onClick={OnOpen}>
 				Add
 			</RoundButton>
-			<RoundButton bottom={80} radius={25} right={20} onClick={Toggle}>
+			<RoundButton bottom={80} size={50} right={20} onClick={Toggle}>
 				{IsDigital ? 'Analog' : 'Digital'}
 			</RoundButton>
 			<ReactPortal wrapperId='add-clock-timezone'>

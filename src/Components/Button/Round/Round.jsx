@@ -3,13 +3,12 @@ import styled from 'styled-components'
 import BaseButton from 'Components/Button/Base/Base'
 
 const RoundButton = styled(BaseButton)`
-	--radius: ${({ radius }) =>
-		typeof radius === 'number' ? `${radius ?? 20}px` : radius};
+	--width: ${({ size }) =>
+		typeof size === 'number' ? `${size ?? 10}px` : size};
 
-	--height: calc(var(--radius) * 2);
-	--width: var(--height);
+	--height: var(--width);
 
-	border-radius: var(--radius);
+	border-radius: 50%;
 `
 
 export default RoundButton
