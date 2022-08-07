@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components'
 
 const BaseButton = styled.button`
-	width: var(--size);
-	height: var(--size);
+	width: var(--width);
+	height: var(--height);
 
 	background-color: ${({ backgroundColor }) => backgroundColor ?? '#a0a0a0'};
 

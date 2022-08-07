@@ -4,7 +4,8 @@ import BaseButton from 'Components/Button/Base/Base'
 
 const RoundButton = styled(BaseButton)`
 	--radius: ${({ radius }) => radius ?? 20}px;
-	--size: calc(var(--radius) * 2);
+	--height: calc(var(--radius) * 2);
+	--width: var(--height);
 
 	border-radius: var(--radius);
 `
