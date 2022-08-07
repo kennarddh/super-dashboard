@@ -43,12 +43,12 @@ const BaseButton = styled.button`
 				bottom: ${bottom}px;
 			`}
 
-					${right &&
+			${right &&
 			css`
 				right: ${right}px;
 			`}
 
-					${left &&
+			${left &&
 			css`
 				top: ${left}px;
 			`}
