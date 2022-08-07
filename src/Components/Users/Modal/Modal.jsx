@@ -5,12 +5,11 @@ import ReactPortal from 'Components/ReactPortal/ReactPortal'
 import FileToBase64 from 'Utils/FileToBase64'
 
 import Input from 'Components/Input/Input'
+import RectangleButton from 'Components/Button/Rectangle/Rectangle'
 
 import {
 	ModalContainer,
 	ModalContentContainer,
-	SubmitButton,
-	CloseButton,
 	Buttons,
 	ImagePreview,
 } from './Styles'
@@ -121,21 +120,51 @@ const Modal = ({
 							style={{ height: '70%' }}
 						></Input>
 						<Buttons>
-							<SubmitButton type='submit'>Save</SubmitButton>
-							<SubmitButton
+							<RectangleButton
+								width='50%'
+								height='100%'
+								radius={15}
+								padding='5px 20px'
+								backgroundColor='#b6b6b6'
+								type='submit'
+							>
+								Save
+							</RectangleButton>
+							<RectangleButton
+								width='50%'
+								height='100%'
+								radius={15}
+								padding='5px 20px'
+								backgroundColor='#b6b6b6'
 								as='a'
 								href={`https://wa.me/${PhoneValue}`}
 								target='_blank'
 							>
 								Whatsapp
-							</SubmitButton>
-							<CloseButton type='button' onClick={closeModal}>
+							</RectangleButton>
+							<RectangleButton
+								width='50%'
+								height='100%'
+								radius={15}
+								padding='5px 20px'
+								backgroundColor='#ff0000'
+								type='button'
+								onClick={closeModal}
+							>
 								Close
-							</CloseButton>
+							</RectangleButton>
 							{selectedUserId && (
-								<CloseButton type='button' onClick={RemoveUser}>
+								<RectangleButton
+									width='50%'
+									height='100%'
+									radius={15}
+									padding='5px 20px'
+									backgroundColor='#ff0000'
+									type='button'
+									onClick={RemoveUser}
+								>
 									Remove
-								</CloseButton>
+								</RectangleButton>
 							)}
 						</Buttons>
 					</ModalContentContainer>

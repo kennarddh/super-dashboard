@@ -17,16 +17,6 @@ export const ListItem = styled.div`
 	border: 1px solid black;
 `
 
-export const AddButton = styled.button`
-	background-color: #dbdbdb;
-	color: white;
-
-	border: none;
-	padding: 5px 10px;
-
-	border-radius: 15px;
-`
-
 export const Container = styled.div`
 	width: 100%;
 	height: 100%;

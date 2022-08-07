@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
 import ReactPortal from 'Components/ReactPortal/ReactPortal'
+import RoundButton from 'Components/Button/Round/Round'
+import RectangleButton from 'Components/Button/Rectangle/Rectangle'
 
 import TimezoneTextToOffsetInSecond from 'Utils/TimezoneTextToOffsetInSecond'
 import IsValidTimezoneText from 'Utils/IsValidTimezoneText'
@@ -11,13 +13,9 @@ import AnalogClock from './Analog/Analog'
 
 import {
 	Container,
-	AddButton,
-	ToggleButton,
 	ModalContainer,
 	ModalContentContainer,
 	TimezoneInput,
-	SubmitButton,
-	CloseButton,
 } from './Styles'
 
 const Clock = () => {
@@ -145,10 +143,12 @@ const Clock = () => {
 					showRemoveModal={ShowRemoveModal}
 				/>
 			)}
-			<AddButton onClick={OnOpen}>Add</AddButton>
-			<ToggleButton onClick={Toggle}>
+			<RoundButton bottom={20} size={50} right={20} onClick={OnOpen}>
+				Add
+			</RoundButton>
+			<RoundButton bottom={80} size={50} right={20} onClick={Toggle}>
 				{IsDigital ? 'Analog' : 'Digital'}
-			</ToggleButton>
+			</RoundButton>
 			<ReactPortal wrapperId='add-clock-timezone'>
 				{IsOpen && (
 					<ModalContainer>
@@ -158,10 +158,24 @@ const Clock = () => {
 								value={TimezoneText}
 								placeholder='Timezone (/^(GMT|UTC)[+-]([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/gi)'
 							/>
-							<SubmitButton type='submit'>Add</SubmitButton>
-							<CloseButton type='button' onClick={OnClose}>
+							<RectangleButton
+								width='10%'
+								height='40%'
+								radius={15}
+								type='submit'
+							>
+								Add
+							</RectangleButton>
+							<RectangleButton
+								backgroundColor='#ff0000'
+								width='10%'
+								height='40%'
+								radius={15}
+								type='button'
+								onClick={OnClose}
+							>
 								Close
-							</CloseButton>
+							</RectangleButton>
 						</ModalContentContainer>
 					</ModalContainer>
 				)}
@@ -171,13 +185,24 @@ const Clock = () => {
 					<ModalContainer>
 						<ModalContentContainer onSubmit={RemoveClock}>
 							<h3>Remove Timezone</h3>
-							<SubmitButton type='submit'>Remove</SubmitButton>
-							<CloseButton
+							<RectangleButton
+								width='10%'
+								height='40%'
+								radius={15}
+								type='submit'
+							>
+								Remove
+							</RectangleButton>
+							<RectangleButton
+								backgroundColor='#ff0000'
+								width='10%'
+								height='40%'
+								radius={15}
 								type='button'
 								onClick={OnRemoveModalClose}
 							>
 								Close
-							</CloseButton>
+							</RectangleButton>
 						</ModalContentContainer>
 					</ModalContainer>
 				)}
