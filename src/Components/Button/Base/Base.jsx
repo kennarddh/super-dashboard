@@ -1,13 +1,9 @@
 import styled, { css } from 'styled-components'
 
-export const StyledRoundButton = styled.button`
-	--radius: ${props => props.radius ?? 20}px;
-	--size: calc(var(--radius) * 2);
-
+const BaseButton = styled.button`
 	width: var(--size);
 	height: var(--size);
 
-	border-radius: var(--radius);
 	background-color: ${props => props.backgroundColor ?? '#a0a0a0'};
 
 	border: none;
@@ -39,3 +35,5 @@ export const StyledRoundButton = styled.button`
 			`}
 		`}
 `
+
+export default BaseButton
