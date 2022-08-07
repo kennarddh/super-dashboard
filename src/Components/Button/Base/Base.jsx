@@ -9,6 +9,14 @@ const BaseButton = styled.button`
 	border: none;
 	color: ${props => props.color ?? '#ffffff'};
 
+	padding: ${props =>
+		typeof props.padding === 'number'
+			? `${props.padding}px`
+			: props.padding};
+
+	margin: ${props =>
+		typeof props.margin === 'number' ? `${props.margin}px` : props.margin};
+
 	${({ top, bottom, right, left }) =>
 		(top || bottom || right || left) &&
 		css`
