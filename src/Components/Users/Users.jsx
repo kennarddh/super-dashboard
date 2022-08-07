@@ -5,13 +5,13 @@ import { v4 as uuidv4 } from 'uuid'
 import { LowercaseAlphabet } from 'Constants/Users/Alphabet'
 
 import Input from 'Components/Input/Input'
+import RectangleButton from 'Components/Button/Rectangle/Rectangle'
 
 import Modal from './Modal/Modal'
 
 import {
 	ListContainer,
 	ListItem,
-	AddButton,
 	Header,
 	Container,
 	ContentContainer,
@@ -140,7 +140,14 @@ const Users = () => {
 					onChange={event => SetSearchValue(event.target.value)}
 					placeholder='Search'
 				/>
-				<AddButton onClick={ShowUserModal}>Add</AddButton>
+				<RectangleButton
+					backgroundColor='#dbdbdb'
+					padding='5px 10px'
+					radius={15}
+					onClick={ShowUserModal}
+				>
+					Add
+				</RectangleButton>
 			</Header>
 			<ContentContainer>
 				<ListContainer>
