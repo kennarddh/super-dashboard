@@ -6,7 +6,7 @@ const BaseButton = styled.button`
 
 	background-color: ${props => props.backgroundColor ?? '#a0a0a0'};
 
-	border: none;
+	border: ${props => props.border ?? 'none'};
 	color: ${props => props.color ?? '#ffffff'};
 
 	padding: ${props =>
