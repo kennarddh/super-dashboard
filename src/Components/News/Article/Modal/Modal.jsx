@@ -2,6 +2,8 @@ import React, { useRef } from 'react'
 
 import ReactPortal from 'Components/ReactPortal/ReactPortal'
 
+import RectangleButton from 'Components/Button/Rectangle/Rectangle'
+
 import useClickOutside from 'Hooks/useClickOutside'
 
 import {
@@ -9,8 +11,6 @@ import {
 	ModalContainer,
 	Title,
 	Content,
-	CloseButton,
-	ReadMoreButton,
 	Buttons,
 	Image,
 	Body,
@@ -44,14 +44,28 @@ const Modal = ({ article, isOpen, onClose }) => {
 						</Body>
 						<Footer>
 							<Buttons>
-								<CloseButton onClick={Close}>Close</CloseButton>
-								<ReadMoreButton
+								<RectangleButton
+									backgroundColor='#ff0000'
+									width={150}
+									height={50}
+									radius={10}
+									padding='10px 20px'
+									onClick={Close}
+								>
+									Close
+								</RectangleButton>
+								<RectangleButton
 									as='a'
 									target='_blank'
 									href={article.url}
+									backgroundColor='#0000ff'
+									width={150}
+									height={50}
+									radius={10}
+									padding='10px 20px'
 								>
 									Read More
-								</ReadMoreButton>
+								</RectangleButton>
 							</Buttons>
 							<PublishedAt>
 								Published At:{' '}
