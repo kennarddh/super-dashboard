@@ -4,18 +4,16 @@ const BaseButton = styled.button`
 	width: var(--size);
 	height: var(--size);
 
-	background-color: ${props => props.backgroundColor ?? '#a0a0a0'};
+	background-color: ${({ backgroundColor }) => backgroundColor ?? '#a0a0a0'};
 
-	border: ${props => props.border ?? 'none'};
-	color: ${props => props.color ?? '#ffffff'};
+	border: ${({ border }) => border ?? 'none'};
+	color: ${({ color }) => color ?? '#ffffff'};
 
-	padding: ${props =>
-		typeof props.padding === 'number'
-			? `${props.padding}px`
-			: props.padding};
+	padding: ${({ padding }) =>
+		typeof padding === 'number' ? `${padding}px` : padding};
 
-	margin: ${props =>
-		typeof props.margin === 'number' ? `${props.margin}px` : props.margin};
+	margin: ${({ margin }) =>
+		typeof margin === 'number' ? `${margin}px` : margin};
 
 	${({ top, bottom, right, left }) =>
 		(top || bottom || right || left) &&
