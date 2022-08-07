@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import ReactPortal from 'Components/ReactPortal/ReactPortal'
+import RoundButton from 'Components/Button/Round/Round'
 
 import TimezoneTextToOffsetInSecond from 'Utils/TimezoneTextToOffsetInSecond'
 import IsValidTimezoneText from 'Utils/IsValidTimezoneText'
@@ -11,8 +12,6 @@ import AnalogClock from './Analog/Analog'
 
 import {
 	Container,
-	AddButton,
-	ToggleButton,
 	ModalContainer,
 	ModalContentContainer,
 	TimezoneInput,
@@ -145,10 +144,12 @@ const Clock = () => {
 					showRemoveModal={ShowRemoveModal}
 				/>
 			)}
-			<AddButton onClick={OnOpen}>Add</AddButton>
-			<ToggleButton onClick={Toggle}>
+			<RoundButton bottom={20} radius={25} right={20} onClick={OnOpen}>
+				Add
+			</RoundButton>
+			<RoundButton bottom={80} radius={25} right={20} onClick={Toggle}>
 				{IsDigital ? 'Analog' : 'Digital'}
-			</ToggleButton>
+			</RoundButton>
 			<ReactPortal wrapperId='add-clock-timezone'>
 				{IsOpen && (
 					<ModalContainer>

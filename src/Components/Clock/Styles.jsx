@@ -6,25 +6,6 @@ export const Container = styled.div`
 	height: 100%;
 `
 
-export const AddButton = styled.button`
-	position: absolute;
-	bottom: 20px;
-	right: 20px;
-
-	border-radius: 50%;
-
-	width: 50px;
-	height: 50px;
-
-	background-color: #a0a0a0;
-	border: none;
-	color: white;
-`
-
-export const ToggleButton = styled(AddButton)`
-	bottom: 80px;
-`
-
 export const ModalContainer = styled.div`
 	position: absolute;
 	inset: 0;
