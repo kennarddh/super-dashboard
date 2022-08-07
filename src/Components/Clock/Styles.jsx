@@ -46,27 +46,3 @@ export const TimezoneInput = styled.input`
 		outline: 1px solid black;
 	}
 `
-
-export const SubmitButton = styled.button`
-	width: 10%;
-	height: 40%;
-	border-radius: 15px;
-	padding: 10px 20px;
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	border: none;
-
-	background-color: #b6b6b6;
-	color: white;
-
-	&:focus {
-		outline: 1px solid black;
-	}
-`
-
-export const CloseButton = styled(SubmitButton)`
-	background-color: #ff0000;
-`
