@@ -17,32 +17,6 @@ export const Buttons = styled.div`
 	flex-direction: row;
 `
 
-export const SubmitButton = styled.button`
-	width: 50%;
-	height: 70%;
-	border-radius: 15px;
-	padding: 10px 20px;
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	text-decoration: none;
-
-	border: none;
-
-	background-color: #b6b6b6;
-	color: white;
-
-	&:focus {
-		outline: 1px solid black;
-	}
-`
-
-export const CloseButton = styled(SubmitButton)`
-	background-color: #ff0000;
-`
-
 export const ModalContainer = styled.div`
 	position: absolute;
 	inset: 0;
