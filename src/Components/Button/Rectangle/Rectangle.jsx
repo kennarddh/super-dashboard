@@ -6,8 +6,11 @@ const RectangleButton = styled(BaseButton)`
 	--radius: ${({ radius }) =>
 		typeof radius === 'number' ? `${radius ?? 0}px` : radius};
 
-	--height: ${({ height }) => height}px;
-	--width: ${({ width }) => width}px;
+	--height: ${({ height }) =>
+		typeof height === 'number' ? `${height ?? 10}px` : height};
+
+	--width: ${({ width }) =>
+		typeof width === 'number' ? `${width ?? 10}px` : width};
 
 	border-radius: var(--radius);
 `
