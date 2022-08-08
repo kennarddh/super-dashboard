@@ -1,14 +1,10 @@
-import React, { useRef } from 'react'
-
-import ReactPortal from 'Components/ReactPortal/ReactPortal'
+import React, { useRef, forwardRef, useCallback } from 'react'
 
 import RectangleButton from 'Components/Button/Rectangle/Rectangle'
 
-import useClickOutside from 'Hooks/useClickOutside'
+import ModalComponent from 'Components/Modal/Modal'
 
 import {
-	Container,
-	ModalContainer,
 	Title,
 	Content,
 	Buttons,
@@ -18,65 +14,66 @@ import {
 	PublishedAt,
 } from './Styles'
 
-const Modal = ({ article, isOpen, onClose }) => {
-	const ModalContainerRef = useRef()
+const Modal = ({ article }, ref) => {
+	const ModalComponentRef = useRef()
 
-	useClickOutside(ModalContainerRef, onClose)
-
-	const Close = event => {
+	const Close = useCallback(event => {
 		event.stopPropagation()
 
-		onClose()
-	}
+		ModalComponentRef.current?.Close()
+	}, [])
 
 	return (
-		<ReactPortal wrapperId={article.url}>
-			{isOpen && (
-				<Container>
-					<ModalContainer ref={ModalContainerRef}>
-						<Body>
-							<Image
-								src={article.urlToImage}
-								alt='Article Image'
-							/>
-							<Title>{article.title}</Title>
-							<Content>{article.content}</Content>
-						</Body>
-						<Footer>
-							<Buttons>
-								<RectangleButton
-									backgroundColor='#ff0000'
-									width={150}
-									height={50}
-									radius={10}
-									padding='10px 20px'
-									onClick={Close}
-								>
-									Close
-								</RectangleButton>
-								<RectangleButton
-									as='a'
-									target='_blank'
-									href={article.url}
-									backgroundColor='#0000ff'
-									width={150}
-									height={50}
-									radius={10}
-									padding='10px 20px'
-								>
-									Read More
-								</RectangleButton>
-							</Buttons>
-							<PublishedAt>
-								Published At:{' '}
-								{article.publishedAt.split('T').join(' ')}
-							</PublishedAt>
-						</Footer>
-					</ModalContainer>
-				</Container>
-			)}
-		</ReactPortal>
+		<ModalComponent
+			wrapperId={article.url}
+			ref={modalRef => {
+				ModalComponentRef.current = modalRef
+
+				ref.current = {
+					Open: modalRef?.Open,
+				}
+			}}
+			contentProps={{
+				width: '50%',
+				height: '80%',
+			}}
+		>
+			<Body>
+				<Image src={article.urlToImage} alt='Article Image' />
+				<Title>{article.title}</Title>
+				<Content>{article.content}</Content>
+			</Body>
+			<Footer>
+				<Buttons>
+					<RectangleButton
+						backgroundColor='#ff0000'
+						width={150}
+						height={50}
+						radius={10}
+						padding='10px 20px'
+						onClick={Close}
+					>
+						Close
+					</RectangleButton>
+					<RectangleButton
+						as='a'
+						target='_blank'
+						href={article.url}
+						backgroundColor='#0000ff'
+						width={150}
+						height={50}
+						radius={10}
+						padding='10px 20px'
+					>
+						Read More
+					</RectangleButton>
+				</Buttons>
+				<PublishedAt>
+					Published At: {article.publishedAt.split('T').join(' ')}
+				</PublishedAt>
+			</Footer>
+		</ModalComponent>
 	)
 }
 
-export default Modal
+export default forwardRef(Modal)
