@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
-import ReactPortal from 'Components/ReactPortal/ReactPortal'
 import RoundButton from 'Components/Button/Round/Round'
 import RectangleButton from 'Components/Button/Rectangle/Rectangle'
 
-import { ModalContainer, ModalContent } from 'Components/Modal/Modal'
+import Modal from 'Components/Modal/Modal'
 
 import TimezoneTextToOffsetInSecond from 'Utils/TimezoneTextToOffsetInSecond'
 import IsValidTimezoneText from 'Utils/IsValidTimezoneText'
@@ -18,31 +17,20 @@ import { Container, TimezoneInput } from './Styles'
 const Clock = () => {
 	const [OffsetsInSecond, SetOffsetsInSecond] = useState([])
 
-	const [IsOpen, SetIsOpen] = useState(false)
-	const [IsRemoveModalOpen, SetIsRemoveModalOpen] = useState(false)
 	const [TimezoneText, SetTimezoneText] = useState('')
 	const [CurrentRemoveOffset, SetCurrentRemoveOffset] = useState(0)
 
 	const [IsDigital, SetIsDigital] = useState(false)
 
-	const OnOpen = () => {
-		SetIsOpen(true)
-	}
+	const AddModalRef = useRef()
+	const RemoveModalRef = useRef()
 
 	const OnInputChange = event => {
 		SetTimezoneText(event.target.value)
 	}
 
-	const OnClose = () => {
-		SetIsOpen(false)
-	}
-
-	const OnRemoveModalClose = () => {
-		SetIsRemoveModalOpen(false)
-	}
-
 	const ShowRemoveModal = offset => {
-		SetIsRemoveModalOpen(true)
+		RemoveModalRef.current?.Open()
 
 		SetCurrentRemoveOffset(offset)
 	}
@@ -50,7 +38,7 @@ const Clock = () => {
 	const RemoveClock = event => {
 		event.preventDefault()
 
-		SetIsRemoveModalOpen(false)
+		RemoveModalRef.current?.Close()
 
 		const indexToRemove = OffsetsInSecond.indexOf(CurrentRemoveOffset)
 
@@ -76,7 +64,7 @@ const Clock = () => {
 	const OnSubmit = event => {
 		event.preventDefault()
 
-		SetIsOpen(false)
+		AddModalRef.current?.Close()
 
 		if (OffsetsInSecond.length >= 5)
 			return alert('Too many clock maximum 5')
@@ -140,82 +128,83 @@ const Clock = () => {
 					showRemoveModal={ShowRemoveModal}
 				/>
 			)}
-			<RoundButton bottom={20} size={50} right={20} onClick={OnOpen}>
+			<RoundButton
+				bottom={20}
+				size={50}
+				right={20}
+				onClick={AddModalRef.current?.Open}
+			>
 				Add
 			</RoundButton>
 			<RoundButton bottom={80} size={50} right={20} onClick={Toggle}>
 				{IsDigital ? 'Analog' : 'Digital'}
 			</RoundButton>
-			<ReactPortal wrapperId='add-clock-timezone'>
-				{IsOpen && (
-					<ModalContainer>
-						<ModalContent
-							width='50%'
-							height='20%'
-							flexDirection='row'
-							as='form'
-							onSubmit={OnSubmit}
-						>
-							<TimezoneInput
-								onChange={OnInputChange}
-								value={TimezoneText}
-								placeholder='Timezone (/^(GMT|UTC)[+-]([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/gi)'
-							/>
-							<RectangleButton
-								width='10%'
-								height='40%'
-								radius={15}
-								type='submit'
-							>
-								Add
-							</RectangleButton>
-							<RectangleButton
-								backgroundColor='#ff0000'
-								width='10%'
-								height='40%'
-								radius={15}
-								type='button'
-								onClick={OnClose}
-							>
-								Close
-							</RectangleButton>
-						</ModalContent>
-					</ModalContainer>
-				)}
-			</ReactPortal>
-			<ReactPortal wrapperId='remove-clock-timezone'>
-				{IsRemoveModalOpen && (
-					<ModalContainer>
-						<ModalContent
-							width='50%'
-							height='20%'
-							flexDirection='row'
-							as='form'
-							onSubmit={RemoveClock}
-						>
-							<h3>Remove Timezone</h3>
-							<RectangleButton
-								width='10%'
-								height='40%'
-								radius={15}
-								type='submit'
-							>
-								Remove
-							</RectangleButton>
-							<RectangleButton
-								backgroundColor='#ff0000'
-								width='10%'
-								height='40%'
-								radius={15}
-								type='button'
-								onClick={OnRemoveModalClose}
-							>
-								Close
-							</RectangleButton>
-						</ModalContent>
-					</ModalContainer>
-				)}
-			</ReactPortal>
+			<Modal
+				wrapperId='add-clock-timezone'
+				contentProps={{
+					width: '50%',
+					height: '20%',
+					flexDirection: 'row',
+					as: 'form',
+					onSubmit: OnSubmit,
+				}}
+				ref={AddModalRef}
+			>
+				<TimezoneInput
+					onChange={OnInputChange}
+					value={TimezoneText}
+					placeholder='Timezone (/^(GMT|UTC)[+-]([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/gi)'
+				/>
+				<RectangleButton
+					width='10%'
+					height='40%'
+					radius={15}
+					type='submit'
+				>
+					Add
+				</RectangleButton>
+				<RectangleButton
+					backgroundColor='#ff0000'
+					width='10%'
+					height='40%'
+					radius={15}
+					type='button'
+					onClick={AddModalRef.current?.Close}
+				>
+					Close
+				</RectangleButton>
+			</Modal>
+			<Modal
+				wrapperId='remove-clock-timezone'
+				ref={RemoveModalRef}
+				contentProps={{
+					width: '50%',
+					height: '20%',
+					flexDirection: 'row',
+					as: 'form',
+					onSubmit: RemoveClock,
+				}}
+			>
+				<h3>Remove Timezone</h3>
+				<RectangleButton
+					width='10%'
+					height='40%'
+					radius={15}
+					type='submit'
+				>
+					Remove
+				</RectangleButton>
+				<RectangleButton
+					backgroundColor='#ff0000'
+					width='10%'
+					height='40%'
+					radius={15}
+					type='button'
+					onClick={RemoveModalRef.current?.Close()}
+				>
+					Close
+				</RectangleButton>
+			</Modal>
 		</Container>
 	)
 }
