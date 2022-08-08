@@ -4,7 +4,7 @@ import ReactPortal from 'Components/ReactPortal/ReactPortal'
 import RoundButton from 'Components/Button/Round/Round'
 import RectangleButton from 'Components/Button/Rectangle/Rectangle'
 
-import { Modal, ModalContent } from 'Components/Modal/Modal'
+import { ModalContainer, ModalContent } from 'Components/Modal/Modal'
 
 import TimezoneTextToOffsetInSecond from 'Utils/TimezoneTextToOffsetInSecond'
 import IsValidTimezoneText from 'Utils/IsValidTimezoneText'
@@ -148,7 +148,7 @@ const Clock = () => {
 			</RoundButton>
 			<ReactPortal wrapperId='add-clock-timezone'>
 				{IsOpen && (
-					<Modal>
+					<ModalContainer>
 						<ModalContent
 							width='50%'
 							height='20%'
@@ -180,12 +180,12 @@ const Clock = () => {
 								Close
 							</RectangleButton>
 						</ModalContent>
-					</Modal>
+					</ModalContainer>
 				)}
 			</ReactPortal>
 			<ReactPortal wrapperId='remove-clock-timezone'>
 				{IsRemoveModalOpen && (
-					<Modal>
+					<ModalContainer>
 						<ModalContent
 							width='50%'
 							height='20%'
@@ -213,7 +213,7 @@ const Clock = () => {
 								Close
 							</RectangleButton>
 						</ModalContent>
-					</Modal>
+					</ModalContainer>
 				)}
 			</ReactPortal>
 		</Container>
