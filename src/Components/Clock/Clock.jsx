@@ -4,6 +4,8 @@ import ReactPortal from 'Components/ReactPortal/ReactPortal'
 import RoundButton from 'Components/Button/Round/Round'
 import RectangleButton from 'Components/Button/Rectangle/Rectangle'
 
+import { Modal, ModalContent } from 'Components/Modal/Modal'
+
 import TimezoneTextToOffsetInSecond from 'Utils/TimezoneTextToOffsetInSecond'
 import IsValidTimezoneText from 'Utils/IsValidTimezoneText'
 
@@ -11,12 +13,7 @@ import IsValidTimezoneText from 'Utils/IsValidTimezoneText'
 import DigitalClock from './Digital/Digital'
 import AnalogClock from './Analog/Analog'
 
-import {
-	Container,
-	ModalContainer,
-	ModalContentContainer,
-	TimezoneInput,
-} from './Styles'
+import { Container, TimezoneInput } from './Styles'
 
 const Clock = () => {
 	const [OffsetsInSecond, SetOffsetsInSecond] = useState([])
@@ -151,8 +148,14 @@ const Clock = () => {
 			</RoundButton>
 			<ReactPortal wrapperId='add-clock-timezone'>
 				{IsOpen && (
-					<ModalContainer>
-						<ModalContentContainer onSubmit={OnSubmit}>
+					<Modal>
+						<ModalContent
+							width='50%'
+							height='20%'
+							flexDirection='row'
+							as='form'
+							onSubmit={OnSubmit}
+						>
 							<TimezoneInput
 								onChange={OnInputChange}
 								value={TimezoneText}
@@ -176,14 +179,20 @@ const Clock = () => {
 							>
 								Close
 							</RectangleButton>
-						</ModalContentContainer>
-					</ModalContainer>
+						</ModalContent>
+					</Modal>
 				)}
 			</ReactPortal>
 			<ReactPortal wrapperId='remove-clock-timezone'>
 				{IsRemoveModalOpen && (
-					<ModalContainer>
-						<ModalContentContainer onSubmit={RemoveClock}>
+					<Modal>
+						<ModalContent
+							width='50%'
+							height='20%'
+							flexDirection='row'
+							as='form'
+							onSubmit={RemoveClock}
+						>
 							<h3>Remove Timezone</h3>
 							<RectangleButton
 								width='10%'
@@ -203,8 +212,8 @@ const Clock = () => {
 							>
 								Close
 							</RectangleButton>
-						</ModalContentContainer>
-					</ModalContainer>
+						</ModalContent>
+					</Modal>
 				)}
 			</ReactPortal>
 		</Container>
