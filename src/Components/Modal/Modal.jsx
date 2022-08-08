@@ -28,5 +28,3 @@ const Modal = ({ wrapperId, containerProps, contentProps, children }, ref) => {
 }
 
 export default forwardRef(Modal)
-
-export { ModalContainer, ModalContent }
