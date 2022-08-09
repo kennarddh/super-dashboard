@@ -15,6 +15,15 @@ const BaseButton = styled.button`
 	margin: ${({ margin }) =>
 		typeof margin === 'number' ? `${margin}px` : margin};
 
+	${({ as: asProps, centerContent }) =>
+		asProps !== 'a' &&
+		centerContent &&
+		css`
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		`}
+
 	${({ as: asProps }) =>
 		asProps === 'a'
 			? css`
