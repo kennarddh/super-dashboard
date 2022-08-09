@@ -4,16 +4,25 @@ const BaseButton = styled.button`
 	width: var(--width);
 	height: var(--height);
 
-	background-color: ${({ backgroundColor }) => backgroundColor ?? '#a0a0a0'};
+	background-color: ${({ backgroundColor }) => backgroundColor};
 
-	border: ${({ border }) => border ?? 'none'};
-	color: ${({ color }) => color ?? '#ffffff'};
+	border: ${({ border }) => border};
+	color: ${({ color }) => color};
 
 	padding: ${({ padding }) =>
 		typeof padding === 'number' ? `${padding}px` : padding};
 
 	margin: ${({ margin }) =>
 		typeof margin === 'number' ? `${margin}px` : margin};
+
+	${({ as: asProps, centerContent }) =>
+		asProps !== 'a' &&
+		centerContent &&
+		css`
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		`}
 
 	${({ as: asProps }) =>
 		asProps === 'a'
@@ -35,24 +44,34 @@ const BaseButton = styled.button`
 
 			${top &&
 			css`
-				top: ${top}px;
+				top: ${({ top }) =>
+					typeof top === 'number' ? `${top}px` : top};
 			`}
 
 			${bottom &&
 			css`
-				bottom: ${bottom}px;
+				bottom: ${({ bottom }) =>
+					typeof bottom === 'number' ? `${bottom}px` : bottom};
 			`}
 
 			${right &&
 			css`
-				right: ${right}px;
+				right: ${({ right }) =>
+					typeof right === 'number' ? `${right}px` : right};
 			`}
 
 			${left &&
 			css`
-				top: ${left}px;
+				left: ${({ left }) =>
+					typeof left === 'number' ? `${left}px` : left};
 			`}
 		`}
 `
+
+BaseButton.defaultProps = {
+	backgroundColor: '#a0a0a0',
+	border: 'none',
+	color: '#ffffff',
+}
 
 export default BaseButton
