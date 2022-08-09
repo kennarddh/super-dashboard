@@ -142,8 +142,10 @@ const Users = () => {
 				/>
 				<RectangleButton
 					backgroundColor='#dbdbdb'
-					padding='5px 10px'
 					radius={15}
+					width={50}
+					height={20}
+					centerContent
 					onClick={ShowUserModal}
 				>
 					Add
