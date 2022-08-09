@@ -1,0 +1,57 @@
+import styled from 'styled-components'
+
+export const ModalContainer = styled.div`
+	background-color: ${({ backgroundColor }) => backgroundColor};
+
+	position: absolute;
+	inset: 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`
+
+ModalContainer.defaultProps = {
+	backgroundColor: '#b4b4b4a4',
+}
+
+export const ModalContent = styled.div`
+	width: ${({ width }) =>
+		typeof padding === 'number' ? `${width}px` : width};
+
+	height: ${({ height }) =>
+		typeof padding === 'number' ? `${height}px` : height};
+
+	background-color: ${({ backgroundColor }) => backgroundColor};
+
+	color: ${({ color }) => color};
+	border: ${({ border }) => border};
+
+	padding: ${({ padding }) =>
+		typeof padding === 'number' ? `${padding}px` : padding};
+
+	margin: ${({ margin }) =>
+		typeof margin === 'number' ? `${margin}px` : margin};
+
+	border-radius: ${({ radius }) =>
+		typeof radius === 'number' ? `${radius}px` : radius};
+
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+
+	flex-direction: ${({ flexDirection }) => flexDirection};
+	gap: 20px;
+`
+
+ModalContent.defaultProps = {
+	width: '80%',
+	height: '50%',
+	backgroundColor: '#ffffff',
+	border: 'none',
+	color: '#000000',
+	padding: 15,
+	margin: 15,
+	radius: 15,
+	flexDirection: 'column',
+}

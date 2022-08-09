@@ -1,31 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef, forwardRef } from 'react'
 
-import ReactPortal from 'Components/ReactPortal/ReactPortal'
+import ModalComponent from 'Components/Modal/Modal'
 
 import FileToBase64 from 'Utils/FileToBase64'
 
 import Input from 'Components/Input/Input'
 import RectangleButton from 'Components/Button/Rectangle/Rectangle'
 
-import {
-	ModalContainer,
-	ModalContentContainer,
-	Buttons,
-	ImagePreview,
-} from './Styles'
+import { Buttons, ImagePreview } from './Styles'
 
-const Modal = ({
-	isOpen,
-	addUser,
-	closeModal,
-	selectedUserId,
-	removeUser,
-	getUserDataById,
-}) => {
+const Modal = (
+	{ addUser, selectedUserId, removeUser, getUserDataById, onClose },
+	ref
+) => {
 	const [NameValue, SetNameValue] = useState('')
 	const [PhoneValue, SetPhoneValue] = useState('')
 	const [AddressValue, SetAddressValue] = useState('')
 	const [ImagePreviewBase64, SetImagePreviewBase64] = useState('')
+
+	const ModalComponentRef = useRef()
 
 	useEffect(() => {
 		if (!selectedUserId) return
@@ -44,7 +37,7 @@ const Modal = ({
 		SetAddressValue('')
 		SetImagePreviewBase64('')
 
-		closeModal()
+		Close()
 	}
 
 	const RemoveUser = () => {
@@ -72,106 +65,117 @@ const Modal = ({
 		})
 	}
 
+	const Close = () => {
+		onClose()
+
+		ModalComponentRef.current?.Close()
+	}
+
 	return (
-		<ReactPortal wrapperId='user-modal'>
-			{isOpen && (
-				<ModalContainer>
-					<ModalContentContainer onSubmit={OnSubmit}>
-						<h3>Add user</h3>
-						<ImagePreview
-							src={
-								ImagePreviewBase64 ||
-								'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
-							}
-							alt='Image preview'
-						/>
-						<Input
-							value={NameValue}
-							onChange={event => SetNameValue(event.target.value)}
-							placeholder='Name'
-						/>
-						<Input
-							value={PhoneValue}
-							onChange={event =>
-								SetPhoneValue(event.target.value)
-							}
-							placeholder='Phone'
-						/>
-						<Input
-							onChange={event =>
-								FileToBase64(event.target.files[0])
-									.then(base64 => {
-										SetImagePreviewBase64(base64)
-									})
-									.catch(console.error)
-							}
-							type='file'
-							placeholder='Image'
-							accept='image/*'
-						/>
-						<Input
-							value={AddressValue}
-							onChange={event =>
-								SetAddressValue(event.target.value)
-							}
-							as='textarea'
-							rows={3}
-							placeholder='Address'
-							style={{ height: '70%' }}
-						></Input>
-						<Buttons>
-							<RectangleButton
-								width='50%'
-								height='100%'
-								radius={15}
-								padding='5px 20px'
-								backgroundColor='#b6b6b6'
-								type='submit'
-							>
-								Save
-							</RectangleButton>
-							<RectangleButton
-								width='50%'
-								height='100%'
-								radius={15}
-								padding='5px 20px'
-								backgroundColor='#b6b6b6'
-								as='a'
-								href={`https://wa.me/${PhoneValue}`}
-								target='_blank'
-							>
-								Whatsapp
-							</RectangleButton>
-							<RectangleButton
-								width='50%'
-								height='100%'
-								radius={15}
-								padding='5px 20px'
-								backgroundColor='#ff0000'
-								type='button'
-								onClick={closeModal}
-							>
-								Close
-							</RectangleButton>
-							{selectedUserId && (
-								<RectangleButton
-									width='50%'
-									height='100%'
-									radius={15}
-									padding='5px 20px'
-									backgroundColor='#ff0000'
-									type='button'
-									onClick={RemoveUser}
-								>
-									Remove
-								</RectangleButton>
-							)}
-						</Buttons>
-					</ModalContentContainer>
-				</ModalContainer>
-			)}
-		</ReactPortal>
+		<ModalComponent
+			wrapperId='user-modal'
+			ref={modalRef => {
+				ModalComponentRef.current = modalRef
+
+				ref.current = {
+					Open: modalRef?.Open,
+				}
+			}}
+			contentProps={{
+				onSubmit: OnSubmit,
+				as: 'form',
+				height: '80%',
+				width: '50%',
+			}}
+		>
+			<h3>Add user</h3>
+			<ImagePreview
+				src={
+					ImagePreviewBase64 ||
+					'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
+				}
+				alt='Image preview'
+			/>
+			<Input
+				value={NameValue}
+				onChange={event => SetNameValue(event.target.value)}
+				placeholder='Name'
+			/>
+			<Input
+				value={PhoneValue}
+				onChange={event => SetPhoneValue(event.target.value)}
+				placeholder='Phone'
+			/>
+			<Input
+				onChange={event =>
+					FileToBase64(event.target.files[0])
+						.then(base64 => {
+							SetImagePreviewBase64(base64)
+						})
+						.catch(console.error)
+				}
+				type='file'
+				placeholder='Image'
+				accept='image/*'
+			/>
+			<Input
+				value={AddressValue}
+				onChange={event => SetAddressValue(event.target.value)}
+				as='textarea'
+				rows={3}
+				placeholder='Address'
+				style={{ height: '70%' }}
+			></Input>
+			<Buttons>
+				<RectangleButton
+					width='50%'
+					height='100%'
+					radius={15}
+					padding='5px 20px'
+					backgroundColor='#b6b6b6'
+					type='submit'
+				>
+					Save
+				</RectangleButton>
+				<RectangleButton
+					width='50%'
+					height='100%'
+					radius={15}
+					padding='5px 20px'
+					backgroundColor='#b6b6b6'
+					as='a'
+					href={`https://wa.me/${PhoneValue}`}
+					target='_blank'
+				>
+					Whatsapp
+				</RectangleButton>
+				<RectangleButton
+					width='50%'
+					height='100%'
+					radius={15}
+					padding='5px 20px'
+					backgroundColor='#ff0000'
+					type='button'
+					onClick={Close}
+				>
+					Close
+				</RectangleButton>
+				{selectedUserId && (
+					<RectangleButton
+						width='50%'
+						height='100%'
+						radius={15}
+						padding='5px 20px'
+						backgroundColor='#ff0000'
+						type='button'
+						onClick={RemoveUser}
+					>
+						Remove
+					</RectangleButton>
+				)}
+			</Buttons>
+		</ModalComponent>
 	)
 }
 
-export default Modal
+export default forwardRef(Modal)

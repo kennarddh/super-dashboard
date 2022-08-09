@@ -1,30 +1,20 @@
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
 
 import Modal from 'Components/News/Article/Modal/Modal'
 
 import { Container, Image, Body, Title, Description } from './Styles'
 
 const Article = ({ article }) => {
-	const [IsOpen, SetIsOpen] = useState(false)
-
-	const Open = event => {
-		event.stopPropagation()
-
-		SetIsOpen(true)
-	}
-
-	const Close = () => {
-		SetIsOpen(false)
-	}
+	const ModalRef = useRef()
 
 	return (
-		<Container onClick={Open}>
+		<Container onClick={ModalRef.current?.Open}>
 			<Image src={article.urlToImage} alt='Article image' />
 			<Body>
 				<Title>{article.title}</Title>
 				<Description>{article.description}</Description>
 			</Body>
-			<Modal article={article} isOpen={IsOpen} onClose={Close} />
+			<Modal article={article} ref={ModalRef} />
 		</Container>
 	)
 }
