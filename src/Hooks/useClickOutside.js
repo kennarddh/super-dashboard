@@ -5,7 +5,7 @@ const useClickOutside = (ref, onClickOutsideCallback) => {
 		event => {
 			if (!ref.current) return
 
-			if (ref.current.contains(event.target)) return
+			if (ref.current?.contains(event.target)) return
 
 			if (ref.current === event.target) return
 
