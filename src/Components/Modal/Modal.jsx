@@ -1,6 +1,8 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 
 import ReactPortal from 'Components/ReactPortal/ReactPortal'
+
+import useClickOutside from 'Hooks/useClickOutside'
 
 import { ModalContainer, ModalContent } from './Styles'
 
@@ -18,6 +20,20 @@ const Modal = (
 ) => {
 	const [IsOpen, SetIsOpen] = useState(false)
 
+	const ModalContentRef = useRef()
+
+	const OnClickOutside = () => {
+		if (overrideOpen) {
+			onClose()
+
+			return
+		}
+
+		SetIsOpen(false)
+	}
+
+	useClickOutside(ModalContentRef, OnClickOutside)
+
 	useImperativeHandle(ref, () => ({
 		Open() {
 			SetIsOpen(true)
@@ -31,7 +47,9 @@ const Modal = (
 		<ReactPortal wrapperId={wrapperId}>
 			{((overrideOpen && isOpen) || IsOpen) && (
 				<ModalContainer {...containerProps}>
-					<ModalContent {...contentProps}>{children}</ModalContent>
+					<ModalContent ref={ModalContentRef} {...contentProps}>
+						{children}
+					</ModalContent>
 				</ModalContainer>
 			)}
 		</ReactPortal>
