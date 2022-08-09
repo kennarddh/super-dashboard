@@ -4,7 +4,18 @@ import ReactPortal from 'Components/ReactPortal/ReactPortal'
 
 import { ModalContainer, ModalContent } from './Styles'
 
-const Modal = ({ wrapperId, containerProps, contentProps, children }, ref) => {
+const Modal = (
+	{
+		wrapperId,
+		containerProps,
+		contentProps,
+		overrideOpen,
+		isOpen,
+		onClose, // eslint-disable-line no-unused-vars
+		children,
+	},
+	ref
+) => {
 	const [IsOpen, SetIsOpen] = useState(false)
 
 	useImperativeHandle(ref, () => ({
@@ -18,7 +29,7 @@ const Modal = ({ wrapperId, containerProps, contentProps, children }, ref) => {
 
 	return (
 		<ReactPortal wrapperId={wrapperId}>
-			{IsOpen && (
+			{((overrideOpen && isOpen) || IsOpen) && (
 				<ModalContainer {...containerProps}>
 					<ModalContent {...contentProps}>{children}</ModalContent>
 				</ModalContainer>

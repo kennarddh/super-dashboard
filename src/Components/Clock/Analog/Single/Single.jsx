@@ -48,7 +48,7 @@ const Single = ({ offset, showRemoveModal }) => {
 	return (
 		<Container
 			size={100}
-			onClick={() => showRemoveModal(offset)}
+			onClick={() => showRemoveModal && showRemoveModal(offset)}
 			title={HourAndMinuteToUTCString(OffsetToHourAndMinute(offset))}
 		>
 			<HandContainer deg={(360 / 24) * Time?.hour}>

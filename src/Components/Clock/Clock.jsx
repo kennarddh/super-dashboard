@@ -23,14 +23,15 @@ const Clock = () => {
 	const [IsDigital, SetIsDigital] = useState(false)
 
 	const AddModalRef = useRef()
-	const RemoveModalRef = useRef()
+
+	const [IsRemoveModalOpen, SetIsRemoveModalOpen] = useState(false)
 
 	const OnInputChange = event => {
 		SetTimezoneText(event.target.value)
 	}
 
 	const ShowRemoveModal = offset => {
-		RemoveModalRef.current?.Open()
+		SetIsRemoveModalOpen(true)
 
 		SetCurrentRemoveOffset(offset)
 	}
@@ -38,7 +39,7 @@ const Clock = () => {
 	const RemoveClock = event => {
 		event.preventDefault()
 
-		RemoveModalRef.current?.Close()
+		SetIsRemoveModalOpen(false)
 
 		const indexToRemove = OffsetsInSecond.indexOf(CurrentRemoveOffset)
 
@@ -175,8 +176,10 @@ const Clock = () => {
 				</RectangleButton>
 			</Modal>
 			<Modal
+				overrideOpen
+				isOpen={IsRemoveModalOpen}
+				onClose={() => SetIsRemoveModalOpen(false)}
 				wrapperId='remove-clock-timezone'
-				ref={RemoveModalRef}
 				contentProps={{
 					width: '50%',
 					height: '20%',
@@ -200,7 +203,7 @@ const Clock = () => {
 					height='40%'
 					radius={15}
 					type='button'
-					onClick={RemoveModalRef.current?.Close()}
+					onClick={() => SetIsRemoveModalOpen(false)}
 				>
 					Close
 				</RectangleButton>
