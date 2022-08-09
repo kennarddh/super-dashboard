@@ -40,7 +40,7 @@ const Single = ({ offset, showRemoveModal }) => {
 
 	return (
 		<TimeContainer
-			onClick={() => showRemoveModal(offset)}
+			onClick={() => showRemoveModal && showRemoveModal(offset)}
 			title={HourAndMinuteToUTCString(OffsetToHourAndMinute(offset))}
 		>
 			<TimeText>{Time?.hour?.toString()?.padStart(2, '0')}</TimeText>
