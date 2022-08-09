@@ -1,28 +1,5 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-	position: absolute;
-	inset: 0;
-	background-color: #b4b4b4a4;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-`
-
-export const ModalContainer = styled.div`
-	height: 80%;
-	width: 50%;
-	background-color: #ffffff;
-	border-radius: 15px;
-
-	padding: 20px;
-	box-sizing: border-box;
-
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-`
-
 export const Title = styled.h3`
 	margin: 0;
 `
