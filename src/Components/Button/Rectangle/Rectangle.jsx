@@ -4,7 +4,7 @@ import BaseButton from 'Components/Button/Base/Base'
 
 const RectangleButton = styled(BaseButton)`
 	--radius: ${({ radius }) =>
-		typeof radius === 'number' ? `${radius ?? 0}px` : radius};
+		typeof radius === 'number' ? `${radius}px` : radius};
 
 	--height: ${({ height }) =>
 		typeof height === 'number' ? `${height ?? 10}px` : height};
@@ -14,5 +14,10 @@ const RectangleButton = styled(BaseButton)`
 
 	border-radius: var(--radius);
 `
+
+RectangleButton.defaultProps = {
+	height: 10,
+	width: 10,
+}
 
 export default RectangleButton
