@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 export const ModalContainer = styled.div`
-	background-color: ${({ backgroundColor }) =>
-		backgroundColor ?? '#b4b4b4a4'};
+	background-color: ${({ backgroundColor }) => backgroundColor};
 
 	position: absolute;
 	inset: 0;
@@ -12,51 +11,47 @@ export const ModalContainer = styled.div`
 	align-items: center;
 `
 
+ModalContainer.defaultProps = {
+	backgroundColor: '#b4b4b4a4',
+}
+
 export const ModalContent = styled.div`
-	width: ${({ width }) => {
-		if (width) {
-			return typeof padding === 'number' ? `${width}px` : width
-		}
+	width: ${({ width }) =>
+		typeof padding === 'number' ? `${width}px` : width};
 
-		return '80%'
-	}};
+	height: ${({ height }) =>
+		typeof padding === 'number' ? `${height}px` : height};
 
-	height: ${({ height }) => {
-		if (height) {
-			return typeof padding === 'number' ? `${height}px` : height
-		}
+	background-color: ${({ backgroundColor }) => backgroundColor};
 
-		return '50%'
-	}};
+	color: ${({ color }) => color};
+	border: ${({ border }) => border};
 
-	background-color: ${({ backgroundColor }) => backgroundColor ?? '#ffffff'};
-
-	border: ${({ border }) => border ?? 'none'};
-	color: ${({ color }) => color ?? '#000000'};
-
-	padding: ${({ padding }) => {
-		if (padding) {
-			return typeof padding === 'number' ? `${padding}px` : padding
-		}
-
-		return '15px'
-	}};
+	padding: ${({ padding }) =>
+		typeof padding === 'number' ? `${padding}px` : padding};
 
 	margin: ${({ margin }) =>
 		typeof margin === 'number' ? `${margin}px` : margin};
 
-	border-radius: ${({ radius }) => {
-		if (radius) {
-			return typeof radius === 'number' ? `${radius}px` : radius
-		}
-
-		return '15px'
-	}};
+	border-radius: ${({ radius }) =>
+		typeof radius === 'number' ? `${radius}px` : radius};
 
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
 
-	flex-direction: ${({ flexDirection }) => flexDirection ?? 'column'};
+	flex-direction: ${({ flexDirection }) => flexDirection};
 	gap: 20px;
 `
+
+ModalContent.defaultProps = {
+	width: '80%',
+	height: '50%',
+	backgroundColor: '#ffffff',
+	border: 'none',
+	color: '#000000',
+	padding: 15,
+	margin: 15,
+	radius: 15,
+	flexDirection: 'column',
+}
