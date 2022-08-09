@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 
 import { v4 as uuidv4 } from 'uuid'
 
@@ -44,11 +44,11 @@ const Users = () => {
 
 	const [UsersPreview, SetUsersPreview] = useState({})
 
-	const [IsUserModalOpen, SetIsUserModalOpen] = useState(false)
-
 	const [SearchValue, SetSearchValue] = useState('')
 
 	const [SelectedUserId, SetSelectedUserId] = useState()
+
+	const ModalRef = useRef()
 
 	useEffect(() => {
 		const usersEntries = Object.entries(UsersList)
@@ -88,7 +88,7 @@ const Users = () => {
 	}, [])
 
 	const ShowUserModal = () => {
-		SetIsUserModalOpen(true)
+		ModalRef.current?.Open()
 	}
 
 	const AddUser = ({ name, phone, address, image }) => {
@@ -177,12 +177,10 @@ const Users = () => {
 				</AlphabetList>
 			</ContentContainer>
 			<Modal
-				isOpen={IsUserModalOpen}
+				ref={ModalRef}
 				addUser={AddUser}
-				closeModal={() => {
+				onClose={() => {
 					SetSelectedUserId(null)
-
-					SetIsUserModalOpen(false)
 				}}
 				selectedUserId={SelectedUserId}
 				removeUser={RemoveUser}
