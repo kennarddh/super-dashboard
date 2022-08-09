@@ -15,6 +15,9 @@ const BaseButton = styled.button`
 	margin: ${({ margin }) =>
 		typeof margin === 'number' ? `${margin}px` : margin};
 
+	font-size: ${({ fontSize }) =>
+		typeof fontSize === 'number' ? `${fontSize}px` : fontSize};
+
 	${({ as: asProps, centerContent }) =>
 		asProps !== 'a' &&
 		centerContent &&
@@ -72,6 +75,7 @@ BaseButton.defaultProps = {
 	backgroundColor: '#a0a0a0',
 	border: 'none',
 	color: '#ffffff',
+	fontSize: 14,
 }
 
 export default BaseButton

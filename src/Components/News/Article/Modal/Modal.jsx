@@ -51,6 +51,7 @@ const Modal = ({ article }, ref) => {
 						height={50}
 						radius={10}
 						padding='10px 20px'
+						fontSize={17}
 						onClick={Close}
 					>
 						Close
@@ -64,6 +65,7 @@ const Modal = ({ article }, ref) => {
 						height={50}
 						radius={10}
 						padding='10px 20px'
+						fontSize={17}
 					>
 						Read More
 					</RectangleButton>
