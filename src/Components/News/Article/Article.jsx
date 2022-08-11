@@ -8,7 +8,11 @@ const Article = ({ article }) => {
 	const ModalRef = useRef()
 
 	return (
-		<Container onClick={ModalRef.current?.Open}>
+		<Container
+			onClick={() => {
+				ModalRef.current?.Open()
+			}}
+		>
 			<Image src={article.urlToImage} alt='Article image' />
 			<Body>
 				<Title>{article.title}</Title>
