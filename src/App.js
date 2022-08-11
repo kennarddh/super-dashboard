@@ -43,7 +43,6 @@ const App = () => {
 								h: 8,
 								static: true,
 							},
-							{ i: 'images', x: 0, y: 8, w: 8, h: 4 },
 							{
 								i: 'clock',
 								x: 8,
@@ -72,7 +71,6 @@ const App = () => {
 						<SectionWrapper key='whiteboard'>
 							<Map />
 						</SectionWrapper>
-						<SectionWrapper key='images'>Images</SectionWrapper>
 						<SectionWrapper key='clock'>
 							<Clock />
 						</SectionWrapper>
@@ -137,6 +135,7 @@ const App = () => {
 								h: 8,
 								static: true,
 							},
+							{ i: 'images', x: 0, y: 8, w: 8, h: 4 },
 						]}
 						className='layout'
 						items={1}
@@ -156,6 +155,7 @@ const App = () => {
 						<SectionWrapper key='whiteboard'>
 							<Whiteboard />
 						</SectionWrapper>
+						<SectionWrapper key='images'>Images</SectionWrapper>
 					</ReactGridLayout>
 				</TabPanel>
 			</Tabs>
