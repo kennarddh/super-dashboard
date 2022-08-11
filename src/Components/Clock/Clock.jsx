@@ -133,7 +133,9 @@ const Clock = () => {
 				bottom={20}
 				size={50}
 				right={20}
-				onClick={AddModalRef.current?.Open}
+				onClick={() => {
+					AddModalRef.current?.Open()
+				}}
 			>
 				Add
 			</RoundButton>
@@ -170,7 +172,9 @@ const Clock = () => {
 					height='40%'
 					radius={15}
 					type='button'
-					onClick={AddModalRef.current?.Close}
+					onClick={() => {
+						AddModalRef.current?.Close()
+					}}
 				>
 					Close
 				</RectangleButton>
