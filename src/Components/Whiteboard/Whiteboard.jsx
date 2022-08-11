@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react'
+import React, { useState, useCallback, useRef, useContext } from 'react'
 
 import CanvasDraw from 'react-canvas-draw'
 
@@ -8,6 +8,8 @@ import {
 	ToolbarInput,
 } from 'Components/ToolBar/ToolBar'
 
+import { ImagesContext } from 'Contexts/Images'
+
 const Whiteboard = () => {
 	const [BrushColor, SetBrushColor] = useState('#000000')
 	const [BrushRadius, SetBrushRadius] = useState(5)
@@ -15,6 +17,8 @@ const Whiteboard = () => {
 	const [IsDisabled, SetIsDisabled] = useState(false)
 
 	const CanvasDrawRef = useRef(null)
+
+	const { AddImage } = useContext(ImagesContext)
 
 	const OnBrushColorChange = useCallback(event => {
 		SetBrushColor(event.target.value)
@@ -68,6 +72,12 @@ const Whiteboard = () => {
 		CanvasDrawRef.current.loadSaveData(data)
 	}, [CanvasDrawRef])
 
+	const SaveToImagesWidget = useCallback(() => {
+		const data = CanvasDrawRef.current.getDataURL()
+
+		AddImage(data)
+	}, [AddImage, CanvasDrawRef])
+
 	const ToggleIsDisabled = useCallback(() => {
 		SetIsDisabled(isDisabled => !isDisabled)
 	}, [])
@@ -93,6 +103,9 @@ const Whiteboard = () => {
 				<ToolbarButton onClick={Download}>Download</ToolbarButton>
 				<ToolbarButton onClick={Save}>Save</ToolbarButton>
 				<ToolbarButton onClick={Load}>Load</ToolbarButton>
+				<ToolbarButton onClick={SaveToImagesWidget}>
+					Save To Images Widget
+				</ToolbarButton>
 				<ToolbarButton onClick={ToggleIsDisabled}>
 					{IsDisabled ? 'Enable' : 'Disable'}
 				</ToolbarButton>
