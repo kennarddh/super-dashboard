@@ -112,7 +112,7 @@ const Clock = () => {
 		)
 
 		SetIsDigital(
-			JSON.parse(localStorage.getItem('clock_is_digital')).value || false
+			JSON.parse(localStorage.getItem('clock_is_digital'))?.value || false
 		)
 	}, [])
 
