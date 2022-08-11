@@ -11,7 +11,7 @@ import 'react-tabs/style/react-tabs.css'
 import LocationProvider from 'Contexts/Location'
 
 // Components
-// import Whiteboard from 'Components/Whiteboard/Whiteboard'
+import Whiteboard from 'Components/Whiteboard/Whiteboard'
 import Clock from 'Components/Clock/Clock'
 import Weather from 'Components/Weather/Weather'
 import Map from 'Components/Map/Map'
@@ -29,6 +29,7 @@ const App = () => {
 				<TabList>
 					<Tab>Page 1</Tab>
 					<Tab>Page 2</Tab>
+					<Tab>Page 3</Tab>
 				</TabList>
 
 				<TabPanel>
@@ -121,6 +122,39 @@ const App = () => {
 						</SectionWrapper>
 						<SectionWrapper key='users'>
 							<Users />
+						</SectionWrapper>
+					</ReactGridLayout>
+				</TabPanel>
+
+				<TabPanel>
+					<ReactGridLayout
+						layout={[
+							{
+								i: 'whiteboard',
+								x: 0,
+								y: 0,
+								w: 8,
+								h: 8,
+								static: true,
+							},
+						]}
+						className='layout'
+						items={1}
+						rowHeight={41}
+						cols={12}
+						resizeHandles={[
+							's',
+							'w',
+							'e',
+							'n',
+							'sw',
+							'nw',
+							'se',
+							'ne',
+						]}
+					>
+						<SectionWrapper key='whiteboard'>
+							<Whiteboard />
 						</SectionWrapper>
 					</ReactGridLayout>
 				</TabPanel>
