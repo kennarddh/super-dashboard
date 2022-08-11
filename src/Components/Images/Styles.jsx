@@ -32,9 +32,13 @@ export const Container = styled.div`
 	}
 `
 
-export const Image = styled.img`
-	width: 40%;
-	height: 100%;
+export const ImageContainer = styled.div`
+	height: 80%;
 
+	cursor: pointer;
 	border: 1px #000000 solid;
+`
+
+export const Image = styled.img`
+	height: 100%;
 `
