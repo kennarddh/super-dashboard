@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 
 import RoundButton from 'Components/Button/Round/Round'
 import RectangleButton from 'Components/Button/Rectangle/Rectangle'
@@ -8,6 +8,8 @@ import Modal from 'Components/Modal/Modal'
 import TimezoneTextToOffsetInSecond from 'Utils/TimezoneTextToOffsetInSecond'
 import IsValidTimezoneText from 'Utils/IsValidTimezoneText'
 
+import useLocalStorageState from 'Hooks/useLocalStorageState'
+
 // Clock
 import DigitalClock from './Digital/Digital'
 import AnalogClock from './Analog/Analog'
@@ -15,12 +17,18 @@ import AnalogClock from './Analog/Analog'
 import { Container, TimezoneInput } from './Styles'
 
 const Clock = () => {
-	const [OffsetsInSecond, SetOffsetsInSecond] = useState([])
+	const [OffsetsInSecond, SetOffsetsInSecond] = useLocalStorageState(
+		[],
+		'clock_offsets_data'
+	)
 
 	const [TimezoneText, SetTimezoneText] = useState('')
 	const [CurrentRemoveOffset, SetCurrentRemoveOffset] = useState(0)
 
-	const [IsDigital, SetIsDigital] = useState(false)
+	const [IsDigital, SetIsDigital] = useLocalStorageState(
+		false,
+		'clock_is_digital'
+	)
 
 	const AddModalRef = useRef()
 
@@ -45,19 +53,10 @@ const Clock = () => {
 
 		if (indexToRemove === -1) return
 
-		SetOffsetsInSecond(offsetsInSecond => {
-			const newOffsets = [
-				...offsetsInSecond.slice(0, indexToRemove),
-				...offsetsInSecond.slice(indexToRemove + 1),
-			]
-
-			localStorage.setItem(
-				'clock_offsets_data',
-				JSON.stringify(newOffsets)
-			)
-
-			return newOffsets
-		})
+		SetOffsetsInSecond(offsetsInSecond => [
+			...offsetsInSecond.slice(0, indexToRemove),
+			...offsetsInSecond.slice(indexToRemove + 1),
+		])
 
 		SetCurrentRemoveOffset(0)
 	}
@@ -81,40 +80,16 @@ const Clock = () => {
 		if (OffsetsInSecond.includes(offset))
 			return alert('Timezone already exist')
 
-		SetOffsetsInSecond(offsetsInSecond => {
-			const newOffsets = [...offsetsInSecond, offset]
-
-			localStorage.setItem(
-				'clock_offsets_data',
-				JSON.stringify(newOffsets)
-			)
-
-			return newOffsets
-		})
+		SetOffsetsInSecond(offsetsInSecond => [...offsetsInSecond, offset])
 	}
 
 	const Toggle = () => {
 		SetIsDigital(isDigital => {
 			const newValue = !isDigital
 
-			localStorage.setItem(
-				'clock_is_digital',
-				JSON.stringify({ value: newValue })
-			)
-
 			return newValue
 		})
 	}
-
-	useEffect(() => {
-		SetOffsetsInSecond(
-			JSON.parse(localStorage.getItem('clock_offsets_data')) || []
-		)
-
-		SetIsDigital(
-			JSON.parse(localStorage.getItem('clock_is_digital'))?.value || false
-		)
-	}, [])
 
 	return (
 		<Container>
