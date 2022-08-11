@@ -13,6 +13,7 @@ import ImagesProvider from 'Contexts/Images'
 
 // Components
 import Whiteboard from 'Components/Whiteboard/Whiteboard'
+import Images from 'Components/Images/Images'
 import Clock from 'Components/Clock/Clock'
 import Weather from 'Components/Weather/Weather'
 import Map from 'Components/Map/Map'
@@ -157,7 +158,9 @@ const App = () => {
 							<SectionWrapper key='whiteboard'>
 								<Whiteboard />
 							</SectionWrapper>
-							<SectionWrapper key='images'>Images</SectionWrapper>
+							<SectionWrapper key='images'>
+								<Images />
+							</SectionWrapper>
 						</ReactGridLayout>
 					</TabPanel>
 				</Tabs>
