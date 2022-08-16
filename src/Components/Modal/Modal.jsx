@@ -23,6 +23,8 @@ const Modal = (
 	const ModalContentRef = useRef()
 
 	const OnClickOutside = () => {
+		document.body.style.overflow = 'unset'
+
 		if (overrideOpen) {
 			onClose()
 
@@ -36,9 +38,13 @@ const Modal = (
 
 	useImperativeHandle(ref, () => ({
 		Open() {
+			document.body.style.overflow = 'hidden'
+
 			SetIsOpen(true)
 		},
 		Close() {
+			document.body.style.overflow = 'unset'
+
 			SetIsOpen(false)
 		},
 	}))
