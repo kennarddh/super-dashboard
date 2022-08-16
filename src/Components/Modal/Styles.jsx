@@ -1,19 +1,17 @@
 import styled from 'styled-components'
 
-import GetDocumentVerticalCenter from 'Utils/GetDocumentVerticalCenter'
-
 export const ModalContainer = styled.div`
 	background-color: ${({ backgroundColor }) => backgroundColor};
 
 	position: absolute;
-	top: 0;
+	top: ${() => window.scrollY}px;
 	left: 0;
 	right: 0;
-
-	height: ${() => document.body.clientHeight}px;
+	bottom: ${() => window.scrollY * -1}px;
 
 	display: flex;
 	justify-content: center;
+	align-items: center;
 `
 
 ModalContainer.defaultProps = {
@@ -21,15 +19,11 @@ ModalContainer.defaultProps = {
 }
 
 export const ModalContent = styled.div`
-	--height: ${({ height }) =>
-		typeof padding === 'number' ? `${height}px` : height};
-
-	--margin-top-center: ${() => GetDocumentVerticalCenter()}px;
-
 	width: ${({ width }) =>
 		typeof padding === 'number' ? `${width}px` : width};
 
-	height: var(--height);
+	height: ${({ height }) =>
+		typeof padding === 'number' ? `${height}px` : height};
 
 	background-color: ${({ backgroundColor }) => backgroundColor};
 
@@ -41,8 +35,6 @@ export const ModalContent = styled.div`
 
 	margin: ${({ margin }) =>
 		typeof margin === 'number' ? `${margin}px` : margin};
-
-	margin-top: calc(var(--margin-top-center) - (var(--height) / 2));
 
 	border-radius: ${({ radius }) =>
 		typeof radius === 'number' ? `${radius}px` : radius};
