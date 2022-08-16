@@ -4,7 +4,11 @@ export const ModalContainer = styled.div`
 	background-color: ${({ backgroundColor }) => backgroundColor};
 
 	position: absolute;
-	inset: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+
+	height: ${() => document.body.clientHeight}px;
 
 	display: flex;
 	justify-content: center;
