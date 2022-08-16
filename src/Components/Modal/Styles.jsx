@@ -4,7 +4,10 @@ export const ModalContainer = styled.div`
 	background-color: ${({ backgroundColor }) => backgroundColor};
 
 	position: absolute;
-	inset: 0;
+	top: ${() => window.scrollY}px;
+	left: 0;
+	right: 0;
+	bottom: ${() => window.scrollY * -1}px;
 
 	display: flex;
 	justify-content: center;
