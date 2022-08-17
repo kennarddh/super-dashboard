@@ -31,11 +31,15 @@ const Modal = (
 		SetImagePreviewBase64(data.image)
 	}, [getUserDataById, selectedUserId])
 
-	const HideModal = () => {
+	const OnClose = () => {
 		SetNameValue('')
 		SetPhoneValue('')
 		SetAddressValue('')
 		SetImagePreviewBase64('')
+	}
+
+	const HideModal = () => {
+		OnClose()
 
 		Close()
 	}
@@ -87,6 +91,7 @@ const Modal = (
 				height: '80%',
 				width: '50%',
 			}}
+			onClose={OnClose}
 		>
 			<h3>Add user</h3>
 			<ImagePreview
@@ -156,7 +161,7 @@ const Modal = (
 					padding='5px 20px'
 					backgroundColor='#ff0000'
 					type='button'
-					onClick={Close}
+					onClick={HideModal}
 				>
 					Close
 				</RectangleButton>
