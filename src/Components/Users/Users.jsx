@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useMemo, useState, useRef } from 'react'
 
 import { v4 as uuidv4 } from 'uuid'
 
@@ -47,15 +47,13 @@ const Users = () => {
 		'users_data'
 	)
 
-	const [UsersPreview, SetUsersPreview] = useState({})
-
 	const [SearchValue, SetSearchValue] = useState('')
 
 	const [SelectedUserId, SetSelectedUserId] = useState()
 
 	const ModalRef = useRef()
 
-	useEffect(() => {
+	const UsersPreview = useMemo(() => {
 		const usersEntries = Object.entries(UsersList)
 
 		const filtered = usersEntries.filter(user =>
@@ -81,7 +79,7 @@ const Users = () => {
 			return acc
 		}, {})
 
-		SetUsersPreview(grouped)
+		return grouped
 	}, [SearchValue, UsersList])
 
 	const ShowUserModal = () => {
