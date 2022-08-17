@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react'
 import OffsetToHourAndMinute from 'Utils/OffsetToHourAndMinute'
 import HourAndMinuteToUTCString from 'Utils/HourAndMinuteToUTCString'
 
+import SetImmediateInterval from 'Utils/SetImmediateInterval'
+
 import {
 	Container,
 	HandContainer,
@@ -25,7 +27,7 @@ const Single = ({ offset, showRemoveModal }) => {
 				10 * 1000 * 60 * 60
 		)
 
-		const intervalId = setInterval(() => {
+		const intervalId = SetImmediateInterval(() => {
 			SetTime(time => {
 				let newDate = date
 
