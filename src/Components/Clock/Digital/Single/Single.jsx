@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import OffsetToHourAndMinute from 'Utils/OffsetToHourAndMinute'
 import HourAndMinuteToUTCString from 'Utils/HourAndMinuteToUTCString'
+import SetImmediateInterval from 'Utils/SetImmediateInterval'
 
 import { TimeContainer, TimeText, TimeTextSeparator } from './Styles'
 
@@ -18,12 +19,12 @@ const Single = ({ offset, showRemoveModal }) => {
 				10 * 1000 * 60 * 60
 		)
 
-		const intervalId = setInterval(() => {
+		const intervalId = SetImmediateInterval(() => {
 			SetTime(time => {
 				let newDate = date
 
 				if (time?.date) {
-					newDate = new Date(time.date.getTime() + 1 * 1000 + 1)
+					newDate = new Date(time.date.getTime() + 1 * 1000)
 				}
 
 				return {
