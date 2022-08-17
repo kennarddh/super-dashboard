@@ -25,11 +25,9 @@ const Modal = (
 	const OnClickOutside = () => {
 		document.body.style.overflow = 'unset'
 
-		if (overrideOpen) {
-			onClose()
+		if (onClose) onClose()
 
-			return
-		}
+		if (overrideOpen) return
 
 		SetIsOpen(false)
 	}
