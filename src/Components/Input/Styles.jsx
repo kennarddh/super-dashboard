@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 
 export const Input = styled.input`
-	width: 70%;
-	height: 40%;
+	width: ${({ width }) =>
+		typeof padding === 'number' ? `${width}px` : width};
+
+	height: ${({ height }) =>
+		typeof padding === 'number' ? `${height}px` : height};
+
 	border-radius: 15px;
 	padding: 10px 20px;
 
@@ -26,3 +30,8 @@ export const Input = styled.input`
 		height: 100%;
 	}
 `
+
+Input.defaultProps = {
+	width: '70%',
+	height: '40%',
+}
