@@ -71,7 +71,7 @@ const CurrencyConverter = () => {
 						value={Input}
 						onChange={OnChangeInput}
 						height='100%'
-						width='50%'
+						width='55%'
 					/>
 				</RowContainer>
 				<RowContainer>
@@ -92,7 +92,7 @@ const CurrencyConverter = () => {
 						value={Output}
 						height='100%'
 						disabled
-						width='50%'
+						width='55%'
 					/>
 				</RowContainer>
 				<RectangleButton
