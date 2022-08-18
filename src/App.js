@@ -19,6 +19,7 @@ import Weather from 'Components/Weather/Weather'
 import Map from 'Components/Map/Map'
 import News from 'Components/News/News'
 import Users from 'Components/Users/Users'
+import CurrencyConverter from 'Components/CurrencyConverter/CurrencyConverter'
 
 import { SectionWrapper } from './Styles'
 
@@ -139,6 +140,14 @@ const App = () => {
 									static: true,
 								},
 								{ i: 'images', x: 0, y: 8, w: 8, h: 4 },
+								{
+									i: 'currencyConverter',
+									x: 8,
+									y: 0,
+									w: 4,
+									h: 6,
+									static: true,
+								},
 							]}
 							className='layout'
 							items={1}
@@ -160,6 +169,9 @@ const App = () => {
 							</SectionWrapper>
 							<SectionWrapper key='images'>
 								<Images />
+							</SectionWrapper>
+							<SectionWrapper key='currencyConverter'>
+								<CurrencyConverter />
 							</SectionWrapper>
 						</ReactGridLayout>
 					</TabPanel>
