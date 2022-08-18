@@ -1,4 +1,4 @@
-const SupportedCountry = [
+const SupportedCurrency = [
 	'AED',
 	'AFN',
 	'ALL',
@@ -170,4 +170,4 @@ const SupportedCountry = [
 	'ZWL',
 ]
 
-export default SupportedCountry
+export default SupportedCurrency
