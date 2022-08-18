@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 
-import Input from 'Components/Input/Input'
+import InputComponent from 'Components/Input/Input'
 
 import CurrencyCodeToCurrencyName from 'Constants/Country/CurrencyCodeToCurrencyName'
 import SupportedCurrency from 'Constants/CurrencyConverter/SupportedCurrency'
@@ -21,11 +21,22 @@ const CurrencyConverter = () => {
 		)
 	}, [])
 
+	const [Input, SetInput] = useState('')
+	const [Output, SetOutput] = useState('')
+
+	const OnChangeInput = event => {
+		SetInput(event.target.value)
+	}
+
+	const OnChangeOutput = event => {
+		SetOutput(event.target.value)
+	}
+
 	return (
 		<OuterContainer>
 			<Container>
 				<RowContainer>
-					<Select>
+					<Select value={Input} onChange={OnChangeInput}>
 						<option value=''>Input</option>
 						{Iso3ToCountryNameSupportedCountry.map(
 							([iso3, name]) => (
@@ -35,10 +46,10 @@ const CurrencyConverter = () => {
 							)
 						)}
 					</Select>
-					<Input height='100%' width='50%' />
+					<InputComponent height='100%' width='50%' />
 				</RowContainer>
 				<RowContainer>
-					<Select>
+					<Select value={Output} onChange={OnChangeOutput}>
 						<option value=''>Output</option>
 						{Iso3ToCountryNameSupportedCountry.map(
 							([iso3, name]) => (
@@ -48,7 +59,7 @@ const CurrencyConverter = () => {
 							)
 						)}
 					</Select>
-					<Input height='100%' disabled width='50%' />
+					<InputComponent height='100%' disabled width='50%' />
 				</RowContainer>
 			</Container>
 		</OuterContainer>
