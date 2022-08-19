@@ -79,7 +79,11 @@ const Users = () => {
 			return acc
 		}, {})
 
-		return grouped
+		const sorted = Object.entries(grouped).sort(([a], [b]) =>
+			a.localeCompare(b)
+		)
+
+		return Object.fromEntries(sorted)
 	}, [SearchValue, UsersList])
 
 	const ShowUserModal = () => {
