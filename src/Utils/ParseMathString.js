@@ -1,7 +1,21 @@
+const parseExponentiation = expression => {
+	const numbersString = expression.split('^')
+
+	const numbers = numbersString.map(noStr => parseFloat(noStr, 10))
+
+	numbers.reverse()
+
+	const initialValue = numbers[0]
+
+	const result = numbers.slice(1).reduce((acc, no) => no ** acc, initialValue)
+
+	return result
+}
+
 const parseMultiplication = expression => {
 	const numbersString = expression.split('*')
 
-	const numbers = numbersString.map(noStr => parseFloat(noStr, 10))
+	const numbers = numbersString.map(parseExponentiation)
 
 	const initialValue = 1.0
 
@@ -47,5 +61,7 @@ const parsePlus = expression => {
 }
 
 const ParseMathString = expression => parsePlus(expression)
+
+console.log(ParseMathString('4 ^ 3 ^ 2'))
 
 export default ParseMathString
