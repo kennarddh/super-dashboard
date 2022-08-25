@@ -24,7 +24,11 @@ const Calculator = () => {
 
 	const InversePlusMinus = () => {}
 
-	const NewOperator = value => {}
+	const NewOperator = value => {
+		SetExpression(prev => `${prev} ${CurrentNumber} ${value}`)
+
+		SetCurrentNumber('0')
+	}
 
 	const Equal = () => {}
 
@@ -40,8 +44,7 @@ const Calculator = () => {
 			<Container>
 				<Display>
 					<p>
-						{Expression}
-						{CurrentNumber}
+						{Expression} {CurrentNumber}
 					</p>
 					<p>{CurrentNumber}</p>
 				</Display>
