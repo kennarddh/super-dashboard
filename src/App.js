@@ -20,6 +20,7 @@ import Map from 'Components/Map/Map'
 import News from 'Components/News/News'
 import Users from 'Components/Users/Users'
 import CurrencyConverter from 'Components/CurrencyConverter/CurrencyConverter'
+import Calculator from 'Components/Calculator/Calculator'
 
 import { SectionWrapper } from './Styles'
 
@@ -34,6 +35,7 @@ const App = () => {
 						<Tab>Page 1</Tab>
 						<Tab>Page 2</Tab>
 						<Tab>Page 3</Tab>
+						<Tab>Page 4</Tab>
 					</TabList>
 
 					<TabPanel>
@@ -172,6 +174,39 @@ const App = () => {
 							</SectionWrapper>
 							<SectionWrapper key='currencyConverter'>
 								<CurrencyConverter />
+							</SectionWrapper>
+						</ReactGridLayout>
+					</TabPanel>
+
+					<TabPanel>
+						<ReactGridLayout
+							layout={[
+								{
+									i: 'calculator',
+									x: 8,
+									y: 0,
+									w: 4,
+									h: 8,
+									static: true,
+								},
+							]}
+							className='layout'
+							items={1}
+							rowHeight={41}
+							cols={12}
+							resizeHandles={[
+								's',
+								'w',
+								'e',
+								'n',
+								'sw',
+								'nw',
+								'se',
+								'ne',
+							]}
+						>
+							<SectionWrapper key='calculator'>
+								<Calculator />
 							</SectionWrapper>
 						</ReactGridLayout>
 					</TabPanel>
