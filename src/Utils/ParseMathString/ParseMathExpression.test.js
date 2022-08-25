@@ -21,6 +21,7 @@ describe('ParseMathExpression', () => {
 			expression: '10 * (10 + (10 / 100 )) + (10 * (10 - 20))',
 			expected: 1,
 		},
+		{ expression: '(-1) + (-10) * 3 / (-4)', expected: 6.5 },
 	])(
 		'Should success, Expression: $expression, expected: $expected',
 		({ expression, expected }) => {
