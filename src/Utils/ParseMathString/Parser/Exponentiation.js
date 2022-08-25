@@ -6,13 +6,15 @@ const Exponentiation = expression => {
 	const numbersString = SplitParentheses(expression, '^')
 
 	const numbers = numbersString.map(noStr => {
-		if (noStr[0] == '(') {
-			const expr = noStr.substring(1, noStr.length - 2)
+		const trimed = noStr.trim()
+
+		if (trimed[0] == '(') {
+			const expr = trimed.substring(1, trimed.length - 1)
 
 			return ParsePlus(expr)
 		}
 
-		return ParseNumber(noStr)
+		return ParseNumber(trimed)
 	})
 
 	numbers.reverse()
