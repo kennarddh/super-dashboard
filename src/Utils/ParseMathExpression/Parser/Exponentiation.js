@@ -1,6 +1,6 @@
-import SplitParentheses from 'Utils/ParseMathString/SplitParentheses'
-import ParseNumber from 'Utils/ParseMathString/ParseNumber'
-import ParsePlus from 'Utils/ParseMathString/Parser/Plus'
+import SplitParentheses from 'Utils/ParseMathExpression/SplitParentheses'
+import ParseNumber from 'Utils/ParseMathExpression/ParseNumber'
+import ParsePlus from 'Utils/ParseMathExpression/Parser/Plus'
 
 const Exponentiation = expression => {
 	const numbersString = SplitParentheses(expression, '^')

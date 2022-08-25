@@ -1,4 +1,4 @@
-import ParsePlus from 'Utils/ParseMathString/Parser/Plus'
+import ParsePlus from 'Utils/ParseMathExpression/Parser/Plus'
 
 const ParseMathExpression = expression => {
 	const minusSplitedExpression = expression.replaceAll(

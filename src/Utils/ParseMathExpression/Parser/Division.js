@@ -1,5 +1,5 @@
-import SplitParentheses from 'Utils/ParseMathString/SplitParentheses'
-import ParseMultiplication from 'Utils/ParseMathString/Parser/Multiplication'
+import SplitParentheses from 'Utils/ParseMathExpression/SplitParentheses'
+import ParseMultiplication from 'Utils/ParseMathExpression/Parser/Multiplication'
 
 const Division = expression => {
 	const numbersString = SplitParentheses(expression, '/')

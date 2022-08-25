@@ -1,5 +1,5 @@
-import SplitParentheses from 'Utils/ParseMathString/SplitParentheses'
-import ParseExponentiation from 'Utils/ParseMathString/Parser/Exponentiation'
+import SplitParentheses from 'Utils/ParseMathExpression/SplitParentheses'
+import ParseExponentiation from 'Utils/ParseMathExpression/Parser/Exponentiation'
 
 const Multiplication = expression => {
 	const numbersString = SplitParentheses(expression, '*')

@@ -1,5 +1,5 @@
-import SplitParentheses from 'Utils/ParseMathString/SplitParentheses'
-import ParseMinus from 'Utils/ParseMathString/Parser/Minus'
+import SplitParentheses from 'Utils/ParseMathExpression/SplitParentheses'
+import ParseMinus from 'Utils/ParseMathExpression/Parser/Minus'
 
 const Plus = expression => {
 	const numbersString = SplitParentheses(expression, '+')
