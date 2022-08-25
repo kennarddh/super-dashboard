@@ -1,6 +1,6 @@
-import ParseMathString from './ParseMathString'
+import ParseMathExpression from './ParseMathExpression'
 
-describe('ParseMathString', () => {
+describe('ParseMathExpression', () => {
 	it.each([
 		{ expresion: '10+20', expected: 30 },
 		{ expresion: '(10+10*10)^2', expected: 12100 },
@@ -25,7 +25,7 @@ describe('ParseMathString', () => {
 		({ expresion, expected }) => {
 			expect.assertions(1)
 
-			expect(ParseMathString(expresion)).toBe(expected)
+			expect(ParseMathExpression(expresion)).toBe(expected)
 		}
 	)
 })
