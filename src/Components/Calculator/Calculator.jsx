@@ -22,7 +22,9 @@ const Calculator = () => {
 		})
 	}
 
-	const InversePlusMinus = () => {}
+	const InversePlusMinus = () => {
+		SetCurrentNumber(prev => (parseFloat(prev, 10) * -1).toString())
+	}
 
 	const NewOperator = value => {
 		const currentNumber =
