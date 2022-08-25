@@ -32,7 +32,14 @@ const Calculator = () => {
 				? CurrentNumber.slice(0, CurrentNumber.length - 1)
 				: CurrentNumber
 
-		SetExpression(prev => `${prev} ${currentNumber} ${value}`)
+		const isMinus = currentNumber.slice(0, 1) === '-'
+
+		SetExpression(
+			prev =>
+				`${prev} ${
+					isMinus ? `(${currentNumber})` : currentNumber
+				} ${value}`
+		)
 
 		SetCurrentNumber('0')
 	}
