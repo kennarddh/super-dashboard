@@ -12,12 +12,39 @@ import {
 
 const Calculator = () => {
 	const [Expression, SetExpression] = useState('')
-	const [CurrentNumber, SetCurrentNumber] = useState(0)
+	const [CurrentNumber, SetCurrentNumber] = useState('0')
+
+	const NewNumber = value => {
+		SetCurrentNumber(prev => {
+			if (prev === '0') return value.toString()
+
+			return prev + value
+		})
+	}
+
+	const InversePlusMinus = () => {}
+
+	const NewOperator = value => {}
+
+	const Equal = () => {}
+
+	const Dot = () => {}
+
+	const Clear = () => {
+		SetExpression('')
+		SetCurrentNumber(0)
+	}
 
 	return (
 		<OuterContainer>
 			<Container>
-				<Display>{CurrentInput}</Display>
+				<Display>
+					<p>
+						{Expression}
+						{CurrentNumber}
+					</p>
+					<p>{CurrentNumber}</p>
+				</Display>
 				<ButtonOuterContainer>
 					<ButtonContainer col={3}>
 						<Button onClick={() => NewNumber(7)}>7</Button>
