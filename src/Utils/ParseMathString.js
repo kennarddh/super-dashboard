@@ -40,7 +40,11 @@ const parseExponentiation = expression => {
 			return parsePlus(expr)
 		}
 
-		return parseFloat(noStr, 10)
+		const isMinus = noStr.trim().slice(0, 5) === 'minus'
+
+		return isMinus
+			? parseFloat(noStr.trim().slice(6, noStr.length - 1), 10) * -1
+			: parseFloat(noStr, 10)
 	})
 
 	numbers.reverse()
@@ -101,6 +105,11 @@ const parsePlus = expression => {
 }
 
 const ParseMathString = expression => {
+	const minusSplitedExpression = expression.replaceAll(
+		/\(-\d\)/g,
+		numberString => `minus_${numberString.slice(2).slice(0, -1)}`
+	)
+
 	const operators = ['-', '+', '*', '/', '^']
 
 	const newExpression = operators.reduce(
@@ -109,12 +118,10 @@ const ParseMathString = expression => {
 				.split(operator)
 				.map(str => str.trim())
 				.join(` ${operator} `),
-		expression
+		minusSplitedExpression
 	)
 
 	return parsePlus(newExpression)
 }
 
-console.log(ParseMathString('(2^3)^3'))
-
-// export default ParseMathString
+export default ParseMathString
