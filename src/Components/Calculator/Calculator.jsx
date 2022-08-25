@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 
 import {
 	OuterContainer,
@@ -57,13 +57,22 @@ const Calculator = () => {
 		SetCurrentNumber(0)
 	}
 
+	const Preview = useMemo(() => {
+		const currentNumber =
+			CurrentNumber.slice(-1) === '.'
+				? CurrentNumber.slice(0, CurrentNumber.length - 1)
+				: CurrentNumber
+
+		const isMinus = currentNumber.slice(0, 1) === '-'
+
+		return `${Expression} ${isMinus ? `(${currentNumber})` : currentNumber}`
+	}, [CurrentNumber, Expression])
+
 	return (
 		<OuterContainer>
 			<Container>
 				<Display>
-					<p>
-						{Expression} {CurrentNumber}
-					</p>
+					<p>{Preview}</p>
 					<p>{CurrentNumber}</p>
 				</Display>
 				<ButtonOuterContainer>
