@@ -2,7 +2,7 @@ import ParsePlus from 'Utils/ParseMathString/Parser/Plus'
 
 const ParseMathString = expression => {
 	const minusSplitedExpression = expression.replaceAll(
-		/\(-\d\)/g,
+		/\(-\d+\)/g,
 		numberString => `minus_${numberString.slice(2).slice(0, -1)}`
 	)
 
