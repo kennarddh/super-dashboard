@@ -25,14 +25,23 @@ const Calculator = () => {
 	const InversePlusMinus = () => {}
 
 	const NewOperator = value => {
-		SetExpression(prev => `${prev} ${CurrentNumber} ${value}`)
+		const currentNumber =
+			CurrentNumber.slice(-1) === '.'
+				? CurrentNumber.slice(0, CurrentNumber.length - 1)
+				: CurrentNumber
+
+		SetExpression(prev => `${prev} ${currentNumber} ${value}`)
 
 		SetCurrentNumber('0')
 	}
 
 	const Equal = () => {}
 
-	const Dot = () => {}
+	const Dot = () => {
+		if (CurrentNumber.includes('.')) return
+
+		SetCurrentNumber(prev => `${prev}.`)
+	}
 
 	const Clear = () => {
 		SetExpression('')
