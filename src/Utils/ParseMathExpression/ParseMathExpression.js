@@ -4,7 +4,7 @@ import FormatExpression from 'Utils/ParseMathExpression/FormatExpression'
 import ParseMathSymbols from 'Utils/ParseMathExpression/Parser/MathSymbols'
 
 const ParseMathExpression = expression => {
-	const operators = ['-', '+', '*', '/', '^']
+	const operators = ['-', '+', '*', '/', '^', '%']
 
 	const minusSplitedExpression = ReplaceMinus(expression)
 

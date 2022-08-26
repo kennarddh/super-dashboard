@@ -1,10 +1,10 @@
 import SplitParentheses from 'Utils/ParseMathExpression/SplitParentheses'
-import ParseExponentiation from 'Utils/ParseMathExpression/Parser/Exponentiation'
+import ParseRemainder from 'Utils/ParseMathExpression/Parser/Remainder'
 
 const Multiplication = expression => {
 	const numbersString = SplitParentheses(expression, '*')
 
-	const numbers = numbersString.map(ParseExponentiation)
+	const numbers = numbersString.map(ParseRemainder)
 
 	const initialValue = 1.0
 
