@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react'
 
 import ParseMathExpression from 'Utils/ParseMathExpression/ParseMathExpression'
+import PreviewMathSymbols from 'Utils/ParseMathExpression/PreviewMathSymbols'
 
 import {
 	OuterContainer,
@@ -87,7 +88,9 @@ const Calculator = () => {
 
 		const isMinus = currentNumber.slice(0, 1) === '-'
 
-		return `${Expression} ${isMinus ? `(${currentNumber})` : currentNumber}`
+		return PreviewMathSymbols(
+			`${Expression} ${isMinus ? `(${currentNumber})` : currentNumber}`
+		)
 	}, [CurrentNumber, Expression])
 
 	return (
