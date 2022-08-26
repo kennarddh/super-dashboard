@@ -22,6 +22,7 @@ const Calculator = () => {
 			if (prev === 'Infinity') return value.toString()
 			if (prev === '0') return value.toString()
 			if (prev === 'pi') return prev
+			if (value === 'pi' && prev !== '') return prev
 
 			return prev + value
 		})
