@@ -21,7 +21,7 @@ const Calculator = () => {
 
 	const NewNumber = value => {
 		SetCurrentNumber(prev => {
-			if (prev === '') return
+			if (prev === '') return prev
 			if (prev === 'Infinity') return value.toString()
 			if (prev === '0') return value.toString()
 			if (prev === 'pi') return prev
