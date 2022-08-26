@@ -82,6 +82,7 @@ const Calculator = () => {
 	const Clear = () => {
 		SetExpression('')
 		SetCurrentNumber('0')
+		SetUnclosedParentheses(0)
 	}
 
 	const OpenParenthesis = () => {
