@@ -10,8 +10,8 @@ import {
 	Button,
 	ButtonContainer,
 	ButtonOuterContainer,
-	Empty,
 	UnclosedParenthesesStyle,
+	// Empty,
 } from './Styles'
 
 const Calculator = () => {
@@ -177,7 +177,7 @@ const Calculator = () => {
 						<Button onClick={OpenParenthesis}>(</Button>
 						<Button onClick={CloseParenthesis}>)</Button>
 						<Button onClick={() => NewNumber('e')}>e</Button>
-						<Empty />
+						<Button onClick={() => NewOperator('%')}>%</Button>
 					</ButtonContainer>
 				</ButtonOuterContainer>
 			</Container>
