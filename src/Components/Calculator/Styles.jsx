@@ -62,3 +62,7 @@ export const Empty = styled.div`
 	width: 50px;
 	height: 50px;
 `
+
+export const UnclosedParenthesesStyle = styled.span`
+	opacity: 0.5;
+`

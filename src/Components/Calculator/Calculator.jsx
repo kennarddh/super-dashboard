@@ -10,15 +10,18 @@ import {
 	Button,
 	ButtonContainer,
 	ButtonOuterContainer,
-	// Empty,
+	Empty,
+	UnclosedParenthesesStyle,
 } from './Styles'
 
 const Calculator = () => {
 	const [Expression, SetExpression] = useState('')
 	const [CurrentNumber, SetCurrentNumber] = useState('0')
+	const [UnclosedParentheses, SetUnclosedParentheses] = useState(0)
 
 	const NewNumber = value => {
 		SetCurrentNumber(prev => {
+			if (prev === '') return
 			if (prev === 'Infinity') return value.toString()
 			if (prev === '0') return value.toString()
 			if (prev === 'pi') return prev
@@ -81,6 +84,32 @@ const Calculator = () => {
 		SetCurrentNumber('0')
 	}
 
+	const OpenParenthesis = () => {
+		SetExpression(prev => {
+			return `${prev} (`
+		})
+
+		SetUnclosedParentheses(prev => prev + 1)
+	}
+
+	const CloseParenthesis = () => {
+		const currentNumber =
+			CurrentNumber.slice(-1) === '.'
+				? CurrentNumber.slice(0, CurrentNumber.length - 1)
+				: CurrentNumber
+
+		const isMinus = currentNumber.slice(0, 1) === '-'
+
+		SetExpression(
+			prev =>
+				`${prev} ${isMinus ? `(${currentNumber})` : currentNumber} )`
+		)
+
+		SetCurrentNumber('')
+
+		SetUnclosedParentheses(prev => prev - 1)
+	}
+
 	const Preview = useMemo(() => {
 		const currentNumber =
 			CurrentNumber.slice(-1) === '.'
@@ -98,7 +127,14 @@ const Calculator = () => {
 		<OuterContainer>
 			<Container>
 				<Display>
-					<p>{Preview}</p>
+					<p>
+						{Preview}
+						<UnclosedParenthesesStyle>
+							{UnclosedParentheses
+								? Array(UnclosedParentheses).fill(')').join('')
+								: ''}
+						</UnclosedParenthesesStyle>
+					</p>
 					<p>{CurrentNumber}</p>
 				</Display>
 				<ButtonOuterContainer>
@@ -129,6 +165,12 @@ const Calculator = () => {
 							±
 						</Button>
 						<Button onClick={() => NewNumber('pi')}>π</Button>
+					</ButtonContainer>
+					<ButtonContainer col={1}>
+						<Button onClick={OpenParenthesis}>(</Button>
+						<Button onClick={CloseParenthesis}>)</Button>
+						<Empty />
+						<Empty />
 					</ButtonContainer>
 				</ButtonOuterContainer>
 			</Container>
