@@ -18,6 +18,7 @@ const Calculator = () => {
 
 	const NewNumber = value => {
 		SetCurrentNumber(prev => {
+			if (prev === 'Infinity') return value.toString()
 			if (prev === '0') return value.toString()
 
 			return prev + value
@@ -29,6 +30,8 @@ const Calculator = () => {
 	}
 
 	const NewOperator = value => {
+		if (CurrentNumber === 'Infinity') return
+
 		const currentNumber =
 			CurrentNumber.slice(-1) === '.'
 				? CurrentNumber.slice(0, CurrentNumber.length - 1)
