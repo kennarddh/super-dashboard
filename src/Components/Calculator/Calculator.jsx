@@ -72,7 +72,7 @@ const Calculator = () => {
 
 	const Clear = () => {
 		SetExpression('')
-		SetCurrentNumber(0)
+		SetCurrentNumber('0')
 	}
 
 	const Preview = useMemo(() => {
