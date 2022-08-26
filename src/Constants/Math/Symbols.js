@@ -1,3 +1,3 @@
 export default {
-	pi: 'π',
+	pi: { symbol: 'π', value: () => Math.PI },
 }
