@@ -22,6 +22,8 @@ describe('ParseMathExpression', () => {
 			expected: 1,
 		},
 		{ expression: '(-1) + (-10) * 3 / (-4)', expected: 6.5 },
+		{ expression: 'pi * 10', expected: 31.41592653589793 },
+		{ expression: 'pi * 10 ^ 2', expected: 314.1592653589793 },
 	])(
 		'Should success, Expression: $expression, expected: $expected',
 		({ expression, expected }) => {
