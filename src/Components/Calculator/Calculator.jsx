@@ -9,7 +9,7 @@ import {
 	Button,
 	ButtonContainer,
 	ButtonOuterContainer,
-	Empty,
+	// Empty,
 } from './Styles'
 
 const Calculator = () => {
@@ -20,6 +20,7 @@ const Calculator = () => {
 		SetCurrentNumber(prev => {
 			if (prev === 'Infinity') return value.toString()
 			if (prev === '0') return value.toString()
+			if (prev === 'pi') return prev
 
 			return prev + value
 		})
@@ -123,7 +124,7 @@ const Calculator = () => {
 						<Button onClick={() => InversePlusMinus('plusminus')}>
 							±
 						</Button>
-						<Empty></Empty>
+						<Button onClick={() => NewNumber('pi')}>π</Button>
 					</ButtonContainer>
 				</ButtonOuterContainer>
 			</Container>
