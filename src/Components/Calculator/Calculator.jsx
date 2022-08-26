@@ -26,6 +26,8 @@ const Calculator = () => {
 			if (prev === '0') return value.toString()
 			if (prev === 'pi') return prev
 			if (value === 'pi' && prev !== '') return prev
+			if (prev === 'e') return prev
+			if (value === 'e' && prev !== '') return prev
 
 			return prev + value
 		})
@@ -174,7 +176,7 @@ const Calculator = () => {
 					<ButtonContainer col={1}>
 						<Button onClick={OpenParenthesis}>(</Button>
 						<Button onClick={CloseParenthesis}>)</Button>
-						<Empty />
+						<Button onClick={() => NewNumber('e')}>e</Button>
 						<Empty />
 					</ButtonContainer>
 				</ButtonOuterContainer>
