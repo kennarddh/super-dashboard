@@ -133,7 +133,7 @@ const Calculator = () => {
 			<Container>
 				<Display>
 					<p>
-						{Preview}
+						{Preview}{' '}
 						<UnclosedParenthesesStyle>
 							{UnclosedParentheses
 								? Array(UnclosedParentheses).fill(')').join('')
