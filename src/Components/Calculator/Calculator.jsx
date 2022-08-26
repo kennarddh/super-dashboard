@@ -56,6 +56,8 @@ const Calculator = () => {
 	}
 
 	const Equal = () => {
+		if (UnclosedParentheses > 0) return
+
 		const currentNumber =
 			CurrentNumber.slice(-1) === '.'
 				? CurrentNumber.slice(0, CurrentNumber.length - 1)
