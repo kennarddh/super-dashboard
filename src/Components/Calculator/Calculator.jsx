@@ -1,5 +1,7 @@
 import React, { useState, useMemo } from 'react'
 
+import ParseMathExpression from 'Utils/ParseMathExpression/ParseMathExpression'
+
 import {
 	OuterContainer,
 	Container,
@@ -44,7 +46,23 @@ const Calculator = () => {
 		SetCurrentNumber('0')
 	}
 
-	const Equal = () => {}
+	const Equal = () => {
+		const currentNumber =
+			CurrentNumber.slice(-1) === '.'
+				? CurrentNumber.slice(0, CurrentNumber.length - 1)
+				: CurrentNumber
+
+		const isMinus = currentNumber.slice(0, 1) === '-'
+
+		const expression = `${Expression} ${
+			isMinus ? `(${currentNumber})` : currentNumber
+		}`
+
+		const result = ParseMathExpression(expression)
+
+		SetExpression('')
+		SetCurrentNumber(result.toString())
+	}
 
 	const Dot = () => {
 		if (CurrentNumber.includes('.')) return
