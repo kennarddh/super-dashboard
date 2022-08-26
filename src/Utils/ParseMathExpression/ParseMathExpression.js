@@ -1,13 +1,11 @@
 import ParsePlus from 'Utils/ParseMathExpression/Parser/Plus'
-import FormatExpression from './FormatExpression'
+import ReplaceMinus from 'Utils/ParseMathExpression/ReplaceMinus'
+import FormatExpression from 'Utils/ParseMathExpression/FormatExpression'
 
 const ParseMathExpression = expression => {
-	const minusSplitedExpression = expression.replaceAll(
-		/\(-\d+\)/g,
-		numberString => `minus_${numberString.slice(2).slice(0, -1)}`
-	)
-
 	const operators = ['-', '+', '*', '/', '^']
+
+	const minusSplitedExpression = ReplaceMinus(expression)
 
 	const formatted = FormatExpression(minusSplitedExpression, operators)
 
