@@ -1,4 +1,5 @@
 import ParsePlus from 'Utils/ParseMathExpression/Parser/Plus'
+import FormatExpression from './FormatExpression'
 
 const ParseMathExpression = expression => {
 	const minusSplitedExpression = expression.replaceAll(
@@ -8,16 +9,9 @@ const ParseMathExpression = expression => {
 
 	const operators = ['-', '+', '*', '/', '^']
 
-	const newExpression = operators.reduce(
-		(acc, operator) =>
-			acc
-				.split(operator)
-				.map(str => str.trim())
-				.join(` ${operator} `),
-		minusSplitedExpression
-	)
+	const formatted = FormatExpression(minusSplitedExpression, operators)
 
-	return ParsePlus(newExpression)
+	return ParsePlus(formatted)
 }
 
 export default ParseMathExpression
