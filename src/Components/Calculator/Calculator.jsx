@@ -151,8 +151,19 @@ const Calculator = () => {
 		if (CurrentNumber === 'Infinity') return
 		if (CurrentNumber === 'Error') return
 		if (CurrentNumber.startsWith('square_root_')) return
+		if (CurrentNumber.startsWith('cube_root_')) return
 
 		SetCurrentNumber(prev => `square_root_${prev}`)
+	}
+
+	const CubeRoot = () => {
+		if (CurrentNumber === '') return
+		if (CurrentNumber === 'Infinity') return
+		if (CurrentNumber === 'Error') return
+		if (CurrentNumber.startsWith('square_root_')) return
+		if (CurrentNumber.startsWith('cube_root_')) return
+
+		SetCurrentNumber(prev => `cube_root_${prev}`)
 	}
 
 	const Preview = useMemo(() => {
@@ -220,7 +231,7 @@ const Calculator = () => {
 					<ButtonContainer col={1}>
 						<Button onClick={Factorial}>!</Button>
 						<Button onClick={SquareRoot}>√</Button>
-						<Empty />
+						<Button onClick={CubeRoot}>∛</Button>
 						<Empty />
 					</ButtonContainer>
 				</ButtonOuterContainer>
