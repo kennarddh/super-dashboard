@@ -21,15 +21,16 @@ const Calculator = () => {
 
 	const NewNumber = value => {
 		SetCurrentNumber(prev => {
-			if (prev.at(-1) === '!') return prev
+			// if (prev.at(-1) === '!') return prev
+			if (prev === '0') return value.toString()
 			if (prev === '') return prev
 			if (prev === 'Infinity') return value.toString()
 			if (prev === 'Error') return value.toString()
 
-			if (prev === '0' || prev.startsWith('square_root_0'))
+			if (prev === '0' && prev.startsWith('square_root_0'))
 				return `square_root_${value}`
 
-			if (prev === '0' || prev.startsWith('cube_root_0'))
+			if (prev === '0' && prev.startsWith('cube_root_0'))
 				return `cube_root_${value}`
 
 			if (prev === 'pi') return prev
