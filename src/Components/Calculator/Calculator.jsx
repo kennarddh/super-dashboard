@@ -50,6 +50,8 @@ const Calculator = () => {
 			if (prev.startsWith('cube_root_') && value === 'pi') return prev
 			if (prev.startsWith('square_root_') && value === 'e') return prev
 			if (prev.startsWith('cube_root_') && value === 'e') return prev
+			if (prev.startsWith('cube_root_0')) return `cube_root_${value}`
+			if (prev.startsWith('square_root_0')) return `square_root_${value}`
 
 			return prev + value
 		})
