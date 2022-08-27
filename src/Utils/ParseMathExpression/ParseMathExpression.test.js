@@ -36,6 +36,9 @@ describe('ParseMathExpression', () => {
 		{ expression: 'square_root_9', expected: 3 },
 		{ expression: 'square_root_100', expected: 10 },
 		{ expression: 'square_root_64', expected: 8 },
+		{ expression: 'cube_root_8', expected: 2 },
+		{ expression: 'cube_root_27', expected: 3 },
+		{ expression: 'cube_root_64', expected: 4 },
 	])(
 		'Should success, Expression: $expression, expected: $expected',
 		({ expression, expected }) => {
