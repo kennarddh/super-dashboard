@@ -22,7 +22,6 @@ const Calculator = () => {
 	const NewNumber = value => {
 		SetCurrentNumber(prev => {
 			if (prev.at(-1) === '!') return prev
-			if (prev.at(-12) === '_square_root') return prev
 			if (prev === '') return prev
 			if (prev === 'Infinity') return value.toString()
 			if (prev === 'Error') return value.toString()
