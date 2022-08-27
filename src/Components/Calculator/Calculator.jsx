@@ -108,6 +108,9 @@ const Calculator = () => {
 	}
 
 	const OpenParenthesis = () => {
+		if (CurrentNumber === 'Infinity') return
+		if (CurrentNumber === 'Error') return
+
 		SetExpression(prev => {
 			return `${prev} (`
 		})
