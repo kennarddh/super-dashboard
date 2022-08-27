@@ -2,6 +2,7 @@ import ParsePlus from 'Utils/ParseMathExpression/Parser/Plus'
 import ReplaceMinus from 'Utils/ParseMathExpression/ReplaceMinus'
 import FormatExpression from 'Utils/ParseMathExpression/FormatExpression'
 import ParseMathSymbols from 'Utils/ParseMathExpression/Parser/MathSymbols'
+import ParseFactorial from 'Utils/ParseMathExpression/Parser/Factorial'
 
 const ParseMathExpression = expression => {
 	const operators = ['-', '+', '*', '/', '^', '%']
@@ -12,7 +13,9 @@ const ParseMathExpression = expression => {
 
 	const symbolsParsed = ParseMathSymbols(formatted)
 
-	return ParsePlus(symbolsParsed)
+	const factorialParsed = ParseFactorial(symbolsParsed, operators)
+
+	return ParsePlus(factorialParsed)
 }
 
 export default ParseMathExpression
