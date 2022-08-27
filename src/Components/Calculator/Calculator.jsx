@@ -128,7 +128,7 @@ const Calculator = () => {
 	const SquareRoot = () => {
 		if (CurrentNumber === '') return
 
-		SetCurrentNumber(prev => `${prev}_square_root`)
+		SetCurrentNumber(prev => `square_root_${prev}`)
 	}
 
 	const Preview = useMemo(() => {
