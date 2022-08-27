@@ -127,6 +127,7 @@ const Calculator = () => {
 
 	const SquareRoot = () => {
 		if (CurrentNumber === '') return
+		if (CurrentNumber.startsWith('square_root_')) return
 
 		SetCurrentNumber(prev => `square_root_${prev}`)
 	}
