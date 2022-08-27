@@ -56,6 +56,26 @@ export const Display = styled.div`
 	height: 75px;
 
 	border-radius: 15px;
+
+	overflow-y: scroll;
+
+	&::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: #f1f1f1;
+		border-radius: 0 15px 15px 0;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: #888888;
+		border-radius: 0 15px 15px 0;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background: #777777;
+	}
 `
 
 export const Empty = styled.div`
