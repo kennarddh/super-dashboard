@@ -22,14 +22,12 @@ const Calculator = () => {
 	const NewNumber = value => {
 		SetCurrentNumber(prev => {
 			if (prev.startsWith('0') && prev.endsWith('!!'))
-				return `${prev.slice(1, -2)}${value.toString()}!!`
-			if (prev.endsWith('!!'))
-				return `${prev.slice(0, -2)}${value.toString()}!!`
+				return `${prev.slice(1, -2)}${value}!!`
+			if (prev.endsWith('!!')) return `${prev.slice(0, -2)}${value}!!`
 
 			if (prev.startsWith('0') && prev.endsWith('!'))
-				return `${prev.slice(1, -1)}${value.toString()}!`
-			if (prev.endsWith('!'))
-				return `${prev.slice(0, -1)}${value.toString()}!`
+				return `${prev.slice(1, -1)}${value}!`
+			if (prev.endsWith('!')) return `${prev.slice(0, -1)}${value}!`
 
 			if (prev === '0') return value.toString()
 			if (prev === '') return prev
