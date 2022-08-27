@@ -26,7 +26,13 @@ const Calculator = () => {
 			if (prev === '') return prev
 			if (prev === 'Infinity') return value.toString()
 			if (prev === 'Error') return value.toString()
-			if (prev === '0') return value.toString()
+
+			if (prev === '0' || prev.startsWith('square_root_0'))
+				return `square_root_${value}`
+
+			if (prev === '0' || prev.startsWith('cube_root_0'))
+				return `cube_root_${value}`
+
 			if (prev === 'pi') return prev
 			if (value === 'pi' && prev !== '') return prev
 			if (prev === 'e') return prev
