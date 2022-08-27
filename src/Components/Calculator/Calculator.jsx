@@ -25,6 +25,7 @@ const Calculator = () => {
 			if (prev.at(-12) === '_square_root') return prev
 			if (prev === '') return prev
 			if (prev === 'Infinity') return value.toString()
+			if (prev === 'Error') return value.toString()
 			if (prev === '0') return value.toString()
 			if (prev === 'pi') return prev
 			if (value === 'pi' && prev !== '') return prev
@@ -41,6 +42,7 @@ const Calculator = () => {
 
 	const NewOperator = value => {
 		if (CurrentNumber === 'Infinity') return
+		if (CurrentNumber === 'Error') return
 
 		const currentNumber =
 			CurrentNumber.slice(-1) === '.'
@@ -73,10 +75,17 @@ const Calculator = () => {
 			isMinus ? `(${currentNumber})` : currentNumber
 		}`
 
-		const result = ParseMathExpression(expression)
+		try {
+			const result = ParseMathExpression(expression)
 
-		SetExpression('')
-		SetCurrentNumber(result.toString())
+			SetExpression('')
+			SetCurrentNumber(result.toString())
+		} catch (error) {
+			if (error instanceof RangeError) {
+				SetExpression('')
+				SetCurrentNumber('Error')
+			}
+		}
 	}
 
 	const Dot = () => {
