@@ -159,6 +159,8 @@ const Calculator = () => {
 		if (CurrentNumber === 'Error') return
 		if (CurrentNumber.startsWith('square_root_')) return
 		if (CurrentNumber.startsWith('cube_root_')) return
+		if (CurrentNumber === 'e') return
+		if (CurrentNumber === 'pi') return
 
 		SetCurrentNumber(prev => `square_root_${prev}`)
 	}
@@ -169,6 +171,8 @@ const Calculator = () => {
 		if (CurrentNumber === 'Error') return
 		if (CurrentNumber.startsWith('square_root_')) return
 		if (CurrentNumber.startsWith('cube_root_')) return
+		if (CurrentNumber === 'e') return
+		if (CurrentNumber === 'pi') return
 
 		SetCurrentNumber(prev => `cube_root_${prev}`)
 	}
