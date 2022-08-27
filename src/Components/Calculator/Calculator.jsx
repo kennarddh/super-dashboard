@@ -22,6 +22,7 @@ const Calculator = () => {
 	const NewNumber = value => {
 		SetCurrentNumber(prev => {
 			if (prev.at(-1) === '!') return prev
+			if (prev.at(-12) === '_square_root') return prev
 			if (prev === '') return prev
 			if (prev === 'Infinity') return value.toString()
 			if (prev === '0') return value.toString()
@@ -124,6 +125,12 @@ const Calculator = () => {
 		SetCurrentNumber(prev => `${prev}!`)
 	}
 
+	const SquareRoot = () => {
+		if (CurrentNumber === '') return
+
+		SetCurrentNumber(prev => `${prev}_square_root`)
+	}
+
 	const Preview = useMemo(() => {
 		const currentNumber =
 			CurrentNumber.slice(-1) === '.'
@@ -188,7 +195,7 @@ const Calculator = () => {
 					</ButtonContainer>
 					<ButtonContainer col={1}>
 						<Button onClick={Factorial}>!</Button>
-						<Empty />
+						<Button onClick={SquareRoot}>√</Button>
 						<Empty />
 						<Empty />
 					</ButtonContainer>
