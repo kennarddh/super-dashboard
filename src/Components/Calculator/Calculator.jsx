@@ -67,6 +67,8 @@ const Calculator = () => {
 	}
 
 	const Equal = () => {
+		if (CurrentNumber === 'Infinity') return
+		if (CurrentNumber === 'Error') return
 		if (UnclosedParentheses > 0) return
 
 		const currentNumber =
