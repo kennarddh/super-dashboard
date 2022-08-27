@@ -183,6 +183,17 @@ const Calculator = () => {
 		return result.replace(/square_root_/g, '√').replace(/cube_root_/g, '∛')
 	}, [CurrentNumber, Expression])
 
+	const CurrentNumberPreview = useMemo(() => {
+		const currentNumber =
+			CurrentNumber.slice(-1) === '.'
+				? CurrentNumber.slice(0, CurrentNumber.length - 1)
+				: CurrentNumber
+
+		const result = PreviewMathSymbols(currentNumber)
+
+		return result.replace(/square_root_/g, '√').replace(/cube_root_/g, '∛')
+	}, [CurrentNumber])
+
 	return (
 		<OuterContainer>
 			<Container>
@@ -195,7 +206,7 @@ const Calculator = () => {
 								: ''}
 						</UnclosedParenthesesStyle>
 					</p>
-					<p>{CurrentNumber}</p>
+					<p>{CurrentNumberPreview}</p>
 				</Display>
 				<ButtonOuterContainer>
 					<ButtonContainer col={3}>
