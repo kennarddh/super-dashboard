@@ -165,6 +165,7 @@ const Calculator = () => {
 	}
 
 	const Factorial = () => {
+		if (CurrentNumber.endsWith('!!')) return
 		if (CurrentNumber === '') return
 		if (CurrentNumber === 'Infinity') return
 		if (CurrentNumber === 'Error') return
