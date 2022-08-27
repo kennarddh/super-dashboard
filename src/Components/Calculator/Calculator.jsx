@@ -176,9 +176,11 @@ const Calculator = () => {
 
 		const isMinus = currentNumber.slice(0, 1) === '-'
 
-		return PreviewMathSymbols(
+		const result = PreviewMathSymbols(
 			`${Expression} ${isMinus ? `(${currentNumber})` : currentNumber}`
 		)
+
+		return result.replace(/square_root_/g, '√').replace(/cube_root_/g, '∛')
 	}, [CurrentNumber, Expression])
 
 	return (
