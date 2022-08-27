@@ -222,8 +222,6 @@ const Calculator = () => {
 				? CurrentNumber.slice(0, CurrentNumber.length - 1)
 				: CurrentNumber
 
-		console.log(`${Expression} ${currentNumber}`)
-
 		const result = PreviewMathSymbols(`${Expression} ${currentNumber}`)
 
 		return result.replace(/square_root_/g, '√').replace(/cube_root_/g, '∛')
