@@ -11,7 +11,7 @@ import {
 	ButtonContainer,
 	ButtonOuterContainer,
 	UnclosedParenthesesStyle,
-	// Empty,
+	Empty,
 } from './Styles'
 
 const Calculator = () => {
@@ -21,6 +21,7 @@ const Calculator = () => {
 
 	const NewNumber = value => {
 		SetCurrentNumber(prev => {
+			if (prev.at(-1) === '!') return prev
 			if (prev === '') return prev
 			if (prev === 'Infinity') return value.toString()
 			if (prev === '0') return value.toString()
@@ -117,6 +118,12 @@ const Calculator = () => {
 		SetUnclosedParentheses(prev => prev - 1)
 	}
 
+	const Factorial = () => {
+		if (CurrentNumber === '') return
+
+		SetCurrentNumber(prev => `${prev}!`)
+	}
+
 	const Preview = useMemo(() => {
 		const currentNumber =
 			CurrentNumber.slice(-1) === '.'
@@ -178,6 +185,12 @@ const Calculator = () => {
 						<Button onClick={CloseParenthesis}>)</Button>
 						<Button onClick={() => NewNumber('e')}>e</Button>
 						<Button onClick={() => NewOperator('%')}>%</Button>
+					</ButtonContainer>
+					<ButtonContainer col={1}>
+						<Button onClick={Factorial}>!</Button>
+						<Empty />
+						<Empty />
+						<Empty />
 					</ButtonContainer>
 				</ButtonOuterContainer>
 			</Container>

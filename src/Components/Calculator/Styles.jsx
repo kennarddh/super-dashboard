@@ -16,7 +16,7 @@ export const Container = styled.div`
 
 	padding: 10px;
 
-	width: 95%;
+	width: 98%;
 	height: 90%;
 
 	display: flex;
