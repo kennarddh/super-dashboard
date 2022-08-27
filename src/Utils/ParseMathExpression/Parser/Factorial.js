@@ -1,7 +1,7 @@
 import MathFactorial from 'Utils/Math/Factorial/Factorial'
 
 const Factorial = (expression, operators) => {
-	const regex = `(!|\\${operators.join('|\\')})`
+	const regex = `(!|\\${operators.join('|\\')}|square_root_|cube_root_)`
 
 	return expression
 		.split(new RegExp(regex))
