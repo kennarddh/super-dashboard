@@ -42,7 +42,9 @@ const Calculator = () => {
 				prev === 'e' ||
 				prev === 'pi' ||
 				prev === 'Infinity' ||
-				prev === 'Error'
+				prev === 'Error' ||
+				CurrentNumber.startsWith('square_root_') ||
+				CurrentNumber.startsWith('cube_root_')
 			)
 				return prev
 
