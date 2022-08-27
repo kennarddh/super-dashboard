@@ -21,7 +21,16 @@ const Calculator = () => {
 
 	const NewNumber = value => {
 		SetCurrentNumber(prev => {
-			// if (prev.at(-1) === '!') return prev
+			if (prev.startsWith('0') && prev.endsWith('!!'))
+				return `${prev.slice(1, -2)}${value.toString()}!!`
+			if (prev.endsWith('!!'))
+				return `${prev.slice(0, -2)}${value.toString()}!!`
+
+			if (prev.startsWith('0') && prev.endsWith('!'))
+				return `${prev.slice(1, -1)}${value.toString()}!`
+			if (prev.endsWith('!'))
+				return `${prev.slice(0, -1)}${value.toString()}!`
+
 			if (prev === '0') return value.toString()
 			if (prev === '') return prev
 			if (prev === 'Infinity') return value.toString()
