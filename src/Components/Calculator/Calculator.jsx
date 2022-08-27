@@ -42,10 +42,23 @@ const Calculator = () => {
 			if (prev === '0' && prev.startsWith('cube_root_0'))
 				return `cube_root_${value}`
 
-			if (prev === 'pi') return prev
-			if (value === 'pi' && prev !== '') return prev
-			if (prev === 'e') return prev
-			if (value === 'e' && prev !== '') return prev
+			if (
+				prev === 'e' ||
+				prev === 'pi' ||
+				prev === '(-pi)' ||
+				prev === '(-e)'
+			)
+				return prev
+
+			if (
+				(value === 'pi' || value === 'e') &&
+				(prev !== '0' || prev !== '(-0)')
+			)
+				return prev
+
+			if (prev.startsWith('(-0')) return `${prev.slice(0, -2)}${value})`
+			if (prev.startsWith('(-')) return `${prev.slice(0, -1)}${value})`
+
 			if (prev.startsWith('square_root_') && value === 'pi') return prev
 			if (prev.startsWith('cube_root_') && value === 'pi') return prev
 			if (prev.startsWith('square_root_') && value === 'e') return prev
@@ -60,8 +73,6 @@ const Calculator = () => {
 	const InversePlusMinus = () => {
 		SetCurrentNumber(prev => {
 			if (
-				prev === 'e' ||
-				prev === 'pi' ||
 				prev === 'Infinity' ||
 				prev === 'Error' ||
 				CurrentNumber.startsWith('square_root_') ||
@@ -69,7 +80,9 @@ const Calculator = () => {
 			)
 				return prev
 
-			return (parseFloat(prev, 10) * -1).toString()
+			if (prev.startsWith('(-')) return prev.slice(2, -1)
+
+			return `(-${prev})`
 		})
 	}
 
@@ -211,11 +224,9 @@ const Calculator = () => {
 				? CurrentNumber.slice(0, CurrentNumber.length - 1)
 				: CurrentNumber
 
-		const isMinus = currentNumber.slice(0, 1) === '-'
+		console.log(`${Expression} ${currentNumber}`)
 
-		const result = PreviewMathSymbols(
-			`${Expression} ${isMinus ? `(${currentNumber})` : currentNumber}`
-		)
+		const result = PreviewMathSymbols(`${Expression} ${currentNumber}`)
 
 		return result.replace(/square_root_/g, '√').replace(/cube_root_/g, '∛')
 	}, [CurrentNumber, Expression])
