@@ -7,12 +7,15 @@ const Factorial = (expression, operators) => {
 		.split(new RegExp(regex))
 		.map(str => str.trim())
 		.filter(str => str.length !== 0)
-		.reduce((acc, str, index, array) => {
+		.reduce((acc, str) => {
 			if (str === '!') {
-				acc.pop()
 				acc.push(
-					MathFactorial(parseFloat(array[index - 1], 10)).toString()
+					MathFactorial(
+						parseFloat(acc[acc.length - 1], 10)
+					).toString()
 				)
+
+				acc = [...acc.slice(0, -2), acc.at(-1)]
 			} else {
 				acc.push(str)
 			}
