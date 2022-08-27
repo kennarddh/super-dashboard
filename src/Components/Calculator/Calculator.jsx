@@ -169,6 +169,8 @@ const Calculator = () => {
 		if (CurrentNumber === '') return
 		if (CurrentNumber === 'Infinity') return
 		if (CurrentNumber === 'Error') return
+		if (CurrentNumber === 'pi') return
+		if (CurrentNumber === 'e') return
 		if (CurrentNumber.startsWith('square_root_')) return
 		if (CurrentNumber.startsWith('cube_root_')) return
 
