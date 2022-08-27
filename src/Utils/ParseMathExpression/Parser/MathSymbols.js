@@ -4,13 +4,18 @@ const MathSymbols = expression =>
 	Object.entries(Symbols)
 		.reduce(
 			(acc, [alias, { value }]) =>
-				acc.replace(
-					new RegExp(
-						`([^a-zA-Z0-9]${alias}[^a-zA-Z0-9]|${alias} | ${alias} | ${alias}|(^${alias}$))`,
-						'g'
+				acc
+					.replace(
+						new RegExp(
+							`([^a-zA-Z0-9]${alias}[^a-zA-Z0-9]|${alias} | ${alias} | ${alias}|(^${alias}$))`,
+							'g'
+						),
+						` ${value()} `
+					)
+					.replace(
+						new RegExp(`(minus_${alias})`, 'g'),
+						` minus_${value()} `
 					),
-					` ${value()} `
-				),
 			expression
 		)
 		.trim()
