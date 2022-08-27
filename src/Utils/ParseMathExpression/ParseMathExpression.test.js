@@ -24,6 +24,8 @@ describe('ParseMathExpression', () => {
 		{ expression: '(-1) + (-10) * 3 / (-4)', expected: 6.5 },
 		{ expression: 'pi * 10', expected: 31.41592653589793 },
 		{ expression: 'pi * 10 ^ 2', expected: 314.1592653589793 },
+		{ expression: 'pi * pi', expected: 9.869604401089358 },
+		{ expression: 'pi', expected: 3.141592653589793 },
 		{ expression: 'e * 10', expected: 27.18281828459045 },
 		{ expression: 'e * 10 ^ 2', expected: 271.8281828459045 },
 		{ expression: '10%3', expected: 1 },
@@ -31,6 +33,9 @@ describe('ParseMathExpression', () => {
 		{ expression: '10 + 10! * 10', expected: 36288010 },
 		{ expression: '20 / 5! - 10', expected: -9.833333333333334 },
 		{ expression: '3!!', expected: 720 },
+		{ expression: '9_square_root', expected: 3 },
+		{ expression: '100_square_root', expected: 10 },
+		{ expression: '64_square_root', expected: 8 },
 	])(
 		'Should success, Expression: $expression, expected: $expected',
 		({ expression, expected }) => {
