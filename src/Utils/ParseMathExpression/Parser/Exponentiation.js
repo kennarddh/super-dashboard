@@ -1,21 +1,10 @@
 import SplitParentheses from 'Utils/ParseMathExpression/SplitParentheses'
-import ParseNumber from 'Utils/ParseMathExpression/ParseNumber'
-import ParsePlus from 'Utils/ParseMathExpression/Parser/Plus'
+import ParseRecursiveAndNumber from 'Utils/ParseMathExpression/Parser/RecursiveAndNumber'
 
 const Exponentiation = expression => {
 	const numbersString = SplitParentheses(expression, '^')
 
-	const numbers = numbersString.map(noStr => {
-		const trimed = noStr.trim()
-
-		if (trimed[0] == '(') {
-			const expr = trimed.substring(1, trimed.length - 1)
-
-			return ParsePlus(expr)
-		}
-
-		return ParseNumber(trimed)
-	})
+	const numbers = numbersString.map(ParseRecursiveAndNumber)
 
 	numbers.reverse()
 
