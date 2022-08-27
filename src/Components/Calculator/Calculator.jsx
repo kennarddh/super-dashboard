@@ -31,6 +31,10 @@ const Calculator = () => {
 			if (value === 'pi' && prev !== '') return prev
 			if (prev === 'e') return prev
 			if (value === 'e' && prev !== '') return prev
+			if (prev.startsWith('square_root_') && value === 'pi') prev
+			if (prev.startsWith('cube_root_') && value === 'pi') prev
+			if (prev.startsWith('square_root_') && value === 'e') prev
+			if (prev.startsWith('cube_root_') && value === 'e') prev
 
 			return prev + value
 		})
