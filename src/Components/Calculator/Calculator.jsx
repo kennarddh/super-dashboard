@@ -137,12 +137,16 @@ const Calculator = () => {
 
 	const Factorial = () => {
 		if (CurrentNumber === '') return
+		if (CurrentNumber === 'Infinity') return
+		if (CurrentNumber === 'Error') return
 
 		SetCurrentNumber(prev => `${prev}!`)
 	}
 
 	const SquareRoot = () => {
 		if (CurrentNumber === '') return
+		if (CurrentNumber === 'Infinity') return
+		if (CurrentNumber === 'Error') return
 		if (CurrentNumber.startsWith('square_root_')) return
 
 		SetCurrentNumber(prev => `square_root_${prev}`)
