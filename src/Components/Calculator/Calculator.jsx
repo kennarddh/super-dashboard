@@ -37,7 +37,12 @@ const Calculator = () => {
 	}
 
 	const InversePlusMinus = () => {
-		SetCurrentNumber(prev => (parseFloat(prev, 10) * -1).toString())
+		SetCurrentNumber(prev => {
+			if (prev === 'Infinity') return prev
+			if (prev === 'Error') return prev
+
+			return (parseFloat(prev, 10) * -1).toString()
+		})
 	}
 
 	const NewOperator = value => {
