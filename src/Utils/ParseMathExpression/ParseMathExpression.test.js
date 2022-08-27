@@ -33,9 +33,9 @@ describe('ParseMathExpression', () => {
 		{ expression: '10 + 10! * 10', expected: 36288010 },
 		{ expression: '20 / 5! - 10', expected: -9.833333333333334 },
 		{ expression: '3!!', expected: 720 },
-		{ expression: '9_square_root', expected: 3 },
-		{ expression: '100_square_root', expected: 10 },
-		{ expression: '64_square_root', expected: 8 },
+		{ expression: 'square_root_9', expected: 3 },
+		{ expression: 'square_root_100', expected: 10 },
+		{ expression: 'square_root_64', expected: 8 },
 	])(
 		'Should success, Expression: $expression, expected: $expected',
 		({ expression, expected }) => {
