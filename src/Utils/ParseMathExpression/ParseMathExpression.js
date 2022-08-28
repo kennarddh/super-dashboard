@@ -16,8 +16,13 @@ const ParseMathExpression = expression => {
 	const symbolsParsed = ParseMathSymbols(formatted)
 
 	const factorialParsed = ParseFactorial(symbolsParsed, operators)
+
+	if (factorialParsed.includes('e+')) return Infinity
+
 	const squareRootParsed = ParseSquareRoot(factorialParsed, operators)
 	const cubeRootParsed = ParseCubeRoot(squareRootParsed, operators)
+
+	console.log({ factorialParsed, squareRootParsed, cubeRootParsed })
 
 	return ParsePlus(cubeRootParsed)
 }
