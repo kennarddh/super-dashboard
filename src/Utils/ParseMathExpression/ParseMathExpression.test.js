@@ -43,6 +43,7 @@ describe('ParseMathExpression', () => {
 		{ expression: '(-pi)', expected: -3.141592653589793 },
 		{ expression: 'square_root_4!', expected: 4.898979485566356 },
 		{ expression: 'cube_root_6!', expected: 8.96280949311433 },
+		{ expression: '60!', expected: Infinity },
 	])(
 		'Should success, Expression: $expression, expected: $expected',
 		({ expression, expected }) => {
