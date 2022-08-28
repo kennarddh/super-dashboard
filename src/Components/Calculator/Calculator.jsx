@@ -45,6 +45,7 @@ const Calculator = () => {
 			if (prev === '0') return value.toString()
 			if (prev === '') return prev
 			if (prev === 'Infinity') return value.toString()
+			if (prev === '-Infinity') return value.toString()
 			if (prev === 'Error') return value.toString()
 
 			if (
@@ -79,6 +80,7 @@ const Calculator = () => {
 		SetCurrentNumber(prev => {
 			if (
 				prev === 'Infinity' ||
+				prev === '-Infinity' ||
 				prev === 'Error' ||
 				CurrentNumber.startsWith('square_root_') ||
 				CurrentNumber.startsWith('cube_root_') ||
@@ -94,6 +96,7 @@ const Calculator = () => {
 
 	const NewOperator = value => {
 		if (CurrentNumber === 'Infinity') return
+		if (CurrentNumber === '-Infinity') return
 		if (CurrentNumber === 'Error') return
 
 		const currentNumber =
@@ -115,6 +118,7 @@ const Calculator = () => {
 
 	const Equal = () => {
 		if (CurrentNumber === 'Infinity') return
+		if (CurrentNumber === '-Infinity') return
 		if (CurrentNumber === 'Error') return
 		if (UnclosedParentheses > 0) return
 
@@ -156,6 +160,7 @@ const Calculator = () => {
 
 	const OpenParenthesis = () => {
 		if (CurrentNumber === 'Infinity') return
+		if (CurrentNumber === '-Infinity') return
 		if (CurrentNumber === 'Error') return
 
 		SetExpression(prev => {
@@ -189,6 +194,7 @@ const Calculator = () => {
 		if (CurrentNumber.endsWith('!!')) return
 		if (CurrentNumber === '') return
 		if (CurrentNumber === 'Infinity') return
+		if (CurrentNumber === '-Infinity') return
 		if (CurrentNumber === 'Error') return
 		if (CurrentNumber === 'pi') return
 		if (CurrentNumber === 'e') return
@@ -200,6 +206,7 @@ const Calculator = () => {
 	const SquareRoot = () => {
 		if (CurrentNumber === '') return
 		if (CurrentNumber === 'Infinity') return
+		if (CurrentNumber === '-Infinity') return
 		if (CurrentNumber === 'Error') return
 		if (CurrentNumber.startsWith('square_root_')) return
 		if (CurrentNumber.startsWith('cube_root_')) return
@@ -212,6 +219,7 @@ const Calculator = () => {
 	const CubeRoot = () => {
 		if (CurrentNumber === '') return
 		if (CurrentNumber === 'Infinity') return
+		if (CurrentNumber === '-Infinity') return
 		if (CurrentNumber === 'Error') return
 		if (CurrentNumber.startsWith('square_root_')) return
 		if (CurrentNumber.startsWith('cube_root_')) return
