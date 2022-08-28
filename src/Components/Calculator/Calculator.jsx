@@ -23,6 +23,19 @@ const Calculator = () => {
 		SetCurrentNumber(prev => {
 			if (prev.startsWith('0') && prev.endsWith('!!'))
 				return `${prev.slice(1, -2)}${value}!!`
+
+			if (prev.startsWith('square_root_0') && prev.endsWith('!'))
+				return `square_root_${prev.slice(13, -1)}${value}!`
+
+			if (prev.startsWith('square_root_0') && prev.endsWith('!!'))
+				return `square_root_${prev.slice(13, -2)}${value}!!`
+
+			if (prev.startsWith('cube_root_0') && prev.endsWith('!'))
+				return `cube_root_${prev.slice(11, -1)}${value}!`
+
+			if (prev.startsWith('cube_root_0') && prev.endsWith('!!'))
+				return `cube_root_${prev.slice(11, -2)}${value}!!`
+
 			if (prev.endsWith('!!')) return `${prev.slice(0, -2)}${value}!!`
 
 			if (prev.startsWith('0') && prev.endsWith('!'))
@@ -178,14 +191,11 @@ const Calculator = () => {
 		if (CurrentNumber === 'Error') return
 		if (CurrentNumber === 'pi') return
 		if (CurrentNumber === 'e') return
-		if (CurrentNumber.startsWith('square_root_')) return
-		if (CurrentNumber.startsWith('cube_root_')) return
 
 		SetCurrentNumber(prev => `${prev}!`)
 	}
 
 	const SquareRoot = () => {
-		if (CurrentNumber.endsWith('!')) return
 		if (CurrentNumber === '') return
 		if (CurrentNumber === 'Infinity') return
 		if (CurrentNumber === 'Error') return
@@ -198,7 +208,6 @@ const Calculator = () => {
 	}
 
 	const CubeRoot = () => {
-		if (CurrentNumber.endsWith('!')) return
 		if (CurrentNumber === '') return
 		if (CurrentNumber === 'Infinity') return
 		if (CurrentNumber === 'Error') return
