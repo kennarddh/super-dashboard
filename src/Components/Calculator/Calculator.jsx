@@ -81,7 +81,8 @@ const Calculator = () => {
 				prev === 'Infinity' ||
 				prev === 'Error' ||
 				CurrentNumber.startsWith('square_root_') ||
-				CurrentNumber.startsWith('cube_root_')
+				CurrentNumber.startsWith('cube_root_') ||
+				CurrentNumber.endsWith('!')
 			)
 				return prev
 
@@ -191,6 +192,7 @@ const Calculator = () => {
 		if (CurrentNumber === 'Error') return
 		if (CurrentNumber === 'pi') return
 		if (CurrentNumber === 'e') return
+		if (CurrentNumber.startsWith('(-')) return
 
 		SetCurrentNumber(prev => `${prev}!`)
 	}
