@@ -5989,6 +5989,11 @@
   optionalDependencies:
     "open-location-code" "^1.0.0"
 
+"leaflet.bigimage@^1.0.1":
+  "integrity" "sha512-ZCqvjgudLau5WevjFjMN4pXjAZV0BUtf3sYnXD1p+uviza9GLx218ckj5lHE+bcakkIufFR7ZSSt1iiUY+9AZA=="
+  "resolved" "https://registry.npmjs.org/leaflet.bigimage/-/leaflet.bigimage-1.0.1.tgz"
+  "version" "1.0.1"
+
 "leaflet@^1.8.0":
   "integrity" "sha512-gwhMjFCQiYs3x/Sf+d49f10ERXaEFCPr+nVTryhAW8DWbMGqJqt9G4XuIaHmFW08zYvhgdzqXGr8AlW8v8dQkA=="
   "resolved" "https://registry.npmjs.org/leaflet/-/leaflet-1.8.0.tgz"
