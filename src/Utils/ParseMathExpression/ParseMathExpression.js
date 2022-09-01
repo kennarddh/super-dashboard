@@ -22,8 +22,6 @@ const ParseMathExpression = expression => {
 	const squareRootParsed = ParseSquareRoot(factorialParsed, operators)
 	const cubeRootParsed = ParseCubeRoot(squareRootParsed, operators)
 
-	console.log({ factorialParsed, squareRootParsed, cubeRootParsed })
-
 	return ParsePlus(cubeRootParsed)
 }
 
