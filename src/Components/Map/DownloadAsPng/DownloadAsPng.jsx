@@ -1,19 +1,20 @@
-import React, { useMemo } from 'react'
+import { useEffect } from 'react'
 
-// import { useMap } from 'react-leaflet'
-
-import { Button, Container } from './Styles'
+import {} from './DownloadAsPNGLeafletPlugin'
+import L from 'leaflet'
+import { useMap } from 'react-leaflet'
 
 const DownloadAsPng = () => {
-	// const parentMap = useMap()
+	const map = useMap()
 
-	const buttonComponent = useMemo(() => <Button>Download as PNG</Button>, [])
+	useEffect(() => {
+		const control = new L.Control.DownloadAsPNG({})
 
-	return (
-		<Container>
-			<div className='leaflet-control leaflet-bar'>{buttonComponent}</div>
-		</Container>
-	)
+		map.addControl(control)
+
+		return () => map.removeControl(control)
+	}, [map])
+	return null
 }
 
 export default DownloadAsPng
