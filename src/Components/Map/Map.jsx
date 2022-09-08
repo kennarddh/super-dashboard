@@ -5,6 +5,7 @@ import { TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
 import Minimap from './Minimap/Minimap'
+import DownloadAsPng from './DownloadAsPng/DownloadAsPng'
 
 import DraggableMarker from './Marker/Draggable/Draggable'
 
@@ -22,6 +23,7 @@ const Map = () => {
 			<DraggableMarker />
 			<LeafletControlGeocoder />
 			<Minimap position='bottomleft' />
+			<DownloadAsPng />
 		</StyledMapContainer>
 	)
 }
