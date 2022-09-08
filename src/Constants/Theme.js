@@ -20,6 +20,9 @@ export default {
 			backgroundColor: '#fafafa',
 			color: '#000000',
 		},
+		modal: {
+			backgroundColor: '#ffffff',
+		},
 	},
 	dark: {
 		backgroundColor: '#535353',
@@ -41,6 +44,9 @@ export default {
 		toolBar: {
 			backgroundColor: '#474747',
 			color: '#ffffff',
+		},
+		modal: {
+			backgroundColor: '#868686',
 		},
 	},
 }
