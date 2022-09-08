@@ -6,6 +6,18 @@ export default {
 		widget: {
 			container: '#ffffff',
 			color: '#000000',
+			weather: {
+				autocomplete: {
+					backgroundColor: '#fff',
+					hoverColor: '#f5f5f5',
+					color: '#000000',
+					borderColor: '#ccc',
+				},
+			},
+		},
+		toolBar: {
+			backgroundColor: '#fafafa',
+			color: '#000000',
 		},
 	},
 	dark: {
@@ -14,6 +26,18 @@ export default {
 		toggleButtonColor: '#262626',
 		widget: {
 			container: '#818181',
+			color: '#ffffff',
+			weather: {
+				autocomplete: {
+					backgroundColor: '#000',
+					hoverColor: '#818181',
+					color: '#ffffff',
+					borderColor: '#000',
+				},
+			},
+		},
+		toolBar: {
+			backgroundColor: '#474747',
 			color: '#ffffff',
 		},
 	},
