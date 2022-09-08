@@ -40,3 +40,10 @@ export const InputContainer = styled.div`
 	position: relative;
 	width: 100%;
 `
+
+export const Container = styled.div`
+	width: 100%;
+	height: 90%;
+	background-color: ${({ theme }) => theme.widget.container};
+	color: ${({ theme }) => theme.widget.color};
+`
