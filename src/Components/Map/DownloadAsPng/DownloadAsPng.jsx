@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 
-import {} from './DownloadAsPNGLeafletPlugin'
 import L from 'leaflet'
 import { useMap } from 'react-leaflet'
+
+import {} from './DownloadAsPNGLeafletPlugin'
 
 const DownloadAsPng = () => {
 	const map = useMap()
@@ -14,6 +15,7 @@ const DownloadAsPng = () => {
 
 		return () => map.removeControl(control)
 	}, [map])
+
 	return null
 }
 
