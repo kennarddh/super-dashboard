@@ -14,6 +14,7 @@ export default {
 					borderColor: '#ccc',
 				},
 			},
+			clock: { digital: { backgroundColor: '#ffffff' } },
 		},
 		toolBar: {
 			backgroundColor: '#fafafa',
@@ -35,6 +36,7 @@ export default {
 					borderColor: '#000',
 				},
 			},
+			clock: { digital: { backgroundColor: '#a5a5a5' } },
 		},
 		toolBar: {
 			backgroundColor: '#474747',
