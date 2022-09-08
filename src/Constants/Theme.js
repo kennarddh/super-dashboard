@@ -15,6 +15,11 @@ export default {
 				},
 			},
 			clock: { digital: { backgroundColor: '#ffffff' } },
+			news: {
+				article: {
+					backgroundColor: '#ffffff',
+				},
+			},
 		},
 		toolBar: {
 			backgroundColor: '#fafafa',
@@ -40,6 +45,11 @@ export default {
 				},
 			},
 			clock: { digital: { backgroundColor: '#a5a5a5' } },
+			news: {
+				article: {
+					backgroundColor: '#535353',
+				},
+			},
 		},
 		toolBar: {
 			backgroundColor: '#474747',
