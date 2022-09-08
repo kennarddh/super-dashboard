@@ -11,3 +11,7 @@ export const ScrollXSectionWrapper = styled(SectionWrapper)`
 export const ScrollYSectionWrapper = styled(SectionWrapper)`
 	overflow-y: scroll;
 `
+
+export const Container = styled.div`
+	background-color: ${({ theme }) => theme.backgroundColor};
+`
