@@ -5,7 +5,7 @@ export default {
 		toggleButtonColor: '#ffffff',
 	},
 	dark: {
-		backgroundColor: '#262626',
+		backgroundColor: '#535353',
 		toggleButtonBackgroundColor: '#ffffff',
 		toggleButtonColor: '#262626',
 	},
