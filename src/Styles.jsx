@@ -14,4 +14,5 @@ export const ScrollYSectionWrapper = styled(SectionWrapper)`
 
 export const Container = styled.div`
 	background-color: ${({ theme }) => theme.backgroundColor};
+	min-height: 100vh;
 `
