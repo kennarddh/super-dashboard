@@ -20,6 +20,14 @@ export default {
 					backgroundColor: '#ffffff',
 				},
 			},
+			users: {
+				item: {
+					backgroundColor: '#ffffff',
+				},
+				alphabetList: {
+					backgroundColor: '#ffffff',
+				},
+			},
 		},
 		toolBar: {
 			backgroundColor: '#fafafa',
@@ -48,6 +56,14 @@ export default {
 			news: {
 				article: {
 					backgroundColor: '#535353',
+				},
+			},
+			users: {
+				item: {
+					backgroundColor: '#a5a5a5',
+				},
+				alphabetList: {
+					backgroundColor: '#a5a5a5',
 				},
 			},
 		},

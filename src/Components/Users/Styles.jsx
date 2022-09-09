@@ -15,11 +15,15 @@ export const ListItem = styled.div`
 	justify-content: center;
 	align-items: center;
 	border: 1px solid black;
+	background-color: ${({ theme }) => theme.widget.users.item.backgroundColor};
 `
 
 export const Container = styled.div`
 	width: 100%;
 	height: 100%;
+
+	background-color: ${({ theme }) => theme.widget.container};
+	color: ${({ theme }) => theme.widget.color};
 `
 
 export const Header = styled.div`
@@ -37,6 +41,7 @@ export const ContentContainer = styled.div`
 
 	display: flex;
 	flex-direction: row;
+	background-color: ${({ theme }) => theme.widget.users.backgroundColor};
 `
 
 export const AlphabetList = styled.div`
@@ -49,6 +54,9 @@ export const AlphabetList = styled.div`
 	flex-direction: column;
 
 	overflow-y: scroll;
+
+	background-color: ${({ theme }) =>
+		theme.widget.users.alphabetList.backgroundColor};
 `
 
 export const AlphabetItem = styled.a`
@@ -56,7 +64,7 @@ export const AlphabetItem = styled.a`
 	text-transform: uppercase;
 	user-select: none;
 	cursor: pointer;
-	color: #000000;
+	color: ${({ theme }) => theme.widget.color};
 `
 
 export const LetterTitle = styled.h4`
