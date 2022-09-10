@@ -36,9 +36,15 @@ const App = () => {
 					<Container>
 						<Tabs>
 							<TabList>
-								<Tab>Page 1</Tab>
-								<Tab>Page 2</Tab>
-								<Tab>Page 3</Tab>
+								<Tab style={{ backgroundColor: '#acacac' }}>
+									Page 1
+								</Tab>
+								<Tab style={{ backgroundColor: '#acacac' }}>
+									Page 2
+								</Tab>
+								<Tab style={{ backgroundColor: '#acacac' }}>
+									Page 3
+								</Tab>
 								<ToggleTheme />
 							</TabList>
 
