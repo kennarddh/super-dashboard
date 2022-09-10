@@ -2,7 +2,12 @@ import React, { useEffect, useState, useContext, useCallback } from 'react'
 
 import { Toolbar, ToolbarInput } from 'Components/ToolBar/ToolBar'
 
-import { AutocompleteItem, Autocomplete, InputContainer } from './Styles'
+import {
+	AutocompleteItem,
+	Autocomplete,
+	InputContainer,
+	Container,
+} from './Styles'
 
 import { LocationContext } from 'Contexts/Location'
 
@@ -141,11 +146,13 @@ const Weather = () => {
 					</Autocomplete>
 				</InputContainer>
 			</Toolbar>
-			{WeatherData?.weather && WeatherData.weather.length > 0 ? (
-				<p>{WeatherData.weather[0].description}</p>
-			) : (
-				<p>Loading</p>
-			)}
+			<Container>
+				{WeatherData?.weather && WeatherData.weather.length > 0 ? (
+					<p>{WeatherData.weather[0].description}</p>
+				) : (
+					<p>Loading</p>
+				)}
+			</Container>
 		</>
 	)
 }

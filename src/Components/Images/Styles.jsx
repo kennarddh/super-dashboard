@@ -30,6 +30,8 @@ export const Container = styled.div`
 	&::-webkit-scrollbar-thumb:hover {
 		background: #777777;
 	}
+
+	background-color: ${({ theme }) => theme.widget.container};
 `
 
 export const ImageContainer = styled.div`
@@ -37,6 +39,7 @@ export const ImageContainer = styled.div`
 
 	cursor: pointer;
 	border: 1px #000000 solid;
+	background-color: ${({ theme }) => theme.widget.images.backgroundColor};
 `
 
 export const Image = styled.img`
