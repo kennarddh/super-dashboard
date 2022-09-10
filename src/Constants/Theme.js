@@ -28,6 +28,7 @@ export default {
 					backgroundColor: '#ffffff',
 				},
 			},
+			images: { backgroundColor: '#ffffff' },
 		},
 		toolBar: {
 			backgroundColor: '#fafafa',
@@ -66,6 +67,7 @@ export default {
 					backgroundColor: '#a5a5a5',
 				},
 			},
+			images: { backgroundColor: '#ffffff' },
 		},
 		toolBar: {
 			backgroundColor: '#474747',
