@@ -5,10 +5,13 @@ export const Autocomplete = styled.div`
 	top: 100%;
 	left: 0;
 	width: 100%;
-	background-color: #fff;
-	border: 1px solid #ccc;
+	background-color: ${({ theme }) =>
+		theme.widget.weather.autocomplete.backgroundColor};
+
+	border: 1px solid
+		${({ theme }) => theme.widget.weather.autocomplete.borderColor};
+
 	border-radius: 0 0 4px 4px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 	overflow-y: auto;
 	max-height: 200px;
@@ -25,10 +28,15 @@ export const AutocompleteItem = styled.button`
 	border: none;
 	border-bottom: 1px solid #ccc;
 
+	background-color: ${({ theme }) =>
+		theme.widget.weather.autocomplete.backgroundColor};
+
+	color: ${({ theme }) => theme.widget.weather.autocomplete.color};
+
 	cursor: pointer;
 
 	&:hover {
-		background-color: #f5f5f5;
+		color: ${({ theme }) => theme.widget.weather.autocomplete.hoverColor};
 	}
 
 	&:last-child {
@@ -39,4 +47,11 @@ export const AutocompleteItem = styled.button`
 export const InputContainer = styled.div`
 	position: relative;
 	width: 100%;
+`
+
+export const Container = styled.div`
+	width: 100%;
+	height: 90%;
+	background-color: ${({ theme }) => theme.widget.container};
+	color: ${({ theme }) => theme.widget.color};
 `

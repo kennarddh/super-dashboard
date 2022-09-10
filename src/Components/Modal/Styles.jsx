@@ -19,13 +19,13 @@ ModalContainer.defaultProps = {
 }
 
 export const ModalContent = styled.div`
-	width: ${({ width }) =>
-		typeof padding === 'number' ? `${width}px` : width};
+	width: ${({ width }) => (typeof width === 'number' ? `${width}px` : width)};
 
 	height: ${({ height }) =>
-		typeof padding === 'number' ? `${height}px` : height};
+		typeof height === 'number' ? `${height}px` : height};
 
-	background-color: ${({ backgroundColor }) => backgroundColor};
+	background-color: ${({ backgroundColor, overideTheme, theme }) =>
+		overideTheme ? backgroundColor : theme.modal.backgroundColor};
 
 	color: ${({ color }) => color};
 	border: ${({ border }) => border};
@@ -57,4 +57,5 @@ ModalContent.defaultProps = {
 	margin: 15,
 	radius: 15,
 	flexDirection: 'column',
+	overideTheme: false,
 }

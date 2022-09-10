@@ -8,6 +8,9 @@ export const Container = styled.article`
 	display: flex;
 	align-items: center;
 	gap: 20px;
+
+	background-color: ${({ theme }) =>
+		theme.widget.news.article.backgroundColor};
 `
 
 export const Image = styled.img`

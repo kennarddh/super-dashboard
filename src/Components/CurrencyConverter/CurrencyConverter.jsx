@@ -72,6 +72,7 @@ const CurrencyConverter = () => {
 						onChange={OnChangeInput}
 						height='100%'
 						width='55%'
+						type='number'
 					/>
 				</RowContainer>
 				<RowContainer>

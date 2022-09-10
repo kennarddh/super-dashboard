@@ -4,6 +4,9 @@ export const Container = styled.div`
 	overflow-y: scroll;
 	height: 100%;
 	display: flex;
+
+	background-color: ${({ theme }) => theme.widget.container};
+	color: ${({ theme }) => theme.widget.color};
 `
 
 export const ArticleContainer = styled.div`
