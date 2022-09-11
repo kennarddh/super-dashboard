@@ -58,6 +58,8 @@ const News = () => {
 						throw { error: 'News api invalid api key' }
 					} else if (response.status === 400) {
 						throw { error: 'News api bad request' }
+					} else if (response.status === 426) {
+						throw { error: 'News api cors not allowed' }
 					}
 				}
 
