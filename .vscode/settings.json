@@ -1,0 +1,5 @@
+{
+	"yaml.schemas": {
+		"https://json.schemastore.org/github-workflow.json": "file:///d%3A/ken/coding/js/lim/super-dashboard/.github/workflows/deploy.yml"
+	}
+}
