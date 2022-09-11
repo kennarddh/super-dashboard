@@ -92,7 +92,7 @@ const News = () => {
 			.catch(error => {
 				IsLoadingRef.current = false
 
-				console.error({ location: 'News', error })
+				console.log({ location: 'News', error })
 			})
 
 		return () => controller.abort()
