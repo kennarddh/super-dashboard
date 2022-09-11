@@ -1,28 +1,22 @@
-import ParsePlus from 'Utils/ParseMathExpression/Parser/Plus'
-import ReplaceMinus from 'Utils/ParseMathExpression/ReplaceMinus'
+import InfixExpressionEvaluator from 'Utils/ParseMathExpression/InfixExpressionEvaluator'
 import FormatExpression from 'Utils/ParseMathExpression/FormatExpression'
 import ParseMathSymbols from 'Utils/ParseMathExpression/Parser/MathSymbols'
-import ParseFactorial from 'Utils/ParseMathExpression/Parser/Factorial'
-import ParseSquareRoot from 'Utils/ParseMathExpression/Parser/SquareRoot'
-import ParseCubeRoot from 'Utils/ParseMathExpression/Parser/CubeRoot'
 
-const ParseMathExpression = expression => {
-	const operators = ['-', '+', '*', '/', '^', '%']
+const ParseMathExpression = rawExpression => {
+	const operators = ['-', '+', '*', '/', '^', '%', '(', ')', 'root', '!']
 
-	const minusSplitedExpression = ReplaceMinus(expression)
+	const expression = rawExpression.replace(
+		/-((\d+)|pi|e)/g,
+		x => `minus>${x.slice(1)}`
+	)
 
-	const formatted = FormatExpression(minusSplitedExpression, operators)
+	const formatted = FormatExpression(expression, operators)
 
 	const symbolsParsed = ParseMathSymbols(formatted)
 
-	const factorialParsed = ParseFactorial(symbolsParsed, operators)
+	console.log({ formatted, symbolsParsed })
 
-	if (factorialParsed.includes('e+')) return Infinity
-
-	const squareRootParsed = ParseSquareRoot(factorialParsed, operators)
-	const cubeRootParsed = ParseCubeRoot(squareRootParsed, operators)
-
-	return ParsePlus(cubeRootParsed)
+	return InfixExpressionEvaluator(symbolsParsed)
 }
 
 export default ParseMathExpression
