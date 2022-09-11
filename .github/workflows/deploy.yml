@@ -20,3 +20,5 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   CI: False
+            - run: echo ${{ secrets.REACT_APP_OPENWEATHERMAP_API_KEY }}
+            - run: echo ${{ secrets.REACT_APP_NEWS_API_KEY }}
