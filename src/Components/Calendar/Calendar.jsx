@@ -49,12 +49,36 @@ const Calendar = () => {
 					<Tile>Thu</Tile>
 					<Tile>Fri</Tile>
 					<Tile>Sat</Tile>
-					{GetDay(Unix) >= 6 && <Tile>{daysInLastMonth - 5}</Tile>}
-					{GetDay(Unix) >= 5 && <Tile>{daysInLastMonth - 4}</Tile>}
-					{GetDay(Unix) >= 4 && <Tile>{daysInLastMonth - 3}</Tile>}
-					{GetDay(Unix) >= 3 && <Tile>{daysInLastMonth - 2}</Tile>}
-					{GetDay(Unix) >= 2 && <Tile>{daysInLastMonth - 1}</Tile>}
-					{GetDay(Unix) >= 1 && <Tile>{daysInLastMonth}</Tile>}
+					{GetDay(Unix) >= 6 && (
+						<Tile current={GetDay(Unix) === 6}>
+							1{daysInLastMonth - 5}
+						</Tile>
+					)}
+					{GetDay(Unix) >= 5 && (
+						<Tile current={GetDay(Unix) === 5}>
+							2{daysInLastMonth - 4}
+						</Tile>
+					)}
+					{GetDay(Unix) >= 4 && (
+						<Tile current={GetDay(Unix) === 4}>
+							3{daysInLastMonth - 3}
+						</Tile>
+					)}
+					{GetDay(Unix) >= 3 && (
+						<Tile current={GetDay(Unix) === 3}>
+							4{daysInLastMonth - 2}
+						</Tile>
+					)}
+					{GetDay(Unix) >= 2 && (
+						<Tile current={GetDay(Unix) === 2}>
+							5{daysInLastMonth - 1}
+						</Tile>
+					)}
+					{GetDay(Unix) >= 1 && (
+						<Tile current={GetDay(Unix) === 1}>
+							6{daysInLastMonth}
+						</Tile>
+					)}
 					{Array(
 						GetDaysInMonth(
 							new Date(Unix).getFullYear(),
@@ -70,6 +94,16 @@ const Calendar = () => {
 								new Date(Unix).getFullYear() ===
 									new Date().getFullYear()
 							)
+								return (
+									<Tile key={i} current>
+										{i + 1}
+									</Tile>
+								)
+
+							const date = new Date(Unix)
+							date.setDate(i + 1)
+
+							if (date.getDay() === 0)
 								return (
 									<Tile key={i} current>
 										{i + 1}
