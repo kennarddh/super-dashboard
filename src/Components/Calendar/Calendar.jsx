@@ -25,6 +25,10 @@ const Calendar = () => {
 		return date.getDay()
 	}
 
+	const date = new Date(Unix)
+	const month = date.getMonth() - 1
+	const daysInLastMonth = GetDaysInMonth(date.getFullYear(), month + 1)
+
 	return (
 		<Container>
 			<Row>
@@ -45,12 +49,12 @@ const Calendar = () => {
 					<Tile>Thu</Tile>
 					<Tile>Fri</Tile>
 					<Tile>Sat</Tile>
-					{GetDay(Unix) >= 1 && <Tile>0</Tile>}
-					{GetDay(Unix) >= 2 && <Tile>0</Tile>}
-					{GetDay(Unix) >= 3 && <Tile>0</Tile>}
-					{GetDay(Unix) >= 4 && <Tile>0</Tile>}
-					{GetDay(Unix) >= 5 && <Tile>0</Tile>}
-					{GetDay(Unix) >= 6 && <Tile>0</Tile>}
+					{GetDay(Unix) >= 6 && <Tile>{daysInLastMonth - 5}</Tile>}
+					{GetDay(Unix) >= 5 && <Tile>{daysInLastMonth - 4}</Tile>}
+					{GetDay(Unix) >= 4 && <Tile>{daysInLastMonth - 3}</Tile>}
+					{GetDay(Unix) >= 3 && <Tile>{daysInLastMonth - 2}</Tile>}
+					{GetDay(Unix) >= 2 && <Tile>{daysInLastMonth - 1}</Tile>}
+					{GetDay(Unix) >= 1 && <Tile>{daysInLastMonth}</Tile>}
 					{Array(
 						GetDaysInMonth(
 							new Date(Unix).getFullYear(),
