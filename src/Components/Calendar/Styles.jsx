@@ -8,13 +8,15 @@ export const Container = styled.div`
 	color: ${({ theme }) => theme.widget.color};
 
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 `
 
 export const Tiles = styled.div`
 	display: grid;
 	grid-template-columns: repeat(7, 50px);
+	grid-template-rows: repeat(5, 50px);
 `
 
 export const Tile = styled.p`
@@ -36,4 +38,11 @@ export const ChangeMonthButton = styled.p`
 	align-items: center;
 	cursor: pointer;
 	font-size: 3rem;
+	user-select: none;
+`
+
+export const Row = styled.div`
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 `
