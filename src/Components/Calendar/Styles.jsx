@@ -6,6 +6,10 @@ export const Container = styled.div`
 
 	background-color: ${({ theme }) => theme.widget.container};
 	color: ${({ theme }) => theme.widget.color};
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 `
 
 export const Tiles = styled.div`
@@ -23,4 +27,13 @@ export const Tile = styled.p`
 
 	background-color: #b8b8b8;
 	border: 1px solid #000000;
+`
+
+export const ChangeMonthButton = styled.p`
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	font-size: 3rem;
 `
