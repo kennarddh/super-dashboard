@@ -206,7 +206,7 @@ const App = () => {
 											x: 8,
 											y: 0,
 											w: 4,
-											h: 6,
+											h: 8,
 											static: true,
 										},
 									]}
