@@ -37,9 +37,22 @@ const Calendar = () => {
 						)
 					)
 						.fill(null)
-						.map((_, i) => (
-							<Tile key={i}>{i + 1}</Tile>
-						))}
+						.map((_, i) => {
+							if (
+								i === new Date().getDate() - 1 &&
+								new Date(Unix).getMonth() ===
+									new Date().getMonth() &&
+								new Date(Unix).getFullYear() ===
+									new Date().getFullYear()
+							)
+								return (
+									<Tile key={i} current>
+										{i + 1}
+									</Tile>
+								)
+
+							return <Tile key={i}>{i + 1}</Tile>
+						})}
 				</Tiles>
 				<ChangeMonthButton onClick={() => ChangeMonth(1)}>
 					&gt;

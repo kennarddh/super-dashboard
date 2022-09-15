@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
 	width: 100%;
@@ -29,6 +29,12 @@ export const Tile = styled.p`
 
 	background-color: #b8b8b8;
 	border: 1px solid #000000;
+
+	${({ current }) =>
+		current &&
+		css`
+			background-color: #d4d4d4;
+		`}
 `
 
 export const ChangeMonthButton = styled.p`
