@@ -23,6 +23,7 @@ import Map from 'Components/Map/Map'
 import News from 'Components/News/News'
 import Users from 'Components/Users/Users'
 import CurrencyConverter from 'Components/CurrencyConverter/CurrencyConverter'
+import Calendar from 'Components/Calendar/Calendar'
 
 import { SectionWrapper, Container } from './Styles'
 
@@ -44,6 +45,9 @@ const App = () => {
 								</Tab>
 								<Tab style={{ backgroundColor: '#acacac' }}>
 									Page 3
+								</Tab>
+								<Tab style={{ backgroundColor: '#acacac' }}>
+									Page 4
 								</Tab>
 								<ToggleTheme />
 							</TabList>
@@ -190,6 +194,39 @@ const App = () => {
 									</SectionWrapper>
 									<SectionWrapper key='currencyConverter'>
 										<CurrencyConverter />
+									</SectionWrapper>
+								</ReactGridLayout>
+							</TabPanel>
+
+							<TabPanel>
+								<ReactGridLayout
+									layout={[
+										{
+											i: 'calendar',
+											x: 8,
+											y: 0,
+											w: 4,
+											h: 6,
+											static: true,
+										},
+									]}
+									className='layout'
+									items={1}
+									rowHeight={41}
+									cols={12}
+									resizeHandles={[
+										's',
+										'w',
+										'e',
+										'n',
+										'sw',
+										'nw',
+										'se',
+										'ne',
+									]}
+								>
+									<SectionWrapper key='calendar'>
+										<Calendar />
 									</SectionWrapper>
 								</ReactGridLayout>
 							</TabPanel>
