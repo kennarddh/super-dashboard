@@ -17,6 +17,14 @@ const Calendar = () => {
 		})
 	}
 
+	const GetDay = unix => {
+		const date = new Date(unix)
+
+		date.setDate(1)
+
+		return date.getDay()
+	}
+
 	return (
 		<Container>
 			<Row>
@@ -30,6 +38,19 @@ const Calendar = () => {
 					&lt;
 				</ChangeMonthButton>
 				<Tiles>
+					<Tile>Sun</Tile>
+					<Tile>Mon</Tile>
+					<Tile>Tue</Tile>
+					<Tile>Wed</Tile>
+					<Tile>Thu</Tile>
+					<Tile>Fri</Tile>
+					<Tile>Sat</Tile>
+					{GetDay(Unix) >= 1 && <Tile>0</Tile>}
+					{GetDay(Unix) >= 2 && <Tile>0</Tile>}
+					{GetDay(Unix) >= 3 && <Tile>0</Tile>}
+					{GetDay(Unix) >= 4 && <Tile>0</Tile>}
+					{GetDay(Unix) >= 5 && <Tile>0</Tile>}
+					{GetDay(Unix) >= 6 && <Tile>0</Tile>}
 					{Array(
 						GetDaysInMonth(
 							new Date(Unix).getFullYear(),

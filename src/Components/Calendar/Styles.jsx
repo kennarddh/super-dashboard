@@ -16,7 +16,7 @@ export const Container = styled.div`
 export const Tiles = styled.div`
 	display: grid;
 	grid-template-columns: repeat(7, 50px);
-	grid-template-rows: repeat(5, 50px);
+	grid-template-rows: repeat(6, 50px);
 `
 
 export const Tile = styled.p`
