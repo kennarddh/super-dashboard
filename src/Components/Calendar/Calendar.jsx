@@ -50,34 +50,32 @@ const Calendar = () => {
 					<Tile>Fri</Tile>
 					<Tile>Sat</Tile>
 					{GetDay(Unix) >= 6 && (
-						<Tile current={GetDay(Unix) === 6}>
-							1{daysInLastMonth - 5}
+						<Tile red={GetDay(Unix) === 6}>
+							{daysInLastMonth - 5}
 						</Tile>
 					)}
 					{GetDay(Unix) >= 5 && (
-						<Tile current={GetDay(Unix) === 5}>
-							2{daysInLastMonth - 4}
+						<Tile red={GetDay(Unix) === 5}>
+							{daysInLastMonth - 4}
 						</Tile>
 					)}
 					{GetDay(Unix) >= 4 && (
-						<Tile current={GetDay(Unix) === 4}>
-							3{daysInLastMonth - 3}
+						<Tile red={GetDay(Unix) === 4}>
+							{daysInLastMonth - 3}
 						</Tile>
 					)}
 					{GetDay(Unix) >= 3 && (
-						<Tile current={GetDay(Unix) === 3}>
-							4{daysInLastMonth - 2}
+						<Tile red={GetDay(Unix) === 3}>
+							{daysInLastMonth - 2}
 						</Tile>
 					)}
 					{GetDay(Unix) >= 2 && (
-						<Tile current={GetDay(Unix) === 2}>
-							5{daysInLastMonth - 1}
+						<Tile red={GetDay(Unix) === 2}>
+							{daysInLastMonth - 1}
 						</Tile>
 					)}
 					{GetDay(Unix) >= 1 && (
-						<Tile current={GetDay(Unix) === 1}>
-							6{daysInLastMonth}
-						</Tile>
+						<Tile red={GetDay(Unix) === 1}>{daysInLastMonth}</Tile>
 					)}
 					{Array(
 						GetDaysInMonth(
@@ -87,6 +85,11 @@ const Calendar = () => {
 					)
 						.fill(null)
 						.map((_, i) => {
+							const date = new Date(Unix)
+							date.setDate(i + 1)
+
+							const props = {}
+
 							if (
 								i === new Date().getDate() - 1 &&
 								new Date(Unix).getMonth() ===
@@ -94,23 +97,15 @@ const Calendar = () => {
 								new Date(Unix).getFullYear() ===
 									new Date().getFullYear()
 							)
-								return (
-									<Tile key={i} current>
-										{i + 1}
-									</Tile>
-								)
+								props.current = true
 
-							const date = new Date(Unix)
-							date.setDate(i + 1)
+							if (date.getDay() === 0) props.red = true
 
-							if (date.getDay() === 0)
-								return (
-									<Tile key={i} current>
-										{i + 1}
-									</Tile>
-								)
-
-							return <Tile key={i}>{i + 1}</Tile>
+							return (
+								<Tile key={i} {...props}>
+									{i + 1}
+								</Tile>
+							)
 						})}
 				</Tiles>
 				<ChangeMonthButton onClick={() => ChangeMonth(1)}>

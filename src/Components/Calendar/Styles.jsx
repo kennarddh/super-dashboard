@@ -35,6 +35,12 @@ export const Tile = styled.p`
 		css`
 			background-color: #d4d4d4;
 		`}
+
+	${({ red }) =>
+		red &&
+		css`
+			color: #ff0000;
+		`}
 `
 
 export const ChangeMonthButton = styled.p`
