@@ -16,11 +16,15 @@ const Calendar = () => {
 	const [Unix, SetUnix] = useState(() => new Date().getTime())
 	const [SelectedDate, SetSelectedDate] = useState()
 
-	const ChangeMonth = add => {
+	const ChangeMonth = (add, increment = false) => {
 		SetUnix(unix => {
 			const date = new Date(unix)
 
-			date.setMonth(date.getMonth() + add)
+			if (!increment) {
+				date.setMonth(date.getMonth() + add)
+			} else {
+				date.setMonth(add)
+			}
 
 			return date.getTime()
 		})
@@ -60,9 +64,10 @@ const Calendar = () => {
 						type='number'
 						placeholder='Month'
 						id={`${id}-month`}
-						min={1}
-						max={12}
 						value={new Date(Unix).getMonth() + 1}
+						onChange={({ target: { value } }) =>
+							ChangeMonth(parseInt(value || '0', 10) - 1, true)
+						}
 					/>
 				</Form>
 			</Row>
