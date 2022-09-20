@@ -42,10 +42,20 @@ export const Tile = styled.p`
 			color: #ff0000;
 		`}
 
-	${({ selected }) =>
+		${({ selected }) =>
 		selected &&
 		css`
 			background-color: #0077ff;
+		`}
+
+	${({ lowerOpacity }) =>
+		lowerOpacity &&
+		css`
+			opacity: 0.5;
+
+			& * {
+				opacity: 1;
+			}
 		`}
 `
 
