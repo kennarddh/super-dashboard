@@ -8,7 +8,7 @@ export const Container = styled.div`
 	color: ${({ theme }) => theme.widget.color};
 
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
 	flex-direction: column;
 `
@@ -74,4 +74,18 @@ export const Row = styled.div`
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+`
+
+export const Form = styled.form`
+	display: grid;
+	grid-template-columns: 60px 200px;
+	grid-template-rows: repeat(2, 25px);
+	row-gap: 10px;
+`
+
+export const Input = styled.input`
+	border: none;
+	background-color: #dbdbdb;
+	text-align: center;
+	border-radius: 5px;
 `

@@ -1,6 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useId } from 'react'
 
-import { Container, Tiles, Tile, ChangeMonthButton, Row } from './Styles'
+import {
+	Container,
+	Tiles,
+	Tile,
+	ChangeMonthButton,
+	Row,
+	Form,
+	Input,
+} from './Styles'
 
 import GetDaysInMonth from 'Utils/GetDaysInMonth'
 
@@ -34,13 +42,29 @@ const Calendar = () => {
 	const month = date.getMonth() - 1
 	const daysInLastMonth = GetDaysInMonth(date.getFullYear(), month + 1)
 
+	const id = useId()
+
 	return (
 		<Container>
 			<Row>
-				<p>
-					{new Date(Unix).getMonth() + 1}/
-					{new Date(Unix).getFullYear()}
-				</p>
+				<Form>
+					<label htmlFor={`${id}-year`}>Year</label>
+					<Input
+						type='number'
+						placeholder='Year'
+						id={`${id}-year`}
+						value={new Date(Unix).getFullYear()}
+					/>
+					<label htmlFor={`${id}-month`}>Month</label>
+					<Input
+						type='number'
+						placeholder='Month'
+						id={`${id}-month`}
+						min={1}
+						max={12}
+						value={new Date(Unix).getMonth() + 1}
+					/>
+				</Form>
 			</Row>
 			<Row>
 				<ChangeMonthButton onClick={() => ChangeMonth(-1)}>
