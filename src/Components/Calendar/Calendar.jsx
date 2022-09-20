@@ -16,11 +16,11 @@ const Calendar = () => {
 	const [Unix, SetUnix] = useState(() => new Date().getTime())
 	const [SelectedDate, SetSelectedDate] = useState()
 
-	const ChangeMonth = (add, increment = false) => {
+	const ChangeMonth = (add, increment = true) => {
 		SetUnix(unix => {
 			const date = new Date(unix)
 
-			if (!increment) {
+			if (increment) {
 				date.setMonth(date.getMonth() + add)
 			} else {
 				date.setMonth(add)
@@ -30,11 +30,11 @@ const Calendar = () => {
 		})
 	}
 
-	const ChangeYear = (add, increment = false) => {
+	const ChangeYear = (add, increment = true) => {
 		SetUnix(unix => {
 			const date = new Date(unix)
 
-			if (!increment) {
+			if (increment) {
 				date.setFullYear(date.getFullYear() + add)
 			} else {
 				date.setFullYear(add)
@@ -78,7 +78,7 @@ const Calendar = () => {
 									value || `${new Date().getFullYear()}`,
 									10
 								),
-								true
+								false
 							)
 						}
 					/>
@@ -89,7 +89,7 @@ const Calendar = () => {
 						id={`${id}-month`}
 						value={new Date(Unix).getMonth() + 1}
 						onChange={({ target: { value } }) =>
-							ChangeMonth(parseInt(value || '0', 10) - 1, true)
+							ChangeMonth(parseInt(value || '0', 10) - 1, false)
 						}
 					/>
 				</Form>
