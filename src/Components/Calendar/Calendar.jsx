@@ -6,6 +6,7 @@ import GetDaysInMonth from 'Utils/GetDaysInMonth'
 
 const Calendar = () => {
 	const [Unix, SetUnix] = useState(() => new Date().getTime())
+	const [SelectedDate, SetSelectedDate] = useState()
 
 	const ChangeMonth = add => {
 		SetUnix(unix => {
@@ -23,6 +24,10 @@ const Calendar = () => {
 		date.setDate(1)
 
 		return date.getDay()
+	}
+
+	const SelectDate = unix => {
+		SetSelectedDate(unix)
 	}
 
 	const date = new Date(Unix)
@@ -99,10 +104,24 @@ const Calendar = () => {
 							)
 								props.current = true
 
+							if (
+								SelectedDate &&
+								i === new Date(SelectedDate).getDate() - 1 &&
+								new Date(Unix).getMonth() ===
+									new Date(SelectedDate).getMonth() &&
+								new Date(Unix).getFullYear() ===
+									new Date(SelectedDate).getFullYear()
+							)
+								props.selected = true
+
 							if (date.getDay() === 0) props.red = true
 
 							return (
-								<Tile key={i} {...props}>
+								<Tile
+									key={i}
+									{...props}
+									onClick={() => SelectDate(date.getTime())}
+								>
 									{i + 1}
 								</Tile>
 							)
