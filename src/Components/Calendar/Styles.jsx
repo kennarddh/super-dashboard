@@ -30,6 +30,9 @@ export const Tile = styled.p`
 	background-color: #b8b8b8;
 	border: 1px solid #000000;
 
+	user-select: none;
+	cursor: pointer;
+
 	${({ current }) =>
 		current &&
 		css`
@@ -53,9 +56,7 @@ export const Tile = styled.p`
 		css`
 			opacity: 0.5;
 
-			& * {
-				opacity: 1;
-			}
+			cursor: unset;
 		`}
 `
 
