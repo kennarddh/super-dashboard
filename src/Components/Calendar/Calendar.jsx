@@ -30,6 +30,20 @@ const Calendar = () => {
 		})
 	}
 
+	const ChangeYear = (add, increment = false) => {
+		SetUnix(unix => {
+			const date = new Date(unix)
+
+			if (!increment) {
+				date.setFullYear(date.getFullYear() + add)
+			} else {
+				date.setFullYear(add)
+			}
+
+			return date.getTime()
+		})
+	}
+
 	const GetDay = unix => {
 		const date = new Date(unix)
 
@@ -58,6 +72,15 @@ const Calendar = () => {
 						placeholder='Year'
 						id={`${id}-year`}
 						value={new Date(Unix).getFullYear()}
+						onChange={({ target: { value } }) =>
+							ChangeYear(
+								parseInt(
+									value || `${new Date().getFullYear()}`,
+									10
+								),
+								true
+							)
+						}
 					/>
 					<label htmlFor={`${id}-month`}>Month</label>
 					<Input
