@@ -57,7 +57,7 @@ export const Tile = styled.p`
 			color: #ff0000;
 		`}
 
-		${({ selected }) =>
+	${({ selected }) =>
 		selected &&
 		css`
 			background-color: #0077ff;
@@ -66,7 +66,7 @@ export const Tile = styled.p`
 	${({ lowerOpacity }) =>
 		lowerOpacity &&
 		css`
-			opacity: 0.5;
+			background-color: #b8b8b839;
 
 			cursor: unset;
 		`}
