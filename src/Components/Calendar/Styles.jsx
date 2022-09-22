@@ -28,7 +28,19 @@ export const Tile = styled.p`
 	align-items: center;
 
 	background-color: #b8b8b8;
-	border: 1px solid #000000;
+
+	--border: 1px solid #000000;
+
+	border-right: var(--border);
+	border-bottom: var(--border);
+
+	&:nth-child(7n + 1) {
+		border-left: var(--border);
+	}
+
+	&:nth-child(-n + 7) {
+		border-top: var(--border);
+	}
 
 	user-select: none;
 	cursor: pointer;
