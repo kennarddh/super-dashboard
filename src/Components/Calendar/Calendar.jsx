@@ -70,6 +70,15 @@ const Calendar = () => {
 	const IsContainsNationalHoliday = holidaysArray =>
 		holidaysArray.some(val => val.isNational)
 
+	const GenerateHolidayTileTitle = holidaysArray => {
+		return holidaysArray.reduce((acc, val) => {
+			acc += val.isNational ? 'National ' : ''
+			acc += val.name
+
+			return acc
+		}, '')
+	}
+
 	const FetchHolidays = useCallback(() => {
 		const controller = new AbortController()
 
@@ -230,8 +239,14 @@ const Calendar = () => {
 										DateCalendarApiFormat(date.getTime())
 									]
 								)
-							)
+							) {
 								props.red = true
+								props.title = GenerateHolidayTileTitle(
+									Holidays[
+										DateCalendarApiFormat(date.getTime())
+									]
+								)
+							}
 
 							if (date.getDay() === 0) props.red = true
 
