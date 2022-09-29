@@ -168,36 +168,23 @@ const Calendar = () => {
 					<Tile>Thu</Tile>
 					<Tile>Fri</Tile>
 					<Tile>Sat</Tile>
-					{GetDay(Unix) >= 6 && (
-						<Tile red={GetDay(Unix) === 6} lowerOpacity>
-							{daysInLastMonth - 5}
-						</Tile>
-					)}
-					{GetDay(Unix) >= 5 && (
-						<Tile red={GetDay(Unix) === 5} lowerOpacity>
-							{daysInLastMonth - 4}
-						</Tile>
-					)}
-					{GetDay(Unix) >= 4 && (
-						<Tile red={GetDay(Unix) === 4} lowerOpacity>
-							{daysInLastMonth - 3}
-						</Tile>
-					)}
-					{GetDay(Unix) >= 3 && (
-						<Tile red={GetDay(Unix) === 3} lowerOpacity>
-							{daysInLastMonth - 2}
-						</Tile>
-					)}
-					{GetDay(Unix) >= 2 && (
-						<Tile red={GetDay(Unix) === 2} lowerOpacity>
-							{daysInLastMonth - 1}
-						</Tile>
-					)}
-					{GetDay(Unix) >= 1 && (
-						<Tile red={GetDay(Unix) === 1} lowerOpacity>
-							{daysInLastMonth}
-						</Tile>
-					)}
+					{Array(6)
+						.fill(null)
+						.map((_, i) => {
+							if (GetDay(Unix) < i) return null
+
+							return (
+								<Tile
+									key={i}
+									red={GetDay(Unix) === i}
+									lowerOpacity
+								>
+									{daysInLastMonth - i}
+								</Tile>
+							)
+						})
+						.reverse()}
+
 					{Array(
 						GetDaysInMonth(
 							new Date(Unix).getFullYear(),
