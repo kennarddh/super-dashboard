@@ -1,4 +1,4 @@
-import React, { useState, useId } from 'react'
+import React, { useState, useId, useCallback, useEffect } from 'react'
 
 import {
 	Container,
@@ -15,6 +15,7 @@ import GetDaysInMonth from 'Utils/GetDaysInMonth'
 const Calendar = () => {
 	const [Unix, SetUnix] = useState(() => new Date().getTime())
 	const [SelectedDate, SetSelectedDate] = useState()
+	const [Holidays, SetHolidays] = useState({})
 
 	const ChangeMonth = (add, increment = true) => {
 		SetUnix(unix => {
@@ -55,6 +56,58 @@ const Calendar = () => {
 	const SelectDate = unix => {
 		SetSelectedDate(unix)
 	}
+
+	const DateCalendarApiFormat = unix => {
+		const dateObject = new Date(unix)
+
+		const month = dateObject.getMonth() + 1
+		const year = dateObject.getFullYear()
+		const date = dateObject.getDate()
+
+		return `${year}-${month}-${date}`
+	}
+
+	const IsContainsNationalHoliday = holidaysArray =>
+		holidaysArray.some(val => val.isNational)
+
+	const FetchHolidays = useCallback(() => {
+		const controller = new AbortController()
+
+		const searchParams = new URLSearchParams({
+			month: new Date(Unix).getMonth() + 1,
+			year: new Date(Unix).getFullYear(),
+		})
+
+		fetch(`https://api-harilibur.vercel.app/api?${searchParams}`, {
+			signal: controller.signal,
+		})
+			.then(response => response.json())
+			.then(data => {
+				SetHolidays(
+					data.reduce((acc, val) => {
+						if (!acc[val.holiday_date]) {
+							acc[val.holiday_date] = []
+						}
+
+						acc[val.holiday_date].push({
+							name: val.holiday_name,
+							isNational: val.is_national_holiday,
+						})
+
+						return acc
+					}, {})
+				)
+			})
+			.catch(error => console.log({ location: 'Calendar', error }))
+
+		return () => controller.abort()
+	}, [Unix])
+
+	useEffect(() => {
+		const abort = FetchHolidays()
+
+		return () => abort()
+	}, [FetchHolidays])
 
 	const date = new Date(Unix)
 	const month = date.getMonth() - 1
@@ -167,6 +220,18 @@ const Calendar = () => {
 									new Date(SelectedDate).getFullYear()
 							)
 								props.selected = true
+
+							if (
+								Object.keys(Holidays).includes(
+									DateCalendarApiFormat(date.getTime())
+								) &&
+								IsContainsNationalHoliday(
+									Holidays[
+										DateCalendarApiFormat(date.getTime())
+									]
+								)
+							)
+								props.red = true
 
 							if (date.getDay() === 0) props.red = true
 
