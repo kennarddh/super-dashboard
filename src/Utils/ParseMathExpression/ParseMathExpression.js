@@ -14,8 +14,6 @@ const ParseMathExpression = rawExpression => {
 
 	const symbolsParsed = ParseMathSymbols(formatted)
 
-	console.log({ formatted, symbolsParsed })
-
 	return InfixExpressionEvaluator(symbolsParsed)
 }
 

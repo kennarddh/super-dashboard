@@ -1,11 +1,30 @@
+class FloatFactorial extends Error {
+	constructor() {
+		super('Cannot Factorialize with float')
+
+		this.name = 'FloatFactorial'
+	}
+}
+
 const Factorial = num => {
-	if (num < 0) return -1
-	if (num == 0) return 1
+	if (num !== Math.round(num)) throw new FloatFactorial()
+	if (num === 0) return 1
 
 	let result = 1
+	let number = num
 
-	for (let i = 1; i <= num; i += 1) {
-		result = result * i
+	if (number < 0) {
+		while (number !== 0) {
+			result *= number
+
+			number += 1
+		}
+	} else {
+		while (number !== 0) {
+			result *= number
+
+			number -= 1
+		}
 	}
 
 	return result

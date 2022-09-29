@@ -1,6 +1,8 @@
 // eslint-disable-next-line max-classes-per-file
 import Stack from 'Utils/Stack'
 
+import Factorial from 'Utils/Math/Factorial/Factorial'
+
 const operatorsObj = {
 	'-': 1,
 	'+': 1,
@@ -18,14 +20,6 @@ class DivisionByZero extends Error {
 		super('Cannot Divide Number With Zero')
 
 		this.name = 'DivisionByZero'
-	}
-}
-
-class FloatFactorial extends Error {
-	constructor() {
-		super('Cannot Factorialize with float number')
-
-		this.name = 'FloatFactorial'
 	}
 }
 
@@ -83,41 +77,20 @@ const Process = (operatorStack, operandStack) => {
 	operandStack.push(result)
 }
 
-const Factorial = num => {
-	if (num !== Math.round(num)) throw new FloatFactorial()
-	if (num === 0) return 1
-
-	let result = 1
-	let number = num
-
-	if (number < 0) {
-		while (number !== 0) {
-			result *= number
-
-			number += 1
-		}
-	} else {
-		while (number !== 0) {
-			result *= number
-
-			number -= 1
-		}
-	}
-
-	return result
-}
-
 const Evaluate = rawExpression => {
 	const operandStack = new Stack()
 	const operatorStack = new Stack()
 
-	const expression = rawExpression.split(' ').reduce((acc, str) => {
-		if (str) {
-			return `${acc} ${str}`
-		}
+	const expression = rawExpression
+		.replace(/-\d+/g, x => `minus>${x.slice(1)}`)
+		.split(' ')
+		.reduce((acc, str) => {
+			if (str) {
+				return `${acc}${acc === '' ? '' : ' '}${str}`
+			}
 
-		return acc
-	}, '')
+			return acc
+		}, '')
 
 	expression.split(' ').forEach(char => {
 		if (!(char === '(' || char === ')')) {
@@ -131,10 +104,10 @@ const Evaluate = rawExpression => {
 				operandStack.push(ParseNumber(char))
 			} else if (operatorStack.size === 0) {
 				operatorStack.push(char)
-			} else if (Precedence(char) >= Precedence(operatorStack.peek())) {
+			} else if (Precedence(char) > Precedence(operatorStack.peek())) {
 				operatorStack.push(char)
 			} else {
-				while (Precedence(operatorStack.peek()) > Precedence(char)) {
+				while (Precedence(operatorStack.peek()) >= Precedence(char)) {
 					Process(operatorStack, operandStack)
 				}
 
