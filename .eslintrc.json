@@ -4,7 +4,10 @@
 		"es2021": true
 	},
 	"globals": {
-		"process": "readonly"
+		"process": "readonly",
+		"it": "readonly",
+		"describe": "readonly",
+		"expect": "readonly"
 	},
 	"extends": [
 		"eslint:recommended",
