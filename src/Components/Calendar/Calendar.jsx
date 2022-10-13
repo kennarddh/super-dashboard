@@ -221,7 +221,9 @@ const Calendar = () => {
 					To Do
 				</RectangleButton>
 			</Row>
-			<Row>Indonesian Holidays</Row>
+			<Row>
+				<p>Indonesian Holidays</p>
+			</Row>
 		</Container>
 	)
 }
