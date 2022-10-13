@@ -23,6 +23,7 @@ import Map from 'Components/Map/Map'
 import News from 'Components/News/News'
 import Users from 'Components/Users/Users'
 import CurrencyConverter from 'Components/CurrencyConverter/CurrencyConverter'
+import Calendar from 'Components/Calendar/Calendar'
 import Calculator from 'Components/Calculator/Calculator'
 
 import { SectionWrapper, Container } from './Styles'
@@ -202,8 +203,16 @@ const App = () => {
 								<ReactGridLayout
 									layout={[
 										{
-											i: 'calculator',
+											i: 'calendar',
 											x: 8,
+											y: 0,
+											w: 4,
+											h: 12,
+											static: true,
+										},
+										{
+											i: 'calculator',
+											x: 4,
 											y: 0,
 											w: 4,
 											h: 8,
@@ -225,6 +234,9 @@ const App = () => {
 										'ne',
 									]}
 								>
+									<SectionWrapper key='calendar'>
+										<Calendar />
+									</SectionWrapper>
 									<SectionWrapper key='calculator'>
 										<Calculator />
 									</SectionWrapper>
