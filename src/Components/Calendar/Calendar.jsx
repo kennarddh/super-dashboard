@@ -1,6 +1,14 @@
 import React, { useState, useId, useCallback, useEffect } from 'react'
 
-import { Container, Tiles, Tile, Row, Form, Input } from './Styles'
+import {
+	Container,
+	Tiles,
+	Tile,
+	Row,
+	Form,
+	Input,
+	HolidaysContainer,
+} from './Styles'
 
 import GetDaysInMonth from 'Utils/GetDaysInMonth'
 
@@ -180,6 +188,27 @@ const Calendar = () => {
 							)
 						})}
 				</Tiles>
+			</Row>
+			<Row left width100>
+				<HolidaysContainer>
+					{Object.entries(Holidays).map(([date, holidays]) => (
+						<figure key={date}>
+							<figcaption>{date}</figcaption>
+							<ul>
+								{holidays.map(holiday => (
+									<li key={holiday.name}>
+										<span>
+											{holiday.isNational
+												? 'National: '
+												: ''}
+										</span>
+										{holiday.name}
+									</li>
+								))}
+							</ul>
+						</figure>
+					))}
+				</HolidaysContainer>
 			</Row>
 		</Container>
 	)

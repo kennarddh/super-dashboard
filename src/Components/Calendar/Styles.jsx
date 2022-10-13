@@ -74,8 +74,13 @@ export const Tile = styled.p`
 
 export const Row = styled.div`
 	display: flex;
-	justify-content: space-around;
+	justify-content: ${({ left }) => (left ? 'flex-start' : 'space-around')};
 	align-items: center;
+	${({ width100 }) =>
+		width100 &&
+		css`
+			width: 80%;
+		`}
 `
 
 export const Form = styled.form`
@@ -90,4 +95,14 @@ export const Input = styled.input`
 	background-color: #dbdbdb;
 	text-align: center;
 	border-radius: 5px;
+`
+
+export const HolidaysContainer = styled.div`
+	height: 100px;
+	width: 100%;
+	overflow-y: scroll;
+
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 `
