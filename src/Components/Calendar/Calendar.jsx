@@ -177,11 +177,15 @@ const Calendar = () => {
 								Unix
 							)
 
+							const date = new Date(Unix)
+
+							date.setDate(i + 1)
+
 							return (
 								<Tile
 									key={i}
-									{...props}
 									onClick={() => SelectDate(date.getTime())}
+									{...props}
 								>
 									{i + 1}
 								</Tile>
