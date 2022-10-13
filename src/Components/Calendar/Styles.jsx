@@ -72,16 +72,6 @@ export const Tile = styled.p`
 		`}
 `
 
-export const ChangeMonthButton = styled.p`
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	font-size: 3rem;
-	user-select: none;
-`
-
 export const Row = styled.div`
 	display: flex;
 	justify-content: space-around;

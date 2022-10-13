@@ -1,14 +1,6 @@
 import React, { useState, useId, useCallback, useEffect } from 'react'
 
-import {
-	Container,
-	Tiles,
-	Tile,
-	ChangeMonthButton,
-	Row,
-	Form,
-	Input,
-} from './Styles'
+import { Container, Tiles, Tile, Row, Form, Input } from './Styles'
 
 import GetDaysInMonth from 'Utils/GetDaysInMonth'
 
@@ -137,9 +129,6 @@ const Calendar = () => {
 				</Form>
 			</Row>
 			<Row>
-				<ChangeMonthButton onClick={() => ChangeMonth(-1)}>
-					&lt;
-				</ChangeMonthButton>
 				<Tiles>
 					<Tile>Sun</Tile>
 					<Tile>Mon</Tile>
@@ -191,9 +180,6 @@ const Calendar = () => {
 							)
 						})}
 				</Tiles>
-				<ChangeMonthButton onClick={() => ChangeMonth(1)}>
-					&gt;
-				</ChangeMonthButton>
 			</Row>
 		</Container>
 	)
