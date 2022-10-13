@@ -10,8 +10,6 @@ import {
 	HolidaysContainer,
 } from './Styles'
 
-import RectangleButton from 'Components/Button/Rectangle/Rectangle'
-
 import GetDaysInMonth from 'Utils/GetDaysInMonth'
 
 import GetTileProps from './GetTileProps'
@@ -215,11 +213,6 @@ const Calendar = () => {
 						</figure>
 					))}
 				</HolidaysContainer>
-			</Row>
-			<Row width100>
-				<RectangleButton width='100%' height={30} radius={15}>
-					To Do
-				</RectangleButton>
 			</Row>
 			<Row>
 				<p>Indonesian Holidays</p>
