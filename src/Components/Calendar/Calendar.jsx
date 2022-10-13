@@ -210,6 +210,7 @@ const Calendar = () => {
 					))}
 				</HolidaysContainer>
 			</Row>
+			<Row>Indonesian Holidays</Row>
 		</Container>
 	)
 }
