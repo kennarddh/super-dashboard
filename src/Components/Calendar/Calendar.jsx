@@ -12,6 +12,8 @@ import {
 
 import GetDaysInMonth from 'Utils/GetDaysInMonth'
 
+import GetTileProps from './GetTileProps'
+
 const Calendar = () => {
 	const [Unix, SetUnix] = useState(() => new Date().getTime())
 	const [SelectedDate, SetSelectedDate] = useState()
@@ -55,28 +57,6 @@ const Calendar = () => {
 
 	const SelectDate = unix => {
 		SetSelectedDate(unix)
-	}
-
-	const DateCalendarApiFormat = unix => {
-		const dateObject = new Date(unix)
-
-		const month = dateObject.getMonth() + 1
-		const year = dateObject.getFullYear()
-		const date = dateObject.getDate()
-
-		return `${year}-${month}-${date}`
-	}
-
-	const IsContainsNationalHoliday = holidaysArray =>
-		holidaysArray.some(val => val.isNational)
-
-	const GenerateHolidayTileTitle = holidaysArray => {
-		return holidaysArray.reduce((acc, val) => {
-			acc += val.isNational ? 'National ' : ''
-			acc += val.name
-
-			return acc
-		}, '')
 	}
 
 	const FetchHolidays = useCallback(() => {
@@ -171,7 +151,7 @@ const Calendar = () => {
 					{Array(6)
 						.fill(null)
 						.map((_, i) => {
-							if (GetDay(Unix) < i) return null
+							if (GetDay(Unix) <= i) return null
 
 							return (
 								<Tile
@@ -193,49 +173,12 @@ const Calendar = () => {
 					)
 						.fill(null)
 						.map((_, i) => {
-							const date = new Date(Unix)
-							date.setDate(i + 1)
-
-							const props = {}
-
-							if (
-								i === new Date().getDate() - 1 &&
-								new Date(Unix).getMonth() ===
-									new Date().getMonth() &&
-								new Date(Unix).getFullYear() ===
-									new Date().getFullYear()
+							const props = GetTileProps(
+								i,
+								SelectedDate,
+								Holidays,
+								Unix
 							)
-								props.current = true
-
-							if (
-								SelectedDate &&
-								i === new Date(SelectedDate).getDate() - 1 &&
-								new Date(Unix).getMonth() ===
-									new Date(SelectedDate).getMonth() &&
-								new Date(Unix).getFullYear() ===
-									new Date(SelectedDate).getFullYear()
-							)
-								props.selected = true
-
-							if (
-								Object.keys(Holidays).includes(
-									DateCalendarApiFormat(date.getTime())
-								) &&
-								IsContainsNationalHoliday(
-									Holidays[
-										DateCalendarApiFormat(date.getTime())
-									]
-								)
-							) {
-								props.red = true
-								props.title = GenerateHolidayTileTitle(
-									Holidays[
-										DateCalendarApiFormat(date.getTime())
-									]
-								)
-							}
-
-							if (date.getDay() === 0) props.red = true
 
 							return (
 								<Tile
