@@ -24,6 +24,7 @@ import News from 'Components/News/News'
 import Users from 'Components/Users/Users'
 import CurrencyConverter from 'Components/CurrencyConverter/CurrencyConverter'
 import Calendar from 'Components/Calendar/Calendar'
+import Calculator from 'Components/Calculator/Calculator'
 
 import { SectionWrapper, Container } from './Styles'
 
@@ -209,6 +210,14 @@ const App = () => {
 											h: 12,
 											static: true,
 										},
+										{
+											i: 'calculator',
+											x: 4,
+											y: 0,
+											w: 4,
+											h: 8,
+											static: true,
+										},
 									]}
 									className='layout'
 									items={1}
@@ -227,6 +236,9 @@ const App = () => {
 								>
 									<SectionWrapper key='calendar'>
 										<Calendar />
+									</SectionWrapper>
+									<SectionWrapper key='calculator'>
+										<Calculator />
 									</SectionWrapper>
 								</ReactGridLayout>
 							</TabPanel>
