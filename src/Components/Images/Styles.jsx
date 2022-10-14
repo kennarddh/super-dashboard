@@ -13,6 +13,13 @@ export const Container = styled.div`
 
 	padding: 10px 20px;
 
+	/* Firefox scroll */
+	@supports (-moz-appearance: none) {
+		scrollbar-width: thin;
+		scrollbar-color: #888888 #f1f1f1;
+	}
+
+	/* Blink scroll */
 	&::-webkit-scrollbar {
 		height: 10px;
 	}

@@ -15,10 +15,6 @@ export const Autocomplete = styled.div`
 	z-index: 1;
 	overflow-y: auto;
 	max-height: 200px;
-
-	&::-webkit-scrollbar {
-		width: 0px;
-	}
 `
 
 export const AutocompleteItem = styled.button`
